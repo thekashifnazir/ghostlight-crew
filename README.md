@@ -34,4 +34,4 @@ Making an old game accessible needs a description pack: a name, a description an
 
 ## Licence
 
-MIT. See `LICENSE`.
+Apache 2.0. See `LICENSE` and `NOTICE`.
