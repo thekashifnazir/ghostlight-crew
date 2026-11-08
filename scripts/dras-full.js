@@ -7,13 +7,31 @@ const { existsSync } = require("fs");
 const { spawn } = require("child_process");
 const SAVES = require("path").join(__dirname, "..", ".saves");
 const LOG = "/tmp/dras-full-log.txt";
+
+// Build the room graph from the pack so navigation uses real exits, not guesses.
+const PACK = require("/Users/kash/Code/showcase/ghostlight/packs/drascula-en.json");
+const GRAPH = {}; // room -> [{exit, to}]
+for(const n of Object.keys(PACK.rooms)){
+  const ex=PACK.rooms[n].exits||{}; GRAPH[n]=[];
+  for(const e of Object.keys(ex)){ if(ex[e].to!=null) GRAPH[n].push({exit:Number(e), to:Number(ex[e].to)}); }
+}
+// BFS: list of exit numbers to walk from `from` to `to`.
+function pathExits(from,to){
+  if(from===to) return [];
+  const q=[[from,[]]], seen=new Set([from]);
+  while(q.length){ const [cur,acc]=q.shift();
+    for(const {exit,to:nx} of (GRAPH[cur]||[])){ if(seen.has(nx)) continue;
+      const acc2=acc.concat(exit); if(nx===to) return acc2; seen.add(nx); q.push([nx,acc2]); } }
+  return null;
+}
 const lines = [];
 function L(s){ lines.push(s); fs.writeFileSync(LOG, lines.join("\n")); console.log(s); }
 
 // Decide the start slot: highest checkpoint present (10..40) else 9.
 function slotFile(n){ return `${SAVES}/drascula.${String(n).padStart(3,"0")}`; }
 let startSlot = 9;
-for(let n=40;n>=10;n--){ if(existsSync(slotFile(n))){ startSlot=n; break; } }
+// resume from highest ch2 checkpoint (10..19); slots 20+ are chapter-boundary saves, not ch2 progress.
+for(let n=19;n>=10;n--){ if(existsSync(slotFile(n))){ startSlot=n; break; } }
 
 const srv = spawn("mcp/node_modules/.bin/tsx", ["mcp/src/server.ts"], {
   env: { ...process.env, DRASCULA_MCP_TRANSPORT: "native", DRASCULA_MCP_SAVEPATH: SAVES },
@@ -42,6 +60,12 @@ async function A(name,args){
   const d=j.diff||{};
   const tag=j.error?("ERROR:"+j.error):("room="+JSON.stringify(d.room)+" said="+JSON.stringify(said(j)).slice(0,46)+(d.invAdded?" +"+JSON.stringify(d.invAdded.map(x=>x.id)):"")+(d.flags?" f="+JSON.stringify(d.flags):""));
   L("  "+name+" "+JSON.stringify(args||{})+" -> "+tag);
+  // Settle-timeout after a speech line: the engine committed the action but the
+  // transport gave up waiting. Read the real committed state and re-seed flags.
+  if(j.error && /did not settle/.test(j.error)){
+    const s2=J(await tool("state",{}));
+    if(s2 && Array.isArray(s2.flags)){ flagsOn.clear(); s2.flags.forEach((v,i)=>{ if(v===1) flagsOn.add(i); }); L("    recovered flags from state: "+[...flagsOn].sort((a,b)=>a-b).join(",")); }
+  }
   return j;
 }
 async function advance(lastJ){ let had=said(lastJ).length>0,n=0; while(had&&n<6){ const j=J(await tool("skip",{})); foldFlags(j); n++; if(j.error){L("    skip err:"+j.error);break;} if(said(j).length===0) break; } }
@@ -79,50 +103,90 @@ async function converse(target, phrase){
   L("START slot"+startSlot+" ch"+s.chapter+" room"+s.room+" inv="+JSON.stringify(s.inventory)+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(","));
   const have=(n)=> flagsOn.has(n);
 
+  // Navigate to a target room using the pack graph. Re-plans from the live room each hop.
+  async function goTo(room){
+    for(let i=0;i<20;i++){
+      const cur=(await st()).room; if(cur===room) return true;
+      const path=pathExits(cur,room);
+      if(!path||!path.length){ L("    !! no path "+cur+"->"+room); return false; }
+      const r=await A("walk",{target:path[0]});
+      if(r.error){ L("    !! walk "+path[0]+" failed: "+r.error); return false; }
+    }
+    return (await st()).room===room;
+  }
+
+  // Each milestone: go to its room, then act. Navigation comes from the graph.
   const M = [
-    { id:"ch2.handbag", flag:20, do: async()=>{ await A("walk",{target:162}); await A("open",{target:183}); } },
+    { id:"ch2.handbag", flag:20, do: async()=>{ await goTo(16); await A("open",{target:183}); } },
     { id:"ch2.money", flag:23, do: async()=>{ await A("open",{target:22}); } },
-    { id:"ch2.cigarettes", flag:26, do: async()=>{ await A("walk",{target:163}); await A("walk",{target:171}); await A("use",{item:18,target:188}); await A("push",{target:188}); } },
-    { id:"ch2.von-braun-named", flag:40, do: async()=>{ await A("walk",{target:172}); await converse(53,"AND WHERE CAN I FIND VON BRAUN"); } },
-    { id:"ch2.blind-man", flag:4, do: async()=>{ await A("walk",{target:159}); await A("walk",{target:149}); const t=await A("talk",{target:51}); await advance(t); } },
-    { id:"ch2.sickle", flag:37, do: async()=>{ const u=await A("use",{item:7,target:51}); await advance(u); } },
-    { id:"ch2.spike", flag:3, do: async()=>{ await A("walk",{target:152}); await A("walk",{target:146}); await A("walk",{target:126}); await A("walk",{target:127}); await A("take",{target:165}); } },
-    { id:"ch2.church", flag:8, do: async()=>{ await A("walk",{target:134}); await A("use",{item:10,target:213}); } },
-    { id:"ch2.crucifix", flag:10, do: async()=>{ await A("walk",{target:136}); await A("open",{target:139}); await A("take",{target:140}); } },
-    { id:"ch2.candle", flag:35, do: async()=>{ await A("open",{target:138}); await A("walk",{target:138}); await A("take",{target:190}); } },
-    { id:"ch2.leaves", flag:37, alsoNeed:8, do: async()=>{ await A("walk",{target:142}); await A("walk",{target:137}); await A("walk",{target:135}); await A("use",{item:14,target:166}); } },
-    { id:"ch2.bubble-gum", flag:34, do: async()=>{ await A("walk",{target:128}); await A("walk",{target:125}); await A("push",{target:189}); } },
-    { id:"ch2.tissues", flag:7, do: async()=>{ await A("walk",{target:145}); await A("walk",{target:148}); await A("walk",{target:160}); await A("look",{target:147}); } },
-    { id:"ch2.into-hut", flag:14, do: async()=>{ await A("walk",{target:161}); await A("walk",{target:146}); await A("walk",{target:126}); await A("walk",{target:175}); await A("walk",{target:177}); await A("open",{target:177}); await converse(177,"DON'T BE AFRAID"); } },
-    { id:"ch2.book", flag:28, do: async()=>{ await A("walk",{target:177}); await A("take",{target:182}); } },
-    { id:"ch2.earplugs", flag:39, do: async()=>{ await A("walk",{target:178}); await A("walk",{target:176}); await A("walk",{target:125}); await A("walk",{target:145}); await A("walk",{target:148}); await A("use",{item:12,target:54}); } },
-    { id:"ch2.test", flag:22, do: async()=>{ await A("use",{item:11,target:50}); await converse(55,"I AM READY TO FACE YOUR TEST"); } },
+    { id:"ch2.cigarettes", flag:26, do: async()=>{ await goTo(15); await A("use",{item:18,target:188}); await A("push",{target:188}); } },
+    { id:"ch2.von-braun-named", flag:40, do: async()=>{ await goTo(14); await converse(53,"AND WHERE CAN I FIND VON BRAUN"); } },
+    { id:"ch2.blind-man", flag:4, optional:true, do: async()=>{ await goTo(9); const t=await A("talk",{target:51}); await advance(t); } },
+    { id:"ch2.sickle", flag:41, hasItem:14, do: async()=>{ await goTo(9); const u=await A("use",{item:7,target:51}); await advance(u); } },
+    { id:"ch2.spike", flag:3, do: async()=>{ await goTo(3); await A("take",{target:165}); } },
+    { id:"ch2.church", flag:8, do: async()=>{ await goTo(5); await A("use",{item:10,target:136}); } },
+    { id:"ch2.crucifix", flag:10, do: async()=>{ await goTo(6); await A("open",{target:139}); await A("take",{target:140}); } },
+    { id:"ch2.candle", flag:35, do: async()=>{ await goTo(7); await A("take",{target:190}); } },
+    { id:"ch2.leaves", flag:37, alsoNeed:8, do: async()=>{ await goTo(3); await A("use",{item:14,target:166}); } },
+    { id:"ch2.bubble-gum", flag:34, do: async()=>{ await goTo(4); await A("push",{target:189}); } },
+    { id:"ch2.tissues", flag:7, do: async()=>{ await goTo(8); await A("look",{target:147}); } },
+    { id:"ch2.into-hut", flag:14, do: async()=>{ await goTo(17); await A("open",{target:177}); await converse(177,"DON'T BE AFRAID"); } },
+    { id:"ch2.book", flag:28, do: async()=>{ await goTo(18); await A("take",{target:182}); } },
+    { id:"ch2.earplugs", flag:39, do: async()=>{ await goTo(14); await A("use",{item:12,target:54}); } },
+    { id:"ch2.test", flag:22, do: async()=>{ await goTo(18); await A("use",{item:11,target:50}); await converse(55,"I AM READY TO FACE YOUR TEST"); } },
     { id:"ch2.recipe", flag:33, do: async()=>{ await converse(55,"WHY WOULDN'T DRASCULA KILL YOU"); } },
     { id:"ch2.brew", flag:36, do: async()=>{ await converse(55,"I HAVE ALL THE INGREDIENTS OF THAT BREW"); } },
   ];
 
+  // A milestone is done when: its flag is on, OR any altFlag is on, OR hasItem is held.
+  // alsoNeed (if set) must also be on. Held items read from live state.inventory.
+  async function isDone(m){
+    const inv=((await st()).inventory)||[];
+    const flagHit = have(m.flag) || (m.altFlags||[]).some(f=>have(f)) || (m.hasItem!=null && inv.includes(m.hasItem));
+    return flagHit && (!m.alsoNeed || have(m.alsoNeed));
+  }
+
   let stopped=null, cpSlot=10, done=0;
   for(let idx=0; idx<M.length; idx++){
     const m=M[idx];
-    if(have(m.flag) && (!m.alsoNeed || have(m.alsoNeed))){ L("SKIP "+m.id+" (flag set)"); done++; }
+    if(await isDone(m)){ L("SKIP "+m.id+" (already done)"); done++; }
     else {
       let ok=false;
       for(let a=1;a<=3 && !ok;a++){
         s=await st();
         L("== "+m.id+" attempt "+a+" (room "+s.room+") ==");
         try{ await m.do(); }catch(e){ L("  do() error: "+e.message); }
-        ok=have(m.flag) && (!m.alsoNeed || have(m.alsoNeed));
-        L("  after: flag"+m.flag+(ok?" SET":" not set")+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(","));
+        ok=await isDone(m);
+        L("  after: "+m.id+(ok?" DONE":" not done")+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(","));
       }
-      if(!ok){ stopped=m.id; break; }
+      if(!ok){ if(m.optional){ L("  OPTIONAL "+m.id+" not set after 3; continuing"); } else { stopped=m.id; break; } }
       done++;
     }
     // checkpoint after every 3 milestones completed
     if(done%3===0){ const sl=cpSlot++; L("  checkpoint -> slot "+sl); await tool("save",{slot:sl}); }
   }
 
-  if(stopped){ L("STOPPED at "+stopped); }
-  else { s=await st(); L("== ALL CH2 DONE; room "+s.room+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(",")+" =="); }
+  if(stopped){ L("STOPPED at "+stopped); fs.writeFileSync(LOG, lines.join("\n")); await tool("stop",{}); srv.kill(); process.exit(0); }
+  s=await st(); L("== ALL CH2 DONE; room "+s.room+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(",")+" ==");
+
+  // ---- Reach room 19, checkpoint slot 5, then down the well into room 20 ----
+  // Route to nave (room 7) then churchyard well (room 19 via exit 164).
+  L("== GO TO WELL (room 19) ==");
+  await goTo(19);
+  s=await st();
+  if(s.room!==19){ L("!! not in room 19 (room "+s.room+"); cannot reach well"); }
+  else {
+    L("  in room 19; save slot 5"); await tool("save",{slot:5});
+    L("== DOWN THE WELL (exit 173) =="); await A("walk",{target:173});
+    s=await st(); L("  after well: room "+s.room+" chapter "+s.chapter);
+    if(s.room===20){
+      L("== REACHED ROOM 20; chapter-boundary checkpoint slot 20 =="); await tool("save",{slot:20});
+      // survey room 20: look at every hotspot once
+      L("== SURVEY ROOM 20 =="); L("STATE20 "+JSON.stringify(s));
+      const hs=(s.hotspots||s.targets||[]);
+      for(const h of hs){ const n=(typeof h==="number")?h:(h.id!=null?h.id:h.num); if(n==null)continue; const lk=await A("look",{target:n}); L("LOOK20 "+n+" :: "+JSON.stringify(lk.diff||lk)); }
+    } else { L("!! well did not land in room 20 (room "+s.room+")"); }
+  }
   fs.writeFileSync(LOG, lines.join("\n"));
   await tool("stop",{});
   srv.kill(); process.exit(0);
