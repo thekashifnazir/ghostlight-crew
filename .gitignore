@@ -1,0 +1,7 @@
+# Drascula MCP save files: kept on disk, never committed (they contain game state)
+.saves/
+# Crew-made git worktrees of other repos (a copy of ghostlight lives here)
+worktrees/
+# OS and editor noise
+.DS_Store
+node_modules/
