@@ -244,3 +244,7 @@ _None._
 ---
 
 _Generated from a live playthrough. Filler lines are the engine's stock fallbacks, so a hotspot showing only filler effectively has no authored description._
+
+## Correction, 9 Nov 20:15 (Claude Code, checked against `packs/drascula-en.json`)
+
+This survey heard only what the **engine** says on `look`. Ghostlight speaks the pack's own description when a player presses Down, so the engine's silence or filler isn't what a player hears. Of the 17 flagged entries, 16 already have a pack description (blue window 120, statue 999, candle 190, street lamp 155, bartender 52, pianist 54, drunk 53, piano 199, bed 184, window 186, writing on the wall 180, garlic 179, Von Braun 55). The only empty one is the gravestone 130, whose hotspot box is 0,0,0,0 (already noted in the pack as unreachable). **Chapter 2 has no real description gaps.** Future surveys should compare the engine line with the pack entry and flag only objects with neither.
