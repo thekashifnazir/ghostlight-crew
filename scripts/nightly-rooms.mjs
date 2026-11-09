@@ -16,6 +16,7 @@ import { spawn, execFileSync } from "node:child_process";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { liveCheck } from "./nightly-live.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = join(__dirname, "..");                       // ghostlight-crew
@@ -212,10 +213,23 @@ try {
   try { srv.kill(); } catch {}
 }
 
+// --- live-site check ----------------------------------------------------------
+// After the room survey (which only touches the local engine), run the deployed
+// site smoke check. It never throws: on any failure it returns FAIL rows so the
+// report still renders. Overall PASS requires BOTH parts to pass.
+let live = { rows: [], overall: "FAIL" };
+try {
+  live = await liveCheck();
+} catch (e) {
+  live = { rows: [{ step: "live", pass: false, ms: 0, note: `fatal: ${e.message || e}` }], overall: "FAIL" };
+}
+
 // --- build the report ---------------------------------------------------------
 const now = new Date();
 const date = now.toISOString().slice(0, 10);              // YYYY-MM-DD (UTC)
-const overallPass = !fatal && results.length === ROUTE.length && results.every((r) => r.pass);
+const roomsPass = !fatal && results.length === ROUTE.length && results.every((r) => r.pass);
+const livePass = live.overall === "PASS";
+const overallPass = roomsPass && livePass;
 
 const lines = [];
 lines.push(`# Nightly room survey — ${date}`);
@@ -252,6 +266,19 @@ for (const r of results) {
     for (const s of r.steps) lines.push(`  - walk ${s.walk}: ${(s.ms / 1000).toFixed(2)}s`);
   }
 }
+lines.push("");
+lines.push("## Live site");
+lines.push("");
+lines.push(`- Target: https://ghostlight.kashifnazir.com/?speechlog`);
+lines.push(`- **Live: ${live.overall}**`);
+lines.push("");
+lines.push("| Step | Result | Time | Note |");
+lines.push("|---|---|---|---|");
+for (const s of live.rows) {
+  lines.push(
+    `| ${s.step} | ${s.pass ? "PASS" : "FAIL"} | ${(s.ms / 1000).toFixed(2)}s | ${String(s.note || "").replace(/\|/g, "\\|")} |`,
+  );
+}
 if (stderrLines.length) {
   lines.push("");
   lines.push("## Server log (stderr tail)");
@@ -280,12 +307,15 @@ try {
 }
 
 console.log(`Report: ${reportAbs}`);
-console.log(`Overall: ${overallPass ? "PASS" : "FAIL"}`);
+console.log(`Overall: ${overallPass ? "PASS" : "FAIL"} (rooms=${roomsPass ? "PASS" : "FAIL"}, live=${live.overall})`);
 for (const r of results) {
   console.log(
     `  room ${r.room}: ${r.pass ? "PASS" : "FAIL"} ` +
     `(spoken=${r.descriptionSpoken ? "yes" : "no"}, slowest=${(r.slowestStepMs / 1000).toFixed(2)}s)`,
   );
+}
+for (const s of live.rows) {
+  console.log(`  live ${s.step}: ${s.pass ? "PASS" : "FAIL"} (${(s.ms / 1000).toFixed(2)}s)`);
 }
 if (fatal) console.log(`  FATAL: ${fatal}`);
 process.exit(fatal ? 1 : 0);
