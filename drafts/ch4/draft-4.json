@@ -7,34 +7,45 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Castle grounds",
+      "short": "Outside the castle. A small tree stands left of centre, a tower rises on the right, and a door is set low on the left.",
+      "long": "The ground in front of the castle. On the far left, a door is set in the wall. A second door sits just to its right, closer to the middle. A small tree stands left of centre, with a gap behind it. A tall tower rises at the far right.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "The game gave no look line for the room, the tree, either door, or the rope. Layout comes from hotspot rectangles in state.json (screen is 320 wide). Reviewer: check against a screenshot, especially the tree gap.",
       "exits": {
         "100": {
-          "label": "",
-          "to": 22
+          "label": "small tree, leads behind it",
+          "to": 22,
+          "direction": "ahead",
+          "note": "Engine name is ARBOLITO (Spanish, small tree). Look gives no line. Please confirm the tree really is the way through."
         },
         "101": {
-          "label": "",
-          "to": 23
+          "label": "castle door",
+          "to": 23,
+          "direction": "left",
+          "note": "Left of centre, x 82 to 100. Look gave no line."
         }
       },
       "objects": {
         "141": {
-          "name": "",
-          "type": "object"
+          "name": "rope",
+          "type": "object",
+          "description": "A rope on the ground at the far right, below the tower.",
+          "note": "Hotspot is not visible in the dump (visible 0) and the hero already held the rope. Look gave only filler. Description is a guess from the name and position; reviewer to confirm or drop."
         },
         "173": {
-          "name": "",
-          "type": "object"
+          "name": "far left door",
+          "type": "object",
+          "description": "A door set in the castle wall at the far left.",
+          "note": "Not an engine exit (door 0). Look line: I CAN'T SEE ANYTHING IN PARTICULAR. The coverage report calls it a fake door. Kept as object, not exit."
         },
         "179": {
-          "name": "",
-          "type": "object"
+          "name": "tower",
+          "type": "object",
+          "description": "A tall tower at the far right of the castle.",
+          "note": "Look line: IT'S NOT UNUSUAL. Nothing more was said, so nothing more is claimed."
         }
       }
     },
