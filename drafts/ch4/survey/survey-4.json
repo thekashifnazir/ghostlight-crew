@@ -1,0 +1,121 @@
+{
+  "chapter": 4,
+  "slot": 42,
+  "date": "2026-11-11",
+  "engineBuild": "scummvm@2026-11-11T13:37:24.995Z",
+  "rooms": [
+    {
+      "room": 21,
+      "verdict": "reached"
+    },
+    {
+      "room": 22,
+      "verdict": "reached"
+    },
+    {
+      "room": 23,
+      "verdict": "reached"
+    },
+    {
+      "room": 24,
+      "verdict": "reached"
+    },
+    {
+      "room": 26,
+      "verdict": "reached"
+    },
+    {
+      "room": 27,
+      "verdict": "reached"
+    },
+    {
+      "room": 28,
+      "verdict": "reached"
+    },
+    {
+      "room": 29,
+      "verdict": "reached"
+    },
+    {
+      "room": 30,
+      "verdict": "reached"
+    },
+    {
+      "room": 31,
+      "verdict": "unreached",
+      "reason": "from room 27: no door to room 31 in room 27's state"
+    },
+    {
+      "room": 34,
+      "verdict": "reached"
+    },
+    {
+      "room": 35,
+      "verdict": "unreached",
+      "reason": "from room 34: no door to room 35 in room 34's state"
+    },
+    {
+      "room": 36,
+      "verdict": "unreached",
+      "reason": "from room 34: no door to room 36 in room 34's state"
+    },
+    {
+      "room": 37,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 38,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 39,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 40,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 41,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 42,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 43,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 44,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    }
+  ],
+  "blockedEdges": [
+    {
+      "from": 34,
+      "to": 35,
+      "reason": "no door to room 35 in room 34's state"
+    },
+    {
+      "from": 34,
+      "to": 36,
+      "reason": "no door to room 36 in room 34's state"
+    },
+    {
+      "from": 27,
+      "to": 31,
+      "reason": "no door to room 31 in room 27's state"
+    }
+  ],
+  "failedSteps": []
+}

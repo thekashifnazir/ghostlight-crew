@@ -1,0 +1,33 @@
+{
+  "room": 24,
+  "chapter": 4,
+  "checkpointSlot": 42,
+  "date": "2026-11-11",
+  "engineBuild": "scummvm@2026-11-11T13:37:24.995Z",
+  "screenshot": false,
+  "hotspots": [
+    {
+      "num": 105,
+      "door": 1,
+      "toRoom": 23
+    },
+    {
+      "num": 106,
+      "door": 1,
+      "toRoom": 26
+    },
+    {
+      "num": 108,
+      "door": 1,
+      "toRoom": 27
+    },
+    {
+      "num": 151,
+      "door": 0
+    },
+    {
+      "num": 151,
+      "door": 0
+    }
+  ]
+}

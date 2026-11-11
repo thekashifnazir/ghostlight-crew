@@ -1,0 +1,35 @@
+{
+  "room": 22,
+  "probes": [
+    {
+      "num": 102,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 140,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    },
+    {
+      "num": 52,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT LOOKS LIKE THIS MAGPIE IS EVIL-MINDED"
+    },
+    {
+      "num": 180,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "chapter": 4,
+  "room": 27,
+  "hero": [
+    264,
+    131
+  ],
+  "hotspots": [
+    {
+      "num": 109,
+      "rawName": "ESCALERAS",
+      "rect": [
+        0,
+        156,
+        54,
+        43
+      ],
+      "door": 1,
+      "toRoom": 24,
+      "visible": 1
+    },
+    {
+      "num": 110,
+      "rawName": "DOOR",
+      "rect": [
+        162,
+        103,
+        15,
+        20
+      ],
+      "door": 1,
+      "toRoom": 28,
+      "visible": 1
+    },
+    {
+      "num": 112,
+      "rawName": "DOOR",
+      "rect": [
+        81,
+        107,
+        16,
+        24
+      ],
+      "door": 1,
+      "toRoom": 29,
+      "visible": 1
+    },
+    {
+      "num": 116,
+      "rawName": "DOOR",
+      "rect": [
+        60,
+        109,
+        15,
+        24
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 118,
+      "rawName": "DOOR",
+      "rect": [
+        263,
+        88,
+        12,
+        21
+      ],
+      "door": 1,
+      "toRoom": 34,
+      "visible": 1
+    },
+    {
+      "num": 150,
+      "rawName": "WEST-WING",
+      "rect": [
+        293,
+        131,
+        25,
+        68
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 175,
+      "rawName": "PICTURE",
+      "rect": [
+        117,
+        34,
+        29,
+        65
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 166,
+      "rawName": "DOOR",
+      "rect": [
+        103,
+        107,
+        14,
+        21
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 166,
+      "rawName": "DOOR",
+      "rect": [
+        137,
+        105,
+        17,
+        20
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 166,
+      "rawName": "DOOR",
+      "rect": [
+        184,
+        103,
+        18,
+        20
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 166,
+      "rawName": "DOOR",
+      "rect": [
+        280,
+        98,
+        11,
+        27
+      ],
+      "door": 0,
+      "visible": 1
+    }
+  ],
+  "inventory": [
+    {
+      "id": 28,
+      "name": "phone"
+    },
+    {
+      "id": 9,
+      "name": "cross"
+    },
+    {
+      "id": 20,
+      "name": "reefer"
+    },
+    {
+      "id": 7,
+      "name": "key"
+    },
+    {
+      "id": 19,
+      "name": "rope"
+    }
+  ],
+  "flags": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

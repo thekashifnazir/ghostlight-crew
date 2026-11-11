@@ -1,0 +1,67 @@
+{
+  "room": 29,
+  "probes": [
+    {
+      "num": 113,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 114,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 152,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S A SHAME THERE ISN'T A ROASTED LAMB IN THERE"
+    },
+    {
+      "num": 153,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THAT'S THE TRANSILVANIAN FOOTBALL TEAMS BADGE"
+    },
+    {
+      "num": 154,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    },
+    {
+      "num": 155,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "I CAN'T SEE ANYTHING IN PARTICULAR"
+    },
+    {
+      "num": 156,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    },
+    {
+      "num": 154,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    }
+  ]
+}

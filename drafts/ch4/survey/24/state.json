@@ -1,0 +1,147 @@
+{
+  "chapter": 4,
+  "room": 24,
+  "hero": [
+    152,
+    144
+  ],
+  "hotspots": [
+    {
+      "num": 105,
+      "rawName": "DOOR",
+      "rect": [
+        223,
+        119,
+        11,
+        43
+      ],
+      "door": 1,
+      "toRoom": 23,
+      "visible": 1
+    },
+    {
+      "num": 106,
+      "rawName": "DOOR",
+      "rect": [
+        28,
+        104,
+        26,
+        43
+      ],
+      "door": 1,
+      "toRoom": 26,
+      "visible": 1
+    },
+    {
+      "num": 108,
+      "rawName": "ESCALERAS",
+      "rect": [
+        94,
+        55,
+        102,
+        73
+      ],
+      "door": 1,
+      "toRoom": 27,
+      "visible": 1
+    },
+    {
+      "num": 151,
+      "rawName": "TAPESTRIE",
+      "rect": [
+        23,
+        0,
+        36,
+        95
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 151,
+      "rawName": "TAPESTRIE",
+      "rect": [
+        226,
+        2,
+        24,
+        109
+      ],
+      "door": 0,
+      "visible": 1
+    }
+  ],
+  "inventory": [
+    {
+      "id": 28,
+      "name": "phone"
+    },
+    {
+      "id": 9,
+      "name": "cross"
+    },
+    {
+      "id": 20,
+      "name": "reefer"
+    },
+    {
+      "id": 7,
+      "name": "key"
+    },
+    {
+      "id": 19,
+      "name": "rope"
+    }
+  ],
+  "flags": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

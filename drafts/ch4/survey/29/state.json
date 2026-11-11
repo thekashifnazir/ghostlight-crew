@@ -1,0 +1,182 @@
+{
+  "chapter": 4,
+  "room": 29,
+  "hero": [
+    91,
+    132
+  ],
+  "hotspots": [
+    {
+      "num": 113,
+      "rawName": "DOOR",
+      "rect": [
+        31,
+        51,
+        35,
+        82
+      ],
+      "door": 1,
+      "toRoom": 27,
+      "visible": 1
+    },
+    {
+      "num": 114,
+      "rawName": "DOOR",
+      "rect": [
+        250,
+        49,
+        30,
+        87
+      ],
+      "door": 1,
+      "toRoom": 30,
+      "visible": 1
+    },
+    {
+      "num": 152,
+      "rawName": "OVEN",
+      "rect": [
+        124,
+        91,
+        49,
+        25
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 153,
+      "rawName": "SHIELD",
+      "rect": [
+        255,
+        11,
+        31,
+        26
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 154,
+      "rawName": "SAUCEPAN",
+      "rect": [
+        149,
+        73,
+        24,
+        11
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 155,
+      "rawName": "BIN",
+      "rect": [
+        221,
+        103,
+        15,
+        16
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 156,
+      "rawName": "DRAWERS",
+      "rect": [
+        180,
+        93,
+        27,
+        24
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 154,
+      "rawName": "SAUCEPAN",
+      "rect": [
+        85,
+        95,
+        29,
+        18
+      ],
+      "door": 0,
+      "visible": 1
+    }
+  ],
+  "inventory": [
+    {
+      "id": 28,
+      "name": "phone"
+    },
+    {
+      "id": 9,
+      "name": "cross"
+    },
+    {
+      "id": 20,
+      "name": "reefer"
+    },
+    {
+      "id": 7,
+      "name": "key"
+    },
+    {
+      "id": 19,
+      "name": "rope"
+    }
+  ],
+  "flags": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

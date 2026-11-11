@@ -1,0 +1,36 @@
+{
+  "room": 34,
+  "probes": [
+    {
+      "num": 119,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 120,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    },
+    {
+      "num": 122,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    },
+    {
+      "num": 146,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT SEEMS A LITTLE LOOSE ON THE WALL"
+    }
+  ]
+}

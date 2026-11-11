@@ -1,0 +1,89 @@
+{
+  "room": 27,
+  "probes": [
+    {
+      "num": 109,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 110,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 112,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 116,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "I CAN'T SEE ANYTHING IN PARTICULAR"
+    },
+    {
+      "num": 118,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 150,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "TO THE WEST WING? NO WAY! NOBODY KNOWS WHAT YOU WILL FIND THERE!!"
+    },
+    {
+      "num": 175,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "...HE IS PALE, HE HAS FANGS AND WEARS A TOUPE�  HE SURE IS DRASCULA!"
+    },
+    {
+      "num": 166,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    },
+    {
+      "num": 166,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    },
+    {
+      "num": 166,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "I CAN'T SEE ANYTHING IN PARTICULAR"
+    },
+    {
+      "num": 166,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    }
+  ]
+}

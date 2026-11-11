@@ -1,0 +1,60 @@
+{
+  "chapter": 3,
+  "generated": "2026-11-10",
+  "rooms": [
+    {
+      "room": 13,
+      "chapters": [
+        3
+      ],
+      "name": "Vampire's room",
+      "short": "A room with a door on the far left and a vampire standing right of centre, who won't let you through.",
+      "long": "A room where a vampire stands in your way, a little right of centre. The game describes him as looking like Yoda, but a little taller, and he won't let you come through. A door on the far left leads back to where you arrived.",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "101": {
+          "label": "door on the far left, back to where you arrived",
+          "to": 20,
+          "direction": "left"
+        }
+      },
+      "objects": {
+        "51": {
+          "name": "vampire",
+          "type": "npc",
+          "description": "A vampire who won't let you come through. The game says he looks like Yoda, but a little taller.",
+          "note": "Engine name is VAMPIRE; the engine renames it \"yoda\" after the first look. Hero speaks first-person in the engine text, so the description is a third-person paraphrase of the look line."
+        }
+      }
+    },
+    {
+      "room": 20,
+      "chapters": [
+        3
+      ],
+      "name": "Below the well",
+      "short": "The place where chapter 3 begins. A door on the far right leads on.",
+      "long": "The place where chapter 3 begins, reached from the well at the end of chapter 2. A door stands at the far right of the room, and it is the only exit you can see.",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "99": {
+          "label": "hidden spot high on the left wall",
+          "to": 20,
+          "direction": "up",
+          "note": "Hidden all chapter (visible 0) and not shown to the player. Census says toRoom 20 with a destination point at (126, 154), inside this room's own walking area, so it loops back to room 20 rather than reaching a new room. Not a real way out; review whether to omit it from the merged pack."
+        },
+        "100": {
+          "label": "door on the far right, to the vampire's room",
+          "to": 13,
+          "direction": "right"
+        }
+      },
+      "objects": {}
+    }
+  ],
+  "unreached": []
+}

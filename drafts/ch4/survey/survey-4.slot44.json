@@ -1,0 +1,108 @@
+{
+  "chapter": 4,
+  "slot": 44,
+  "date": "2026-11-11",
+  "engineBuild": "scummvm@2026-11-11T13:37:24.995Z",
+  "rooms": [
+    {
+      "room": 21,
+      "verdict": "unreached",
+      "reason": "from room 23: no door to room 21 in room 23's state"
+    },
+    {
+      "room": 22,
+      "verdict": "unreached",
+      "reason": "no route found from the start room (no door seen leading to it)"
+    },
+    {
+      "room": 23,
+      "verdict": "reached"
+    },
+    {
+      "room": 24,
+      "verdict": "reached"
+    },
+    {
+      "room": 26,
+      "verdict": "reached"
+    },
+    {
+      "room": 27,
+      "verdict": "reached"
+    },
+    {
+      "room": 28,
+      "verdict": "reached"
+    },
+    {
+      "room": 29,
+      "verdict": "reached"
+    },
+    {
+      "room": 30,
+      "verdict": "reached"
+    },
+    {
+      "room": 31,
+      "verdict": "unreached",
+      "reason": "from room 27: no door to room 31 in room 27's state"
+    },
+    {
+      "room": 34,
+      "verdict": "reached"
+    },
+    {
+      "room": 35,
+      "verdict": "reached"
+    },
+    {
+      "room": 36,
+      "verdict": "reached"
+    },
+    {
+      "room": 37,
+      "verdict": "reached"
+    },
+    {
+      "room": 38,
+      "verdict": "reached"
+    },
+    {
+      "room": 39,
+      "verdict": "reached"
+    },
+    {
+      "room": 40,
+      "verdict": "reached"
+    },
+    {
+      "room": 41,
+      "verdict": "reached"
+    },
+    {
+      "room": 42,
+      "verdict": "reached"
+    },
+    {
+      "room": 43,
+      "verdict": "reached"
+    },
+    {
+      "room": 44,
+      "verdict": "reached"
+    }
+  ],
+  "blockedEdges": [
+    {
+      "from": 23,
+      "to": 21,
+      "reason": "no door to room 21 in room 23's state"
+    },
+    {
+      "from": 27,
+      "to": 31,
+      "reason": "no door to room 31 in room 27's state"
+    }
+  ],
+  "failedSteps": []
+}

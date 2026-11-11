@@ -1,0 +1,76 @@
+{
+  "room": 26,
+  "probes": [
+    {
+      "num": 107,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 143,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    },
+    {
+      "num": 51,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    },
+    {
+      "num": 163,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S ELVIS THE KING. YOU DIDN'T IMAGINE THAT WOULD BE HERE, DID YOU!"
+    },
+    {
+      "num": 164,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THE NIGHT IS FALLING OVER ALL OF US...THAT'S SCARY, ISN'T IT?"
+    },
+    {
+      "num": 165,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "A SHELF WITH BOOKS AND SOME OTHER THINGS"
+    },
+    {
+      "num": 167,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "I CAN'T SEE ANYTHING IN PARTICULAR"
+    },
+    {
+      "num": 168,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "\"HOW TO FILL IN TAX RETURN FORMS\". HOW INTERESTING!"
+    },
+    {
+      "num": 169,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "THERE IS NOTHING SPECIAL ABOUT IT"
+    }
+  ]
+}

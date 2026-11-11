@@ -1,0 +1,42 @@
+{
+  "room": 21,
+  "probes": [
+    {
+      "num": 100,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 101,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 141,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 179,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "IT'S NOT UNUSUAL"
+    },
+    {
+      "num": 173,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "I CAN'T SEE ANYTHING IN PARTICULAR"
+    }
+  ]
+}

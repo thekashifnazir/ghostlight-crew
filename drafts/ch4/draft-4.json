@@ -1,0 +1,639 @@
+{
+  "chapter": 4,
+  "generated": "2026-11-11",
+  "rooms": [
+    {
+      "room": 21,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "100": {
+          "label": "",
+          "to": 22
+        },
+        "101": {
+          "label": "",
+          "to": 23
+        }
+      },
+      "objects": {
+        "141": {
+          "name": "",
+          "type": "object"
+        },
+        "173": {
+          "name": "",
+          "type": "object"
+        },
+        "179": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 22,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "102": {
+          "label": "",
+          "to": 21
+        }
+      },
+      "objects": {
+        "52": {
+          "name": "",
+          "type": "object"
+        },
+        "140": {
+          "name": "",
+          "type": "object"
+        },
+        "180": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 23,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "103": {
+          "label": "",
+          "to": 21
+        },
+        "104": {
+          "label": "",
+          "to": 24
+        }
+      },
+      "objects": {
+        "142": {
+          "name": "",
+          "type": "object",
+          "textFixSuggestion": {
+            "from": "DRASKIS",
+            "to": "",
+            "reason": "spelling"
+          },
+          "note": "engine name \"DRASKIS\" is spelling; propose a translated label"
+        },
+        "170": {
+          "name": "",
+          "type": "object"
+        },
+        "171": {
+          "name": "",
+          "type": "object"
+        },
+        "174": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 24,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "105": {
+          "label": "",
+          "to": 23
+        },
+        "106": {
+          "label": "",
+          "to": 26
+        },
+        "108": {
+          "label": "",
+          "to": 27
+        }
+      },
+      "objects": {
+        "151": {
+          "name": "",
+          "type": "object",
+          "textFixSuggestion": {
+            "from": "TAPESTRIE",
+            "to": "",
+            "reason": "spelling"
+          },
+          "note": "engine name \"TAPESTRIE\" is spelling; propose a translated label"
+        }
+      }
+    },
+    {
+      "room": 26,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "107": {
+          "label": "",
+          "to": 24
+        }
+      },
+      "objects": {
+        "51": {
+          "name": "",
+          "type": "object"
+        },
+        "143": {
+          "name": "",
+          "type": "object"
+        },
+        "163": {
+          "name": "",
+          "type": "object"
+        },
+        "164": {
+          "name": "",
+          "type": "object"
+        },
+        "165": {
+          "name": "",
+          "type": "object"
+        },
+        "167": {
+          "name": "",
+          "type": "object"
+        },
+        "168": {
+          "name": "",
+          "type": "object"
+        },
+        "169": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 27,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "109": {
+          "label": "",
+          "to": 24
+        },
+        "110": {
+          "label": "",
+          "to": 28
+        },
+        "112": {
+          "label": "",
+          "to": 29
+        },
+        "118": {
+          "label": "",
+          "to": 34
+        }
+      },
+      "objects": {
+        "116": {
+          "name": "",
+          "type": "object"
+        },
+        "150": {
+          "name": "",
+          "type": "object"
+        },
+        "166": {
+          "name": "",
+          "type": "object"
+        },
+        "175": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 28,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "111": {
+          "label": "",
+          "to": 27
+        }
+      },
+      "objects": {
+        "200": {
+          "name": "",
+          "type": "object"
+        },
+        "999": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 29,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "113": {
+          "label": "",
+          "to": 27
+        },
+        "114": {
+          "label": "",
+          "to": 30
+        }
+      },
+      "objects": {
+        "152": {
+          "name": "",
+          "type": "object"
+        },
+        "153": {
+          "name": "",
+          "type": "object"
+        },
+        "154": {
+          "name": "",
+          "type": "object"
+        },
+        "155": {
+          "name": "",
+          "type": "object"
+        },
+        "156": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 30,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "115": {
+          "label": "",
+          "to": 29
+        }
+      },
+      "objects": {
+        "144": {
+          "name": "",
+          "type": "object"
+        },
+        "157": {
+          "name": "",
+          "type": "object"
+        },
+        "158": {
+          "name": "",
+          "type": "object"
+        },
+        "159": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 34,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "119": {
+          "label": "",
+          "to": 27
+        }
+      },
+      "objects": {
+        "120": {
+          "name": "",
+          "type": "object"
+        },
+        "122": {
+          "name": "",
+          "type": "object"
+        },
+        "146": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 35,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "121": {
+          "label": "",
+          "to": 34
+        }
+      },
+      "objects": {
+        "147": {
+          "name": "",
+          "type": "object"
+        },
+        "148": {
+          "name": "",
+          "type": "object"
+        },
+        "149": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "room": 36,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "123": {
+          "label": "",
+          "to": 34
+        },
+        "124": {
+          "label": "",
+          "to": 37
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 37,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "125": {
+          "label": "",
+          "to": 36
+        },
+        "126": {
+          "label": "",
+          "to": 38
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 38,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "127": {
+          "label": "",
+          "to": 37
+        },
+        "128": {
+          "label": "",
+          "to": 39
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 39,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "129": {
+          "label": "",
+          "to": 38
+        },
+        "130": {
+          "label": "",
+          "to": 40
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 40,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "131": {
+          "label": "",
+          "to": 39
+        },
+        "132": {
+          "label": "",
+          "to": 41
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 41,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "133": {
+          "label": "",
+          "to": 40
+        },
+        "134": {
+          "label": "",
+          "to": 42
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 42,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "135": {
+          "label": "",
+          "to": 41
+        },
+        "136": {
+          "label": "",
+          "to": 43
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 43,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "137": {
+          "label": "",
+          "to": 42
+        },
+        "138": {
+          "label": "",
+          "to": 44
+        }
+      },
+      "objects": {}
+    },
+    {
+      "room": 44,
+      "chapters": [
+        4
+      ],
+      "name": "",
+      "short": "",
+      "long": "",
+      "seen": false,
+      "provenance": "drafted by Kiro from game text only",
+      "alreadyCovered": false,
+      "exits": {
+        "139": {
+          "label": "",
+          "to": 34
+        }
+      },
+      "objects": {
+        "172": {
+          "name": "",
+          "type": "object"
+        }
+      }
+    }
+  ],
+  "unreached": []
+}

@@ -1,0 +1,193 @@
+{
+  "chapter": 4,
+  "room": 26,
+  "hero": [
+    135,
+    122
+  ],
+  "hotspots": [
+    {
+      "num": 107,
+      "rawName": "DOOR",
+      "rect": [
+        93,
+        51,
+        40,
+        59
+      ],
+      "door": 1,
+      "toRoom": 24,
+      "visible": 1
+    },
+    {
+      "num": 143,
+      "rawName": "WIG",
+      "rect": [
+        271,
+        106,
+        20,
+        25
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 51,
+      "rawName": "IGOR",
+      "rect": [
+        193,
+        106,
+        46,
+        45
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 163,
+      "rawName": "CALENDAR",
+      "rect": [
+        183,
+        12,
+        33,
+        43
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 164,
+      "rawName": "WINDOW",
+      "rect": [
+        259,
+        28,
+        27,
+        57
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 165,
+      "rawName": "SHELF",
+      "rect": [
+        147,
+        70,
+        32,
+        25
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 167,
+      "rawName": "DRAWERS",
+      "rect": [
+        147,
+        97,
+        27,
+        19
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 168,
+      "rawName": "BOOK",
+      "rect": [
+        240,
+        115,
+        24,
+        15
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 169,
+      "rawName": "PORTRAIT",
+      "rect": [
+        26,
+        41,
+        28,
+        41
+      ],
+      "door": 0,
+      "visible": 1
+    }
+  ],
+  "inventory": [
+    {
+      "id": 28,
+      "name": "phone"
+    },
+    {
+      "id": 9,
+      "name": "cross"
+    },
+    {
+      "id": 20,
+      "name": "reefer"
+    },
+    {
+      "id": 7,
+      "name": "key"
+    },
+    {
+      "id": 19,
+      "name": "rope"
+    }
+  ],
+  "flags": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

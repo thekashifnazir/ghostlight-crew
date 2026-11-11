@@ -1,0 +1,42 @@
+{
+  "room": 24,
+  "probes": [
+    {
+      "num": 105,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 106,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 108,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 151,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "SHE'S GOT NICE TRANSILVANIAN FEATURES"
+    },
+    {
+      "num": 151,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "SHE'S GOT NICE TRANSILVANIAN FEATURES"
+    }
+  ]
+}

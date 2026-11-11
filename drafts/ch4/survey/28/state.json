@@ -1,0 +1,205 @@
+{
+  "chapter": 4,
+  "room": 28,
+  "hero": [
+    299,
+    178
+  ],
+  "hotspots": [
+    {
+      "num": 111,
+      "rawName": "SALIDA",
+      "rect": [
+        272,
+        10,
+        47,
+        189
+      ],
+      "door": 1,
+      "toRoom": 27,
+      "visible": 1
+    },
+    {
+      "num": 200,
+      "rawName": "BOX",
+      "rect": [
+        2,
+        129,
+        60,
+        41
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "BOX",
+      "rect": [
+        123,
+        54,
+        34,
+        49
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "DRAWER",
+      "rect": [
+        17,
+        88,
+        37,
+        40
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "TRUNK",
+      "rect": [
+        101,
+        114,
+        90,
+        47
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "BARREL",
+      "rect": [
+        68,
+        97,
+        28,
+        54
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "BOX",
+      "rect": [
+        36,
+        37,
+        71,
+        47
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "BOX",
+      "rect": [
+        167,
+        42,
+        54,
+        67
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "DRAWER",
+      "rect": [
+        193,
+        112,
+        51,
+        52
+      ],
+      "door": 0,
+      "visible": 1
+    },
+    {
+      "num": 999,
+      "rawName": "TRUNK",
+      "rect": [
+        0,
+        25,
+        15,
+        97
+      ],
+      "door": 0,
+      "visible": 1
+    }
+  ],
+  "inventory": [
+    {
+      "id": 28,
+      "name": "phone"
+    },
+    {
+      "id": 9,
+      "name": "cross"
+    },
+    {
+      "id": 20,
+      "name": "reefer"
+    },
+    {
+      "id": 7,
+      "name": "key"
+    },
+    {
+      "id": 19,
+      "name": "rope"
+    }
+  ],
+  "flags": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

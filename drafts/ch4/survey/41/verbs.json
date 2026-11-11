@@ -1,0 +1,19 @@
+{
+  "room": 41,
+  "probes": [
+    {
+      "num": 133,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 134,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    }
+  ]
+}

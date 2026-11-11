@@ -1,0 +1,84 @@
+{
+  "room": 28,
+  "probes": [
+    {
+      "num": 111,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 200,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    },
+    {
+      "num": 999,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "MAN YOU SAY REALLY STUPID THINGS, THIS ROOM IS TOO DARK!"
+    }
+  ]
+}

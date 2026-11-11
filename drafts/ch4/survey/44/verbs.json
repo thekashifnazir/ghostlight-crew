@@ -1,0 +1,20 @@
+{
+  "room": 44,
+  "probes": [
+    {
+      "num": 139,
+      "answered": [
+        "look"
+      ],
+      "rejected": []
+    },
+    {
+      "num": 172,
+      "answered": [
+        "look"
+      ],
+      "rejected": [],
+      "lookText": "\"PASSAGE TO TOWERS CLOSED FOR REPAIRS. PLEASE USE THE MAIN ENTRANCE. SORRY FOR THE INCONVENIENCE\""
+    }
+  ]
+}
