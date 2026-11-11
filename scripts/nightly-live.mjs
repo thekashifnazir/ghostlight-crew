@@ -15,12 +15,12 @@
 //   }
 //
 // Playwright is borrowed from the engine repo (no dependency added here):
-//   /Users/kash/Code/showcase/ghostlight/node_modules/playwright/index.mjs
+//   ../../ghostlight/node_modules/playwright/index.mjs (the sibling ghostlight checkout, so it works on the Mac and the VM)
 //
 // Exports: async function liveCheck() -> { rows, overall }. It never throws;
 // any failure becomes a FAIL row and a non-PASS overall.
 
-import { chromium } from "/Users/kash/Code/showcase/ghostlight/node_modules/playwright/index.mjs";
+import { chromium } from "../../ghostlight/node_modules/playwright/index.mjs";
 
 const URL = "https://ghostlight.kashifnazir.com/?speechlog";
 
