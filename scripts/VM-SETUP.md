@@ -61,5 +61,6 @@ The home directory is shared with the host, so the repos, `~/bin` and `~/.kiro` 
 | 02:00 | `surveyor-nightly-rooms` | Crew script job (`scripts/crew/ghostlight_post.py` runs `~/bin/ghostlight-nightly.sh`) | Discord night-jobs thread |
 | 03:00 | `ch4-drafts` | Crew agent job, prompt in `~/ch4-drafts-prompt.txt`, writes only `drafts/ch4/draft-4.json` and `drafts/ch4/flags.md` (`~/.kiro/settings/permissions.yaml`) | the thread, as the agent's reply |
 | 05:45 | `ch4-drafts-commit` | Crew script job running `~/bin/ch4-drafts-commit.sh` (local commit, no push) | the thread |
+| 06:15 | `ghostlight-crew-push` user timer | systemd, outside Crew (the token is hidden from Crew jobs) | GitHub: `git pull --rebase` then `git push` of ghostlight-crew. Needs the token's Contents: Read and write |
 
 The chapter drafting jobs and the `drascula-live` MCP wrapper (`~/bin/drascula-mcp.sh`, registered in `~/.kiro/crew/mcp.json`) are set up by hand; `vm-setup.sh` doesn't create them yet. Crew command jobs (`--command`) never post to Discord, which is why the night jobs go through the poster script.
