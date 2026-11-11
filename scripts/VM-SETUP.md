@@ -52,3 +52,14 @@ The home directory is shared with the host, so the repos, `~/bin` and `~/.kiro` 
 - **systemd inside the container.** A plain Distrobox has no systemd of its own, so steps 9 to 11 (the user timer, linger and `kirocrew service install`) won't work in there. Run those from the host instead. Add host user units whose `ExecStart` is `distrobox enter crew -- <command>`: one for `kirocrew gateway` (long-running, `Restart=on-failure`) and the timer for the 01:50 pull. Turn on linger on the host with `loginctl enable-linger`. The other choice is `distrobox create --init`, which gives the container its own systemd.
 - **AppArmor.** SteamOS doesn't ship Ubuntu's unprivileged-userns restriction, so Crew's AppArmor step may not be needed. Check with `kirocrew doctor`.
 - **Always on.** No instance schedule is needed. The box stays up and the 02:00 job just runs.
+
+## Night jobs on the VM (11 Nov)
+
+| London time | Job | Kind | Posts to |
+|---|---|---|---|
+| 01:50 | `ghostlight-pull` user timer | systemd, outside Crew | nothing |
+| 02:00 | `surveyor-nightly-rooms` | Crew script job (`scripts/crew/ghostlight_post.py` runs `~/bin/ghostlight-nightly.sh`) | Discord night-jobs thread |
+| 03:00 | `ch4-drafts` | Crew agent job, prompt in `~/ch4-drafts-prompt.txt`, writes only `drafts/ch4/draft-4.json` and `drafts/ch4/flags.md` (`~/.kiro/settings/permissions.yaml`) | the thread, as the agent's reply |
+| 05:45 | `ch4-drafts-commit` | Crew script job running `~/bin/ch4-drafts-commit.sh` (local commit, no push) | the thread |
+
+The chapter drafting jobs and the `drascula-live` MCP wrapper (`~/bin/drascula-mcp.sh`, registered in `~/.kiro/crew/mcp.json`) are set up by hand; `vm-setup.sh` doesn't create them yet. Crew command jobs (`--command`) never post to Discord, which is why the night jobs go through the poster script.

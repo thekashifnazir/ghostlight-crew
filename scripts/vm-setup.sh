@@ -214,14 +214,19 @@ else
   kirocrew service install
 fi
 
-# --- 12. The 02:00 nightly as a zero-token Crew command job -------------------
+# --- 12. The 02:00 nightly as a zero-token Crew script job -------------------
+# A --command job only reports to the dashboard. The poster script runs the
+# wrapper and posts its summary to the Discord night-jobs thread (THREAD in
+# scripts/crew/ghostlight_post.py, which must be in discord.allowed_thread_ids).
 log "12. Crew cron job ${CRON_NAME}"
+mkdir -p "$HOME/.kiro/crew/crons"
+install -m 644 "$CREW_DIR/scripts/crew/ghostlight_post.py" "$HOME/.kiro/crew/crons/ghostlight_post.py"
 if kirocrew cron list 2>/dev/null | grep -q " ${CRON_NAME} "; then
   skip "job ${CRON_NAME} exists"
 else
-  kirocrew cron add "${CRON_NAME}" "VM nightly: room survey and live check" \
+  kirocrew cron add "${CRON_NAME}" "$WRAPPER" \
     --cron "${CRON_EXPR}" --timezone "${CRON_TZ}" \
-    --command "$WRAPPER" --timeout 1200 --timeout-secs 1260
+    --script "$HOME/.kiro/crew/crons/ghostlight_post.py:run" --timeout 1700 --timeout-secs 1760
 fi
 
 # --- Checklist for Kash ------------------------------------------------------
@@ -235,8 +240,12 @@ cat <<EOF
       https://x-access-token:<token>@github.com (chmod 600), then rerun this script.
  [$(kiro-cli whoami >/dev/null 2>&1 && echo x || echo ' ')] kiro-cli login  (Builder ID, device code in the browser)
  [$([ -d "$CREW_DIR/.saves" ] && echo x || echo ' ')] Copy .saves/ into $CREW_DIR/.saves  (game state, never committed)
- [ ] Connect Discord in the Crew dashboard (kirocrew token, via an SSH tunnel
-      to port 5476), then adopt the ${CRON_NAME} job to that Discord session
+ [ ] Connect Discord: dashboard Settings > Messaging Channels > Discord (SSH tunnel
+      to port 5476, kirocrew token), paste the bot token there, then
+      kirocrew config set discord.allowed_user_ids / allowed_channel_ids /
+      allowed_thread_ids, and adopt the jobs to that thread's session
+ [ ] Chapter drafting jobs (agent at 03:00, commit at 05:45) are set up by hand:
+      see VM-SETUP.md
  [ ] Test fire: kirocrew cron list, then kirocrew cron trigger <job id>
  [ ] Pause the job on any other machine still running it
 =====================================================================
