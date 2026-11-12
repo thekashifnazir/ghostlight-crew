@@ -190,7 +190,13 @@ try {
   for (const [stepIndex, step] of route.entries()) {
     const cmd = `${step.verb} ${step.args.join(" ")}`.trim();
     if (step.checkpoint) {
-      const s = await tool("state");
+      // Right after a chapter crossing `state` can still be silent (measured 12 Nov,
+      // line 202 after the ch5 to ch6 crossing), so settle once before judging.
+      let s = await tool("state");
+      if (isTimeout(s)) {
+        const w = await waitSettled();
+        s = w.ok && w.state && !w.state.error ? w.state : await tool("state");
+      }
       const saw = s && s.chapter;
       chapters[step.checkpoint] = { reached: saw === step.checkpoint, saw };
       if (saw !== step.checkpoint) {
