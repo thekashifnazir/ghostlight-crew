@@ -1,0 +1,27 @@
+{
+  "generated": "2026-11-12",
+  "provenance": "drafted by Claude Code by hand from the engine's own inventory read-out (drascula-live inventory tool, native engine, slots 40 and 48)",
+  "items": [
+    {
+      "id": 9,
+      "chapters": [4, 5],
+      "name": "crucifix",
+      "description": "A crucifix.",
+      "note": "Held from the start of chapters 4 and 5. The engine names it \"cross\" and gives no look line, so the description stays as short as the chapter 6 entry."
+    },
+    {
+      "id": 20,
+      "chapters": [4, 5],
+      "name": "Von Braun's brew",
+      "description": "A hand-rolled cigarette of Von Braun's brew. He says it protects against vampire bites.",
+      "note": "Same object as chapters 2 and 3: the engine calls it \"reefer\" and its look line in chapters 4 and 5 is \"WITH THIS I WILL BE IMMUNE AGAINST VAMPIRE BITES\". Text copied from the chapter 2 and 3 entry so the name doesn't change between chapters."
+    },
+    {
+      "id": 28,
+      "chapters": [4, 5],
+      "name": "mobile phone",
+      "description": "Your mobile phone, a Christmas present.",
+      "note": "Look line in chapters 4 and 5: \"THIS IS THE MOBILE PHONE I GOT LAST CHRISTMAS\"."
+    }
+  ]
+}

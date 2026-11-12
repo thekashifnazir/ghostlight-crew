@@ -1,0 +1,188 @@
+{
+  "chapter": 5,
+  "generated": "2026-11-12",
+  "rooms": [
+    {
+      "room": 45,
+      "chapters": [5],
+      "name": "Castle towers",
+      "short": "Outside the castle at night, under a full moon. Towers stand in front of you, each with its own way in.",
+      "long": "Outside the castle at night, with a full moon behind it. From left to right: a small tower low on the left, a tall tower left of centre, a tower right of centre, and a tower on the right. Spiral stairs and rope bridges run between them.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "This view is the chapter's hub: every tower is an exit. Tower 4 (hotspot 103) is hidden at the start of the chapter (visible false in the chapter-start save) and appears later.",
+      "exits": {
+        "100": { "label": "small tower on the left", "to": 50, "direction": "left" },
+        "102": { "label": "tall tower left of centre", "to": 49, "direction": "ahead" },
+        "103": { "label": "tower right of centre", "to": 52, "direction": "ahead", "note": "Hidden at the chapter start; the engine only lists it once it is visible." },
+        "101": { "label": "tower on the right", "to": 51, "direction": "right" }
+      },
+      "objects": {}
+    },
+    {
+      "room": 49,
+      "chapters": [5],
+      "name": "Werewolf's study",
+      "short": "A round study in a tower. The werewolf sits at a desk in the middle, and there are doorways on both sides.",
+      "long": "A round study in a tower. A tall shelf of books stands on the left. In the middle, the werewolf sits at a desk with a typewriter on it. A dark arched window is in the back wall, with a framed diploma and then a poster to its right. A red rug covers the floor. Dark doorways lead out on the left and on the right.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "The first time you walk in, the werewolf starts a long talk. Hotspot positions for this room were not dumped; left and right for the two doors are inferred from the picture.",
+      "exits": {
+        "109": { "label": "doorway on the left, back outside", "to": 45, "direction": "left" },
+        "110": { "label": "doorway on the right, back outside", "to": 45, "direction": "right" }
+      },
+      "objects": {
+        "51": { "name": "werewolf", "type": "npc", "description": "The werewolf, sitting at his desk. He seems quite rational." },
+        "200": { "name": "poster", "type": "object", "description": "A picture of Plato writing his lost dialogue." },
+        "201": { "name": "desk", "type": "object", "description": "A very cute desk, with a typewriter on it." },
+        "202": { "name": "diploma", "type": "object", "description": "A framed diploma on the back wall.", "note": "The engine gives only a stock filler line on look. Description from the picture." },
+        "203": { "name": "window", "type": "object", "description": "A window onto a dark night with a full moon." }
+      }
+    },
+    {
+      "room": 50,
+      "chapters": [5],
+      "name": "Inside the small tower",
+      "short": "A crumbling tower room with wooden floorboards. There are doorways on both sides and an opening in the floor.",
+      "long": "A crumbling tower room with wooden floorboards and a small window high on the back wall. Dark doorways lead out on the left and on the right. In the middle of the floor there is an opening that leads down.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "Door 106 is on the left (rect x 45 to 88). Positions of 107 and 112 were not dumped; 107 as the right-hand doorway and 112 as the floor opening are inferred from the picture.",
+      "exits": {
+        "106": { "label": "doorway on the left, back outside", "to": 45, "direction": "left" },
+        "107": { "label": "doorway on the right, back outside", "to": 45, "direction": "right" },
+        "112": { "label": "opening in the floor, down to the laboratory", "to": 53, "direction": "down" }
+      },
+      "objects": {}
+    },
+    {
+      "room": 51,
+      "chapters": [5],
+      "name": "Inside the tower on the right",
+      "short": "A crumbling tower room with wooden floorboards. A doorway on the left leads out, and an opening in the floor leads down.",
+      "long": "A crumbling tower room with wooden floorboards and a small window high on the back wall. The right-hand wall is cracked. A dark doorway on the left leads back outside, and a wide opening in the middle of the floor leads down.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "exits": {
+        "108": { "label": "doorway on the left, back outside", "to": 45, "direction": "left" },
+        "113": { "label": "opening in the floor, down to the dungeon", "to": 54, "direction": "down" }
+      },
+      "objects": {}
+    },
+    {
+      "room": 52,
+      "chapters": [5],
+      "name": "Inside the tower right of centre",
+      "short": "A crumbling tower room with wooden floorboards. A doorway on the right leads out, and an opening in the floor leads down.",
+      "long": "A crumbling tower room with wooden floorboards and a small window high on the back wall. A dark doorway on the right leads back outside, and there is an opening in the floor in the middle.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "Door 111 is on the right (rect x 243 to 269). The position of 114 was not dumped; it is inferred to be the floor opening.",
+      "exits": {
+        "111": { "label": "doorway on the right, back outside", "to": 45, "direction": "right" },
+        "114": { "label": "opening in the floor, down to the corridor", "to": 55, "direction": "down" }
+      },
+      "objects": {}
+    },
+    {
+      "room": 53,
+      "chapters": [5],
+      "name": "Laboratory",
+      "short": "A laboratory full of machines. A big creature sits strapped into a chair on the right.",
+      "long": "A laboratory full of machines. On the left stands a tall machine with dials and a switch, with a socket low on the wall beside it and a plug on the floor nearby. Above it, a big contraption with metal globes and a drill hangs from the ceiling. In the middle at the back, an archway leads out. On the right, a big creature sits strapped into a metal chair.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "exits": {
+        "116": { "label": "archway at the back, up to the tower", "to": 50, "direction": "back" }
+      },
+      "objects": {
+        "52": { "name": "creature in the chair", "type": "npc", "description": "A big creature strapped into a metal chair. Looking at him, you say he looks like Miguel Bosé.", "note": "Engine name FRUSKYNSTEIN, the game's Frankenstein joke. Kept neutral so the name isn't a spoiler; could be named Frankenstein if the pack prefers." },
+        "121": { "name": "wall socket", "type": "object", "description": "A socket low on the wall, for powering the machines." },
+        "120": { "name": "plug", "type": "object", "description": "A plug on a cable, on the floor on the left.", "note": "Engine gives a stock filler line on look. Puzzle object; description names it only." },
+        "123": { "name": "on and off switch", "type": "object", "description": "A switch on the machine on the left.", "note": "Engine name ON/OFF; stock filler on look. Before the power is on it says there's no power." },
+        "209": { "name": "indifibulator", "type": "object", "description": "A big hand-made contraption hanging over the machines on the left. The game says the Japanese make them pocket size." }
+      }
+    },
+    {
+      "room": 54,
+      "chapters": [5],
+      "name": "Dungeon",
+      "short": "A green stone dungeon. A cell door with a barred window is in the middle, and a skeleton hangs on the right.",
+      "long": "A green stone dungeon hung with cobwebs. On the left, a doorway with steps leads back up. In the middle is a heavy wooden cell door with a barred window and a lock. A skeleton hangs on the wall right of the door, and a skull lies on the floor on the right.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "Two hotspots share number 118 (the cell door and its barred window). Looking at it starts a conversation with B.J. through the door, which has to be finished before doing anything else. The bone (9999) is hidden at the start.",
+      "exits": {
+        "115": { "label": "doorway on the left, up the stairs", "to": 51, "direction": "left" }
+      },
+      "objects": {
+        "118": { "name": "cell door", "type": "object", "description": "A heavy wooden cell door with a small barred window." },
+        "119": { "name": "lock", "type": "object", "description": "The lock on the cell door. It says Safe Away Locks Ltd." },
+        "53": { "name": "skeleton", "type": "object", "description": "The typical skeleton you find in the dungeons of all the games." },
+        "9999": { "name": "bone", "type": "object", "description": "A bone.", "note": "Hidden at the start (visible false). Engine gives only a stock filler line on look. Number 9999 is the engine's own." }
+      }
+    },
+    {
+      "room": 55,
+      "chapters": [5],
+      "name": "Corridor with the sign",
+      "short": "A stone corridor. A sign in Spanish over a barred gate says that Drascula doesn't sleep here.",
+      "long": "A stone corridor. On the left, steps lead back up. A camera is fixed high on the wall, and below it a machine with an orange light stands by the wall. In the middle, a barred gate fills an archway. Over the arch, a sign painted in Spanish says that Drascula doesn't sleep here, with two yellow arrows pointing at the gate.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "The gate (206) is not an exit: any verb on it plays the stake-detector animation and walks you back, with no speech at all. A blind player hears only a sound effect, so the object description has to carry it. Positions for this room were not dumped; they come from the picture. The sign reads AQUI NO DUERME DRASCULA, translated here.",
+      "exits": {
+        "117": { "label": "steps on the left, back up the tower", "to": 52, "direction": "left" }
+      },
+      "objects": {
+        "122": { "name": "screws", "type": "object", "description": "Screws that don't seem to be tightened properly." },
+        "204": { "name": "camera", "type": "object", "description": "A hidden camera high on the wall, pointing at you." },
+        "205": { "name": "stake detector", "type": "object", "description": "A very modern stake detector, with an orange light, by the wall." },
+        "206": { "name": "barred gate", "type": "exit", "description": "A barred gate in the archway under the sign." }
+      }
+    },
+    {
+      "room": 57,
+      "chapters": [5],
+      "name": "Behind the barred gate",
+      "short": "The corridor with the sign, seen from behind the barred gate. A door leads on to a bedroom.",
+      "long": "The same corridor with the Spanish sign, but you are now behind the barred gate, under the arch. The door through the gate leads on to a bedroom.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "The picture is the same as room 55, with the hero standing inside the gate. Reached only through the hand-edited slot 37 and engine slot 38, not by play.",
+      "exits": {
+        "104": { "label": "door through the gate, to the bedroom", "to": 56, "direction": "ahead" }
+      },
+      "objects": {}
+    },
+    {
+      "room": 56,
+      "chapters": [5],
+      "name": "Drascula's bedroom",
+      "short": "A bedroom with a coffin on a draped table in the middle. A door is on the left.",
+      "long": "A stone bedroom under wooden beams. On the left is the door you came in by, and a tall grandfather clock stands beside it. In the middle, a black coffin rests on a table draped in purple cloth. On the right is a small bedside table with bottles on it.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "exits": {
+        "105": { "label": "door on the left, back to the landing", "to": 57, "direction": "left" }
+      },
+      "objects": {
+        "124": { "name": "coffin", "type": "object", "description": "A pine wood coffin on a table draped in purple cloth." },
+        "207": { "name": "grandfather clock", "type": "object", "description": "A tall grandfather clock left of the coffin.", "note": "Engine gives only a stock filler line on look. Description from the picture." },
+        "208": { "name": "bedside table", "type": "object", "description": "A nice bedside table with bottles on it." }
+      }
+    }
+  ],
+  "unreached": []
+}

@@ -1,0 +1,104 @@
+{
+  "chapter": 6,
+  "generated": "2026-11-12",
+  "rooms": [
+    {
+      "room": 102,
+      "chapters": [6],
+      "name": "Pendulum room",
+      "short": "You are strapped to a stone slab. A huge pendulum blade swings above you.",
+      "long": "A dim cellar. You lie strapped to a stone slab in the middle, and a huge pendulum blade swings down from above. Barrels stand against the back wall on the left, and there are shackles on the right of the slab.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "No exits while you are on the pendulum. Hotspots 101 and 50 both have the engine name HACKER: 50 is you (rect x 151 to 218, look line HOW DO I LOCK MYSELF THEN?) and 101 is a small spot by your hand (x 132 to 150, look line DAMN, I HAVE TO CUT MY NAILS!).",
+      "exits": {},
+      "objects": {
+        "100": { "name": "pendulum", "type": "object", "description": "A huge pendulum blade swinging above you. You'd prefer artichokes." },
+        "101": { "name": "your hand", "type": "object", "description": "Your hand, strapped down. Looking at it, you say you have to cut your nails.", "note": "Inferred from the position by the hand and the nails line; the engine name HACKER is a leftover." },
+        "50": { "name": "yourself", "type": "object", "description": "You, strapped to the slab.", "note": "Inferred from the rect covering the hero and the look line." },
+        "102": { "name": "shackles", "type": "object", "description": "Shackles on the right of the slab.", "note": "Engine name GRILLETES (Spanish); stock filler on look. The pack's text fixes already translate the word." }
+      }
+    },
+    {
+      "room": 58,
+      "chapters": [6],
+      "name": "Cell with the torch",
+      "short": "A cell with a torch on the wall and a door.",
+      "long": "A cell with a torch on the wall. There is a door that the game calls obviously a secret door.",
+      "seen": false,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey only (no screenshot: the room couldn't be reached from the saves on 12 Nov)",
+      "alreadyCovered": false,
+      "note": "Two screenshot attempts from slot 41 (walk and open on the closet in room 59) stayed in room 59. Positions unknown, so no left or right is given.",
+      "exits": {
+        "104": { "label": "secret door, to B.J.'s bedroom", "to": 59 }
+      },
+      "objects": {
+        "103": { "name": "torch", "type": "object", "description": "A torch on the wall.", "note": "Engine gives only a stock filler line on look. Puzzle object; description names it only." }
+      }
+    },
+    {
+      "room": 59,
+      "chapters": [6],
+      "name": "B.J.'s bedroom",
+      "short": "A bedroom where B.J. lies on a bed on the left. A wardrobe stands at the back and a trunk on the right.",
+      "long": "A bedroom with a green rug. On the far left is a door, with a lamp on the wall beside it. B.J. lies on a bed on the left, under an oval mirror on the wall. At the back, right of centre, stands a tall wooden wardrobe. A window is on the right wall, with a wooden trunk below it.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "The report lists the wardrobe (105, engine name CLOSET) as the way back to room 58, but the engine doesn't mark it as a door, and walking to it on 12 Nov didn't change room. Kept as an object of type exit for review.",
+      "exits": {
+        "108": { "label": "door on the far left, to the bar", "to": 60, "direction": "left" }
+      },
+      "objects": {
+        "51": { "name": "B.J.", "type": "npc", "description": "B.J., lying on the bed." },
+        "107": { "name": "mirror", "type": "object", "description": "An oval mirror on the wall above the bed.", "note": "Stock filler on look. Description from the picture." },
+        "105": { "name": "wardrobe", "type": "exit", "description": "A tall wooden wardrobe at the back, right of centre." },
+        "106": { "name": "trunk", "type": "object", "description": "A wooden trunk under the window on the right.", "note": "Stock filler on look. Description from the picture." }
+      }
+    },
+    {
+      "room": 60,
+      "chapters": [6],
+      "name": "Bar",
+      "short": "A crowded bar. Drascula stands in the middle, and a piano is on the right.",
+      "long": "A bar with a wooden floor. On the left is an exit sign by some stairs, and a crowd of fans stands near it. The bartender is at the back in the middle, under a poster for burgers. Drascula, in his cape, stands in the middle of the room. On the right, behind a red curtain at the back, is a doorway, and another door is on the far right. A piano with a skull on it stands on the right. Barrels fill the foreground.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey and a screenshot of the room",
+      "alreadyCovered": false,
+      "note": "Hotspot 115 has the engine name FANS and covers the crowd on the left (x 57 to 150), not ceiling fans. Door 109 is at the back right of centre (x 200 to 238) and 110 on the far right (x 257 to 277); which one is behind the red curtain is inferred.",
+      "exits": {
+        "109": { "label": "doorway at the back, to B.J.'s bedroom", "to": 59, "direction": "back" },
+        "110": { "label": "door on the far right, to the back room", "to": 61, "direction": "right" }
+      },
+      "objects": {
+        "52": { "name": "bartender", "type": "npc", "description": "The bartender, at the back in the middle.", "note": "Stock filler on look. Description from the picture." },
+        "56": { "name": "Drascula", "type": "npc", "description": "Drascula, in his cape, in the middle of the bar.", "note": "Stock filler on look. Description from the picture." },
+        "112": { "name": "piano", "type": "object", "description": "A piano on the right. The pianist is not here." },
+        "113": { "name": "skull", "type": "object", "description": "A skull on top of the piano, with a very penetrating look." },
+        "114": { "name": "poster", "type": "object", "description": "A poster: best burgers on this side of the Danube, only 325." },
+        "115": { "name": "crowd of fans", "type": "npc", "description": "A crowd of fans on the left of the bar.", "note": "Engine name FANS; stock filler on look." }
+      }
+    },
+    {
+      "room": 61,
+      "chapters": [6],
+      "name": "Back room",
+      "short": "A back room with papers, a curtain and a machine.",
+      "long": "A back room behind the bar. There are papers, a curtain and a machine, and a door leads back to the bar.",
+      "seen": false,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey only (no screenshot: walking through door 110 from slot 43 didn't reach the room on 12 Nov)",
+      "alreadyCovered": false,
+      "note": "Positions unknown, so no left or right is given.",
+      "exits": {
+        "111": { "label": "door back to the bar", "to": 60 }
+      },
+      "objects": {
+        "116": { "name": "papers", "type": "object", "description": "Papers. It's a bet for tonight's game." },
+        "117": { "name": "curtain", "type": "object", "description": "A curtain. You wonder what's behind it." },
+        "118": { "name": "machine", "type": "object", "description": "A machine.", "note": "Stock filler on look. Nothing confirms what kind of machine." }
+      }
+    }
+  ],
+  "unreached": []
+}
