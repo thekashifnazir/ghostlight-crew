@@ -117,7 +117,12 @@ const isTimeout = (j) => /did not settle|busy-skip|busy/i.test(String(j && j.err
 // dummy audio, and `state` alone keeps timing out). So: `skip`, then `state`,
 // until `state` answers with anything that isn't another silence timeout (a
 // refusal during a conversation counts as alive).
-async function waitSettled() {
+// A conversation answer that ends back at the choice menu is a special case
+// (measured 12 Nov, line 80 `choose 2` to Von Braun): the speech plays out under
+// skips, then the menu comes back with no A11Y_CHOICES line and `state` stays
+// silent, so waiting for `state` never ends. When the next route step is a
+// `choose` and a skip finds nothing left to skip, the menu is up: carry on.
+async function waitSettled(nextIsChoose = false) {
   const t0 = Date.now();
   let skips = 0;
   while (Date.now() - t0 < SETTLE_MAX_MS) {
@@ -125,6 +130,9 @@ async function waitSettled() {
     skips++;
     if (/game has ended/i.test(String(k && k.error || "")) || (k && k.ended)) {
       return { ok: true, ms: Date.now() - t0, skips, state: { error: "the game has ended" } };
+    }
+    if (nextIsChoose && /Last A11Y line seen: A11Y_CMD skip\b/.test(String(k && k.error || ""))) {
+      return { ok: true, ms: Date.now() - t0, skips, menu: true, state: { note: "back at the choice menu" } };
     }
     const s = await tool("state");
     if (!isTimeout(s)) return { ok: true, ms: Date.now() - t0, skips, state: s };
@@ -179,7 +187,7 @@ try {
   if (init.error) throw new Error(`MCP server failed to start: ${init.error.message}`);
   srv.stdin.write(JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" }) + "\n");
 
-  for (const step of route) {
+  for (const [stepIndex, step] of route.entries()) {
     const cmd = `${step.verb} ${step.args.join(" ")}`.trim();
     if (step.checkpoint) {
       const s = await tool("state");
@@ -205,8 +213,8 @@ try {
     if (recent.length > 8) recent.shift();
     if (isTimeout(j)) {
       counts.soft++;
-      const w = await waitSettled();
-      problems.push({ line: step.line, cmd, kind: "soft", note: w.ok ? `silence timeout; engine answered after ${w.skips} skip(s), ${(w.ms / 1000).toFixed(0)} s` : `silence timeout; engine never answered (${w.skips} skips)` });
+      const w = await waitSettled(route[stepIndex + 1]?.verb === "choose");
+      problems.push({ line: step.line, cmd, kind: "soft", note: w.menu ? `conversation went back to the menu with no choices line (${w.skips} skip(s)); went on to the next choose` : w.ok ? `silence timeout; engine answered after ${w.skips} skip(s), ${(w.ms / 1000).toFixed(0)} s` : `silence timeout; engine never answered (${w.skips} skips)` });
       recent.push(`  after ${w.skips} skip(s): ${brief(w.state)}`);
       if (!w.ok) throw new Error(`engine stopped answering after line ${step.line} (${cmd})`);
       if (w.state && /game has ended/i.test(String(w.state.error || ""))) ended = true;
