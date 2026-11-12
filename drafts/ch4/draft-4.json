@@ -54,30 +54,39 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Behind the tree",
+      "short": "A small space behind the tree. A branch runs across the middle, and the way out is along the bottom of the screen.",
+      "long": "The space behind the small tree outside the castle. A branch spans the middle of the scene, left of centre. A magpie perches near it, and a small key lies to the right. The way back to the castle grounds runs along the whole bottom edge.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line. Layout from hotspot rectangles in state.json (screen 320 wide). The magpie and key were not visible (visible 0) when surveyed, so they may appear only in some states. Reviewer: check against a screenshot.",
       "exits": {
         "102": {
-          "label": "",
-          "to": 21
+          "label": "back to the castle grounds",
+          "to": 21,
+          "direction": "down",
+          "note": "Engine name SALIDA (Spanish, exit). Hotspot is a thin strip along the whole bottom edge, so the player leaves by walking off the bottom. Look gave no line."
         }
       },
       "objects": {
         "52": {
-          "name": "",
-          "type": "object"
+          "name": "magpie",
+          "type": "npc",
+          "description": "A magpie perched left of centre. The game says it looks evil-minded.",
+          "note": "Hidden (visible 0) in the survey dump. Look line: IT LOOKS LIKE THIS MAGPIE IS EVIL-MINDED. Typed npc as it is a creature the player deals with; reviewer may prefer object."
         },
         "140": {
-          "name": "",
-          "type": "object"
+          "name": "branch",
+          "type": "object",
+          "description": "A branch across the middle of the scene, left of centre.",
+          "note": "Look line is only filler (THERE IS NOTHING SPECIAL ABOUT IT), so nothing more is claimed."
         },
         "180": {
-          "name": "",
-          "type": "object"
+          "name": "key",
+          "type": "object",
+          "description": "A small key on the right side, above the middle.",
+          "note": "Hidden (visible 0) in the survey dump. The game gave no look line, only filler. Description is from name and position only."
         }
       }
     },
@@ -86,44 +95,56 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Entrance hall",
+      "short": "The castle hall. A door on the right leads outside and a door on the far left leads further in. Two speakers stand in the middle.",
+      "long": "The hall just inside the castle. A door on the far left leads further in. A speaker stands left of centre and another right of centre. A picture hangs on the back wall at the right, with a small table below it. A door at the far right leads back outside.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line. Layout from hotspot rectangles in state.json (screen 320 wide). Reviewer: check against a screenshot, especially what the speakers are.",
       "exits": {
         "103": {
-          "label": "",
-          "to": 21
+          "label": "door on the far right, back outside",
+          "to": 21,
+          "direction": "right",
+          "note": "Look gave only filler. Destination from meta.json."
         },
         "104": {
-          "label": "",
-          "to": 24
+          "label": "door on the far left, to the corridor",
+          "to": 24,
+          "direction": "left",
+          "note": "Look gave only filler. Destination from meta.json. Room 24 has no name from the game, so 'corridor' is my wording; reviewer to confirm."
         }
       },
       "objects": {
         "142": {
-          "name": "",
+          "name": "draskis",
           "type": "object",
+          "description": "Something the game calls draskis, on the right near the table.",
           "textFixSuggestion": {
             "from": "DRASKIS",
-            "to": "",
+            "to": "draskis",
             "reason": "spelling"
           },
-          "note": "engine name \"DRASKIS\" is spelling; propose a translated label"
+          "note": "Hidden (visible 0) when surveyed. Look line is only filler. Coverage report says DRASKIS is covered or harmless, so I kept the name and made no change. Reviewer: confirm the spelling and whether to drop the textFixSuggestion."
         },
         "170": {
-          "name": "",
-          "type": "object"
+          "name": "speaker",
+          "type": "object",
+          "description": "A speaker on a stand. There are two: one left of centre and one right of centre.",
+          "note": "Two hotspots share number 170 (rects at x 87 and x 186). Look lines are only filler, so nothing is claimed about what they do."
         },
         "171": {
-          "name": "",
-          "type": "object"
+          "name": "table",
+          "type": "object",
+          "description": "A small table at the right, below the picture.",
+          "note": "Look line is only filler."
         },
         "174": {
-          "name": "",
-          "type": "object"
+          "name": "picture",
+          "type": "object",
+          "description": "A picture on the back wall at the right.",
+          "note": "Look line is only filler, so the subject is unknown. Reviewer: check a screenshot."
         }
       }
     },
@@ -132,36 +153,44 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Tapestry corridor",
+      "short": "A corridor with a wide staircase in the middle. Doors are on the far left and on the right, and a tapestry hangs by each.",
+      "long": "A corridor inside the castle. A wide staircase rises in the middle. A door on the far left has a tapestry hanging beside it. A second tapestry hangs on the right, next to a door that leads back to the entrance hall.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line. Name and layout from hotspot rectangles in state.json (screen 320 wide). Reviewer: check against a screenshot.",
       "exits": {
         "105": {
-          "label": "",
-          "to": 23
+          "label": "door on the right, back to the entrance hall",
+          "to": 23,
+          "direction": "right",
+          "note": "Look gave only filler. Destination from meta.json."
         },
         "106": {
-          "label": "",
-          "to": 26
+          "label": "door on the far left, to Igor's room",
+          "to": 26,
+          "direction": "left",
+          "note": "Look gave only filler. Destination from meta.json. 'Igor's room' comes from the coverage report, not from the game; reviewer to confirm a blind player should hear it before meeting him."
         },
         "108": {
-          "label": "",
-          "to": 27
+          "label": "staircase in the middle, going up",
+          "to": 27,
+          "direction": "up",
+          "note": "Engine name ESCALERAS (Spanish, stairs). Look was silent."
         }
       },
       "objects": {
         "151": {
-          "name": "",
+          "name": "tapestry",
           "type": "object",
+          "description": "A tapestry hanging on the wall. There are two: one at the left and one at the right. The game says she has nice Transylvanian features.",
           "textFixSuggestion": {
             "from": "TAPESTRIE",
-            "to": "",
+            "to": "tapestry",
             "reason": "spelling"
           },
-          "note": "engine name \"TAPESTRIE\" is spelling; propose a translated label"
+          "note": "Two hotspots share number 151 (x 23 and x 226). The look line speaks of 'she', so the tapestries probably show a woman; reviewer to check a screenshot. The coverage report says TAPESTRIE already has a pack fix."
         }
       }
     },
