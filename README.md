@@ -13,7 +13,7 @@ Making an old game accessible needs a description pack: a name, a description an
 | Bot | Job | What it may do |
 |---|---|---|
 | **surveyor** | Plays the game through the `drascula-live` MCP server (the real engine), room by room, following the pack's milestones. Reports puzzle blockers, missing descriptions and engine or tooling bugs | The 16 drascula tools run without asking. Fetching web pages, searching the web, changing its own model or approval mode, asking for more abilities and changing schedules all need a human yes |
-| **listener** (planned) | After each deploy, runs one fixed script in a Windows VM: Chrome plus NVDA, presses the keys a player would, and compares what NVDA actually said with what it should have said | Runs that one script only |
+| **listener** | After each deploy, runs one fixed script (`scripts/listener.sh`) in the Parallels Windows VM "Ghostlight Win11" on the Mac: Chrome plus NVDA, presses the keys a player would, and compares what NVDA actually said with what it should have said. Writes and commits `reports/listener-<date>-<HHMM>.md`. Zero tokens. It's Crew job `listener` on the Mac (trigger-only) | Runs that one script only. The Mac Crew sandbox can't start Parallels, so the Crew job only drops a request file and a launchd agent outside Crew runs the script (see `scripts/listener-request.sh`) |
 | **describer** (planned) | Drafts pack entries for rooms the surveyor flags, in the pack's style | Writes drafts to `reports/` only. A human approves every entry before it goes into the pack |
 
 ## What it has found so far
