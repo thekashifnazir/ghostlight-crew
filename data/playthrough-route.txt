@@ -1,0 +1,215 @@
+# Drascula full playthrough route via drascula-live (native), 12 Nov 2026
+# One command per line; 'load N' starts from save slot N in the scratch savepath.
+# Chapter 1, room 62 (inn bar), fresh start
+start    # ch1 fresh
+save 1    # ch1 start slot
+talk 52    # ch1 bartender
+walk 105    # ch1 curtained doorway -> ch2
+save 2    # ch2 start slot (room 14)
+walk 162    # ch2 to guest bedroom 16
+open 183    # trunk -> handbag
+open 22    # open handbag item
+walk 163    # back to bar
+walk 171    # to back room 15
+use 18 188    # coins on machine
+push 188    # push machine -> cigarettes
+walk 172    # to bar
+talk 53    # drunk
+choose 3    # where is Von Braun
+choose 4    # goodbye -> flag 40
+save 10    # ch2 checkpoint after drunk
+walk 159    # to street 12
+walk 151    # to square 10
+walk 149    # to dead-end alley 9
+talk 51    # blind man
+use 7 51    # money on blind man -> sickle
+walk 152    # to square
+walk 146    # to edge of village 4
+push 189    # barrel -> bubble gum
+walk 126    # to valley map 2
+walk 127    # to cemetery 3
+take 165    # fence spike
+use 14 166    # sickle on creeper -> leaves
+save 11    # ch2 checkpoint cemetery
+walk 134    # behind the church fence 5
+use 10 136    # spike on boarded window
+walk 136    # through window to vestry 6
+open 139    # drawer
+take 140    # crucifix
+open 138    # arched door
+walk 138    # to nave 7
+take 190    # candle
+walk 142    # to the lane with the statue
+walk 137    # to the lane with the statue
+walk 135    # to the lane with the statue
+walk 128    # to the lane with the statue
+walk 125    # to the lane with the statue
+walk 145    # to the lane with the statue
+walk 148    # to the lane with the statue
+walk 158    # to the lane with the statue
+look 147    # bin -> tissues
+save 12    # ch2 checkpoint all ingredients
+walk 161    # to Von Braun's hut
+walk 146    # to Von Braun's hut
+walk 126    # to Von Braun's hut
+walk 175    # to Von Braun's hut
+open 177    # knock on hut door
+talk 177    # talk to the door
+choose 2    # don't be afraid -> let in
+walk 177    # into den 18
+take 182    # book
+walk 178    # to the inn bar
+walk 176    # to the inn bar
+walk 125    # to the inn bar
+walk 145    # to the inn bar
+walk 148    # to the inn bar
+walk 156    # to the inn bar
+use 12 54    # music book on pianist -> earplugs
+save 13    # ch2 checkpoint earplugs
+walk 159    # to Von Braun's den
+walk 151    # to Von Braun's den
+walk 146    # to Von Braun's den
+walk 126    # to Von Braun's den
+walk 175    # to Von Braun's den
+walk 177    # to Von Braun's den
+use 11 50    # earplugs on self
+talk 55    # Von Braun
+choose 2    # ready for the test
+walk 177    # into den
+talk 55    # Von Braun again
+choose 2    # why wouldn't Drascula kill you -> recipe
+choose 4    # leave conversation
+walk 177    # into den
+talk 55    # Von Braun, ingredients
+choose 3    # all the ingredients -> brew
+save 14    # ch2 checkpoint brew
+walk 176    # to the churchyard well
+walk 127    # to the churchyard well
+walk 134    # to the churchyard well
+walk 136    # to the churchyard well
+walk 138    # to the churchyard well
+walk 164    # to the churchyard well
+walk 173    # into the well -> ch3
+save 3    # ch3 start slot (room 20)
+walk 100    # to vampire's room 13
+look 51    # look at the vampire
+use 9 51    # crucifix on vampire -> ch4
+save 4    # ch4 start slot (room 21)
+take 141    # ch4 rope, magpie key, castle door
+walk 100    # ch4 rope, magpie key, castle door
+walk 52    # ch4 rope, magpie key, castle door
+use 22 52    # ch4 rope, magpie key, castle door
+take 180    # ch4 rope, magpie key, castle door
+walk 102    # ch4 rope, magpie key, castle door
+use 7 101    # ch4 rope, magpie key, castle door
+walk 101    # ch4 rope, magpie key, castle door
+open 104    # ch4 into castle, meet Igor, dark room
+walk 104    # ch4 into castle, meet Igor, dark room
+open 106    # ch4 into castle, meet Igor, dark room
+walk 106    # ch4 into castle, meet Igor, dark room
+talk 51    # ch4 into castle, meet Igor, dark room
+choose 4    # ch4 into castle, meet Igor, dark room
+walk 107    # ch4 into castle, meet Igor, dark room
+walk 108    # ch4 into castle, meet Igor, dark room
+open 110    # ch4 into castle, meet Igor, dark room
+walk 110    # ch4 into castle, meet Igor, dark room
+walk 111    # ch4 into castle, meet Igor, dark room
+walk 112    # ch4 into castle, meet Igor, dark room
+open 114    # ch4 into castle, meet Igor, dark room
+walk 114    # ch4 into castle, meet Igor, dark room
+walk 115    # ch4 into castle, meet Igor, dark room
+walk 113    # ch4 into castle, meet Igor, dark room
+walk 118    # ch4 into castle, meet Igor, dark room
+save 15    # ch4 checkpoint room 34
+open 120    # ch4 brains, lubricant, cloak, maze
+walk 120    # ch4 brains, lubricant, cloak, maze
+take 147    # ch4 brains, lubricant, cloak, maze
+take 149    # ch4 brains, lubricant, cloak, maze
+take 148    # ch4 brains, lubricant, cloak, maze
+walk 121    # ch4 brains, lubricant, cloak, maze
+push 146    # ch4 brains, lubricant, cloak, maze
+walk 122    # ch4 brains, lubricant, cloak, maze
+walk 124    # ch4 brains, lubricant, cloak, maze
+walk 126    # ch4 brains, lubricant, cloak, maze
+walk 128    # ch4 brains, lubricant, cloak, maze
+walk 130    # ch4 brains, lubricant, cloak, maze
+walk 132    # ch4 brains, lubricant, cloak, maze
+walk 134    # ch4 brains, lubricant, cloak, maze
+walk 136    # ch4 brains, lubricant, cloak, maze
+walk 138    # ch4 brains, lubricant, cloak, maze
+walk 139    # ch4 brains, lubricant, cloak, maze
+walk 119    # ch4 closet, draskis, wig disguise
+walk 112    # ch4 closet, draskis, wig disguise
+walk 114    # ch4 closet, draskis, wig disguise
+use 13 144    # ch4 closet, draskis, wig disguise
+open 144    # ch4 closet, draskis, wig disguise
+walk 115    # ch4 closet, draskis, wig disguise
+walk 113    # ch4 closet, draskis, wig disguise
+walk 109    # ch4 closet, draskis, wig disguise
+walk 105    # ch4 closet, draskis, wig disguise
+close 103    # ch4 closet, draskis, wig disguise
+take 142    # ch4 closet, draskis, wig disguise
+walk 104    # ch4 closet, draskis, wig disguise
+walk 106    # ch4 closet, draskis, wig disguise
+take 143    # ch4 closet, draskis, wig disguise
+use 10 50    # ch4 closet, draskis, wig disguise
+save 16    # ch4 checkpoint after disguise
+walk 108    # ch4 living room axe, branch, rope, tower
+use 17 116    # ch4 living room axe, branch, rope, tower
+walk 116    # ch4 living room axe, branch, rope, tower
+take 145    # ch4 living room axe, branch, rope, tower
+walk 117    # ch4 living room axe, branch, rope, tower
+walk 109    # ch4 living room axe, branch, rope, tower
+walk 105    # ch4 living room axe, branch, rope, tower
+open 103    # ch4 living room axe, branch, rope, tower
+walk 103    # ch4 living room axe, branch, rope, tower
+walk 100    # ch4 living room axe, branch, rope, tower
+walk 140    # ch4 living room axe, branch, rope, tower
+use 11 140    # ch4 living room axe, branch, rope, tower
+walk 102    # ch4 living room axe, branch, rope, tower
+use 18 19    # ch4 living room axe, branch, rope, tower
+save 17    # ch4 checkpoint before tower
+use 21 179    # rope+branch on tower -> ch5
+save 5    # ch5 start slot (room 45)
+walk 101    # ch5 tower 2 then room 54
+walk 113    # ch5 tower 2 then room 54
+look 118    # ch5 B.J. behind the door
+choose 3    # ch5 hairpin, bone
+take 9999    # ch5 bone, then the guard vampire in tower 3 (room 49)
+walk 115    # ch5 bone, then the guard vampire in tower 3 (room 49)
+walk 108    # ch5 bone, then the guard vampire in tower 3 (room 49)
+walk 102    # ch5 bone, then the guard vampire in tower 3 (room 49)
+save 18    # ch5 checkpoint room 49
+use 8 51    # ch5 bone to the vampire-dog, tower 4
+walk 110    # ch5 bone to the vampire-dog, tower 4
+walk 103    # ch5 bone to the vampire-dog, tower 4
+walk 114    # ch5 room 55
+take 122    # ch5 screws, then room 53
+walk 117    # ch5 screws, then room 53
+walk 111    # ch5 screws, then room 53
+walk 100    # ch5 screws, then room 53
+walk 112    # ch5 screws, then room 53
+use 12 52    # ch5 build the monster
+use 15 52    # ch5 build the monster
+take 120    # ch5 build the monster
+save 19    # ch5 checkpoint monster ready
+use 16 121    # ch5 plug in, switch on
+push 123    # ch5 plug in, switch on
+save 20    # ch5 checkpoint room 57
+walk 104    # ch5 the coffin -> ch6
+open 124    # ch5 the coffin -> ch6
+choose 4    # last wish -> ch6
+save 6    # ch6 start slot (room 102)
+take 101    # ch6 escape the pendulum
+use 20 100    # ch6 escape the pendulum
+push 103    # ch6 torch, to B.J.'s room and the bar
+walk 104    # ch6 torch, to B.J.'s room and the bar
+walk 108    # ch6 torch, to B.J.'s room and the bar
+save 21    # ch6 checkpoint room 60
+push 112    # ch6 piano, then the bartender
+talk 52    # ch6 piano, then the bartender
+choose 3    # ch6 scotch on the rocks
+save 22    # ch6 checkpoint before the ending
+use 21 56    # ch6 get Drascula drunk
+use 9 56    # the cross on Drascula -> the end
+# game ended (A11Y_GAME_END after 98 s); state then answers at once
