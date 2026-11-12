@@ -8,7 +8,8 @@
 // Rules:
 //   - A command that times out on 10 s of engine silence is a SOFT warning: the
 //     engine is usually fine afterwards (long cutscenes, chapter crossings). The
-//     script then polls `state` until the engine answers, and carries on.
+//     script then sends `skip` and re-checks `state` until the engine
+//     answers, and carries on.
 //   - `save N # chN start ...` lines are chapter checkpoints: before saving, the
 //     current chapter must be N.
 //   - The final `use 9 56` must return `ended: true`.
@@ -110,16 +111,25 @@ async function tool(name, args) {
 }
 const isTimeout = (j) => /did not settle|busy-skip|busy/i.test(String(j && j.error || ""));
 
-// After a soft timeout, poll `state` until the engine answers with anything that
-// isn't another silence timeout (a refusal during a conversation counts as alive).
+// After a soft timeout the engine is usually sitting in a cutscene waiting for a
+// key (measured 12 Nov: the chapter 2 intro never moves on by itself under
+// dummy audio, and `state` alone keeps timing out). So: `skip`, then `state`,
+// until `state` answers with anything that isn't another silence timeout (a
+// refusal during a conversation counts as alive).
 async function waitSettled() {
   const t0 = Date.now();
+  let skips = 0;
   while (Date.now() - t0 < SETTLE_MAX_MS) {
+    const k = await tool("skip");
+    skips++;
+    if (/game has ended/i.test(String(k && k.error || "")) || (k && k.ended)) {
+      return { ok: true, ms: Date.now() - t0, skips, state: { error: "the game has ended" } };
+    }
     const s = await tool("state");
-    if (!isTimeout(s)) return { ok: true, ms: Date.now() - t0, state: s };
+    if (!isTimeout(s)) return { ok: true, ms: Date.now() - t0, skips, state: s };
     await new Promise((r) => setTimeout(r, SETTLE_POLL_MS));
   }
-  return { ok: false, ms: Date.now() - t0 };
+  return { ok: false, ms: Date.now() - t0, skips };
 }
 
 function argsFor(verb, a) {
@@ -162,7 +172,7 @@ try {
     if (isTimeout(j)) {
       counts.soft++;
       const w = await waitSettled();
-      problems.push({ line: step.line, cmd, kind: "soft", note: w.ok ? `silence timeout; engine answered after ${(w.ms / 1000).toFixed(0)} s` : "silence timeout; engine never answered" });
+      problems.push({ line: step.line, cmd, kind: "soft", note: w.ok ? `silence timeout; engine answered after ${w.skips} skip(s), ${(w.ms / 1000).toFixed(0)} s` : `silence timeout; engine never answered (${w.skips} skips)` });
       if (!w.ok) throw new Error(`engine stopped answering after line ${step.line} (${cmd})`);
       if (w.state && /game has ended/i.test(String(w.state.error || ""))) ended = true;
     } else if (j && j.error && !j.ended) {
