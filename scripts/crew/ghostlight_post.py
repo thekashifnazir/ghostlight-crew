@@ -15,7 +15,7 @@ def run(ctx):
     script = (ctx.message or "").strip()
     if not script:
         raise RuntimeError("no script path in the job message")
-    proc = subprocess.run([script], capture_output=True, text=True, timeout=1500)
+    proc = subprocess.run([script], capture_output=True, text=True, timeout=3200)  # under the longest job timeout (whole-game: 3300 s); the job timeout still caps shorter jobs
     out = (proc.stdout or "").strip()
     tail = "\n".join(out.splitlines()[-20:]) or "(no output)"
     head = "Ghostlight night job" + ("" if proc.returncode == 0 else f" exited {proc.returncode}")

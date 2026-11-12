@@ -53,7 +53,9 @@ The home directory is shared with the host, so the repos, `~/bin` and `~/.kiro` 
 - **AppArmor.** SteamOS doesn't ship Ubuntu's unprivileged-userns restriction, so Crew's AppArmor step may not be needed. Check with `kirocrew doctor`.
 - **Always on.** No instance schedule is needed. The box stays up and the 02:00 job just runs.
 
-## Night jobs on the VM (11 Nov)
+## Night jobs on the VM (updated 12 Nov)
+
+The VM runs 01:00 to 11:00 London (instance schedule `crew-overnight`): night jobs, then the morning review in Discord.
 
 | London time | Job | Kind | Posts to |
 |---|---|---|---|
@@ -61,9 +63,10 @@ The home directory is shared with the host, so the repos, `~/bin` and `~/.kiro` 
 | 02:00 | `surveyor-nightly-rooms` | Crew script job (`scripts/crew/ghostlight_post.py` runs `~/bin/ghostlight-nightly.sh`) | Discord night-jobs thread |
 | 03:00 | `ch4-drafts` | Crew agent job, prompt in `~/ch4-drafts-prompt.txt`, writes only `drafts/ch4/draft-4.json` and `drafts/ch4/flags.md` (`~/.kiro/settings/permissions.yaml`) | the thread, as the agent's reply |
 | 05:45 | `ch4-drafts-commit` | Crew script job running `~/bin/ch4-drafts-commit.sh` (local commit, no push) | the thread |
-| 06:15 and 06:50 | `ghostlight-crew-push` user timer | systemd, outside Crew (the token is hidden from Crew jobs) | GitHub: `git pull --rebase` then `git push` of ghostlight-crew. Needs the token's Contents: Read and write |
+| 06:15, 06:50 and 10:52 | `ghostlight-crew-push` user timer | systemd, outside Crew (the token is hidden from Crew jobs) | GitHub: `git pull --rebase` then `git push` of ghostlight-crew. Needs the token's Contents: Read and write |
 | 06:00 | `ch4-review` | Crew script job (`scripts/crew/ch4_review.py`, zero-token itself) hands one review card per newly drafted, undecided chapter 4 room to the night-jobs thread's chat session; its agent posts the card (about 0.1 to 0.3 credits each, measured 12 Nov). Kash replies in the thread with Approve room N, Change room N and what to change, or Reject room N, and the agent records it in `drafts/ch4/decisions.json` (the third file in `permissions.yaml`'s allow list) or edits that room in `draft-4.json`. Replies to a cron-started turn reach Discord as plain text, so Crew's option buttons show only as a numbered list: hence typed replies | the thread |
-| 06:45 | `ch4-review-commit` | Crew script job via `ghostlight_post.py` running `~/bin/ch4-review-commit.sh` (`scripts/crew/ch4-review-commit.sh`): commits `decisions.json` and `draft-4.json` locally, no push | the thread |
+| 07:00 | `whole-game` | Crew script job (`scripts/crew/ghostlight_post.py` runs `~/bin/ghostlight-whole-game.sh`, which runs `scripts/whole-game.mjs` under xvfb): replays `data/playthrough-route.txt`, the full route from a fresh start to the final ending, and checks every chapter is reached and the game ends. Silence timeouts are soft warnings. Zero credits. Runs after the 03:00 drafting job so the two don't share the engine | the thread, plus `reports/whole-game-<date>.md` |
+| 10:45 | `ch4-review-commit` | Crew script job via `ghostlight_post.py` running `~/bin/ch4-review-commit.sh` (`scripts/crew/ch4-review-commit.sh`): commits `decisions.json` and `draft-4.json` locally, no push | the thread |
 
 The chapter drafting jobs and the `drascula-live` MCP wrapper (`~/bin/drascula-mcp.sh`, registered in `~/.kiro/crew/mcp.json`) are set up by hand; `vm-setup.sh` doesn't create them yet. Crew command jobs (`--command`) never post to Discord, which is why the night jobs go through the poster script.
 
@@ -76,4 +79,4 @@ The chapter drafting jobs and the `drascula-live` MCP wrapper (`~/bin/drascula-m
 Why the split: inside the Mac Crew job sandbox `prlctl` fails ("Failed to initialize Parallels Desktop in unattended mode", `/bin/ps: Operation not permitted`), so the job can't drive the Windows VM itself. `listener-request.sh` drops a file in `~/.ghostlight-listener/queue`; a launchd user agent (`com.ghostlight.listener`, QueueDirectories) runs `scripts/listener.sh --from-queue` outside Crew and writes `~/.ghostlight-listener/done-<id>`, which the job prints. The agent needs Kash's OK to install (it's a persistent launchd job). Until then, run `scripts/listener.sh` by hand after a deploy.
 
 
-The review window is 06:00 to 07:00 London, while the VM is up. A reply sent after 07:00 reaches a bot that's offline; whether Crew picks it up when the VM starts again at 01:00 is untested.
+The review window is 06:00 to 10:45 London, while the VM is up (decisions are committed at 10:45 and pushed at 10:52). A reply sent after 11:00 reaches a bot that's offline; whether Crew picks it up when the VM starts again at 01:00 is untested.
