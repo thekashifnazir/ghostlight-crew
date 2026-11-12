@@ -76,4 +76,4 @@ The chapter drafting jobs and the `drascula-live` MCP wrapper (`~/bin/drascula-m
 Why the split: inside the Mac Crew job sandbox `prlctl` fails ("Failed to initialize Parallels Desktop in unattended mode", `/bin/ps: Operation not permitted`), so the job can't drive the Windows VM itself. `listener-request.sh` drops a file in `~/.ghostlight-listener/queue`; a launchd user agent (`com.ghostlight.listener`, QueueDirectories) runs `scripts/listener.sh --from-queue` outside Crew and writes `~/.ghostlight-listener/done-<id>`, which the job prints. The agent needs Kash's OK to install (it's a persistent launchd job). Until then, run `scripts/listener.sh` by hand after a deploy.
 
 
-The review window is 06:00 to 07:00 London, while the VM is up. A reply sent after 07:00 reaches a bot that's offline and isn't processed when it comes back.
+The review window is 06:00 to 07:00 London, while the VM is up. A reply sent after 07:00 reaches a bot that's offline; whether Crew picks it up when the VM starts again at 01:00 is untested.
