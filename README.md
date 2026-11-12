@@ -6,7 +6,7 @@ A Kiro Crew that plays an old point-and-click adventure through its game engine 
 
 ## Why it exists
 
-Making an old game accessible needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far the player has got. Ghostlight's pack covers 19 of the game's 57 rooms. Writing the rest by hand is slow, and checking that every puzzle can actually be done without sight is slower. The crew does the mechanical part, so people can spend their time on what only they can judge.
+Making an old game accessible needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far the player has got. Ghostlight's pack covers 21 of the game's 57 rooms, every room in chapters 1 to 3. Writing the rest by hand is slow, and checking that every puzzle can actually be done without sight is slower. The crew does the mechanical part, so people can spend their time on what only they can judge.
 
 ## The crew
 
@@ -30,7 +30,9 @@ Making an old game accessible needs a description pack: a name, a description an
 ## Honest limits
 
 - A Bot's spawned workers in Kiro Crew don't receive that Bot's own MCP servers, so surveyor plays from its own session. Reported as feedback to the Crew team.
-- Automated checks find mechanical problems. They don't tell you whether a game is enjoyable without sight: that needs blind players, and Ghostlight is being tested with them.
+- Automated checks find mechanical problems. They don't tell you whether a game is enjoyable without sight: that needs blind players. Two testers were sent the build on 11 November 2026, and longer sessions are planned for 22 to 27 November.
+
+Paths in `reports/` are from the machine that ran each report (a Mac or the Linux VM), so they won't match yours.
 
 ## Licence
 

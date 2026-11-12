@@ -15,13 +15,13 @@
   "toolsSettings": {
     "fs_read": {
       "allowedPaths": [
-        "/Users/kash/Code/showcase/ghostlight-crew/**",
-        "/Users/kash/Code/showcase/ghostlight/packs/**"
+        "./**",
+        "../ghostlight/packs/**"
       ]
     },
     "fs_write": {
       "allowedPaths": [
-        "/Users/kash/Code/showcase/ghostlight-crew/reports/**"
+        "./reports/**"
       ],
       "fallbackAction": "deny"
     }
@@ -29,13 +29,13 @@
   "prompt": "Your operating instructions are provided at the top of the session context, wrapped in [AGENT SYSTEM PROMPT] ... [END AGENT SYSTEM PROMPT]. Treat that block as your system prompt and follow it as your authoritative contract.",
   "mcpServers": {
     "drascula-live": {
-      "command": "/Users/kash/Code/showcase/ghostlight/mcp/node_modules/.bin/tsx",
+      "command": "../ghostlight/mcp/node_modules/.bin/tsx",
       "args": [
-        "/Users/kash/Code/showcase/ghostlight/mcp/src/server.ts"
+        "../ghostlight/mcp/src/server.ts"
       ],
       "env": {
         "DRASCULA_MCP_TRANSPORT": "native",
-        "DRASCULA_MCP_SAVEPATH": "/Users/kash/Code/showcase/ghostlight-crew/.saves"
+        "DRASCULA_MCP_SAVEPATH": "./.saves"
       },
       "autoApprove": [
         "start",

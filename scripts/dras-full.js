@@ -9,7 +9,8 @@ const SAVES = require("path").join(__dirname, "..", ".saves");
 const LOG = "/tmp/dras-full-log.txt";
 
 // Build the room graph from the pack so navigation uses real exits, not guesses.
-const PACK = require("/Users/kash/Code/showcase/ghostlight/packs/drascula-en.json");
+// The ghostlight repo is a sibling checkout; GHOSTLIGHT_PACK overrides the path.
+const PACK = require(process.env.GHOSTLIGHT_PACK || require("path").join(__dirname, "..", "..", "ghostlight", "packs", "drascula-en.json"));
 const GRAPH = {}; // room -> [{exit, to}]
 for(const n of Object.keys(PACK.rooms)){
   const ex=PACK.rooms[n].exits||{}; GRAPH[n]=[];
