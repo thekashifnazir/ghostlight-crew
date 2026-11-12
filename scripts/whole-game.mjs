@@ -148,6 +148,27 @@ const counts = { ok: 0, soft: 0, failed: 0 };
 const chapters = {};          // N -> { reached: bool, saw: chapter }
 const problems = [];          // { line, cmd, kind, note }
 let ended = false, fatal = null;
+const recent = [];            // last few steps, for the trace at the first hard failure
+let firstFailTrace = null, failStreak = 0;
+const MAX_FAIL_STREAK = 5;    // after this many failures in a row the run is off-route: stop
+function brief(j) {
+  if (!j) return "";
+  const d = j.diff || {};
+  const bits = [];
+  if (j.chapter != null) bits.push(`ch ${j.chapter} room ${j.room}`);
+  if (d.room) bits.push(`room ${d.room.join("->")}`);
+  if (d.chapter) bits.push(`chapter ${d.chapter.join("->")}`);
+  if (d.invAdded) bits.push(`+${d.invAdded.map((i) => i.name).join(",")}`);
+  if (d.invRemoved) bits.push(`-${d.invRemoved.map((i) => i.name).join(",")}`);
+  if (d.flags) bits.push(`flags ${Object.keys(d.flags).join(",")}`);
+  const said = (d.said || []).map((x) => x.text);
+  const ev = (j.events || []).filter((e) => e.type === "text" || e.type === "choices")
+    .map((e) => e.type === "text" ? e.line : `choices: ${e.choices.map((c) => `${c.n} ${c.text}`).join(" / ")}`);
+  const words = said.concat(ev).join(" | ");
+  if (words) bits.push(`"${words.slice(0, 220)}"`);
+  if (j.error) bits.push(`error: ${String(j.error).slice(0, 120)}`);
+  return bits.join("; ");
+}
 
 try {
   const init = await rpc("initialize", {
@@ -169,18 +190,28 @@ try {
     }
     const j = await tool(step.verb, argsFor(step.verb, step.args));
     if (j && j.ended) ended = true;
+    recent.push(`line ${step.line} \`${cmd}\`: ${brief(j)}`);
+    if (recent.length > 8) recent.shift();
     if (isTimeout(j)) {
       counts.soft++;
       const w = await waitSettled();
       problems.push({ line: step.line, cmd, kind: "soft", note: w.ok ? `silence timeout; engine answered after ${w.skips} skip(s), ${(w.ms / 1000).toFixed(0)} s` : `silence timeout; engine never answered (${w.skips} skips)` });
+      recent.push(`  after ${w.skips} skip(s): ${brief(w.state)}`);
       if (!w.ok) throw new Error(`engine stopped answering after line ${step.line} (${cmd})`);
       if (w.state && /game has ended/i.test(String(w.state.error || ""))) ended = true;
     } else if (j && j.error && !j.ended) {
       counts.failed++;
       problems.push({ line: step.line, cmd, kind: "failed", note: String(j.error).slice(0, 200) });
+      if (!firstFailTrace) {
+        const s = await tool("state");
+        firstFailTrace = recent.concat(`state now: ${brief(s)}; objects: ${((s && s.objects) || []).map((o) => `${o.num} ${o.name}`).join(", ").slice(0, 300)}`);
+      }
+      if (++failStreak >= MAX_FAIL_STREAK) throw new Error(`${MAX_FAIL_STREAK} failed commands in a row (up to line ${step.line}): off-route, stopping`);
+      continue;
     } else {
       counts.ok++;
     }
+    failStreak = 0;
   }
   // The ending may land after the final command timed out: ask once more.
   if (!ended) {
@@ -214,6 +245,9 @@ const lines = [
   "",
 ];
 if (fatal) lines.push(`> Fatal: ${fatal}`, "");
+if (firstFailTrace) {
+  lines.push("Trace before the first failed command:", "", ...firstFailTrace.map((t) => `- ${t.replace(/\|/g, "/")}`), "");
+}
 if (problems.length) {
   lines.push("| Line | Command | Kind | Note |", "|---|---|---|---|");
   for (const p of problems) lines.push(`| ${p.line} | \`${p.cmd}\` | ${p.kind} | ${p.note.replace(/\|/g, "\\|")} |`);
