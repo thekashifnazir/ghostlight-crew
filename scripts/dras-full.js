@@ -47,7 +47,9 @@ function call(method,params){ return new Promise(res=>{ const myid=++id; pending
 function tool(name,args){ return call("tools/call",{name,arguments:args||{}}); }
 function txt(r){ try{return r.result.content.map(c=>c.text).join("\n")}catch(e){return JSON.stringify(r.result||r.error)} }
 function J(r){ try{return JSON.parse(txt(r))}catch(e){return {_raw:txt(r)}} }
-async function st(){ return J(await tool("state",{})); }
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+// state can return room=undefined right after start/anim; wait and retry for a settled read.
+async function st(){ for(let i=0;i<6;i++){ const s=J(await tool("state",{})); if(s&&s.room!=null) return s; await sleep(400); } return J(await tool("state",{})); }
 function saidArr(j){ return (j.diff&&j.diff.said)||[]; }
 function said(j){ return saidArr(j).map(x=>x.text).join(" ")||""; }
 
@@ -82,15 +84,18 @@ async function converse(target, phrase){
   for(const o of opts){ const tx=(typeof o==="string"?o:(o.text||"")).toUpperCase(); if(tx.includes(P)){ n=(o.n!=null?o.n:opts.indexOf(o)+1); break; } }
   if(n==null){ L("    !! no choice ~ "+phrase); return false; }
   L("    choose "+n+" ("+phrase+")");
-  let c=J(await tool("choose",{n})); foldFlags(c); await advance(c);
-  // End the conversation: pick the ends:true option (or the last) so the flag commits.
+  let c=J(await tool("choose",{n})); foldFlags(c); await advance(c); await sleep(400);
+  // Re-read flags from state after the choice settles (some flags commit on the choice itself).
+  { const sa=await st(); if(Array.isArray(sa.flags)){ flagsOn.clear(); sa.flags.forEach((v,i)=>{ if(v===1) flagsOn.add(i); }); } }
+  // End the conversation only if a menu is still open: pick the ends:true option (or last).
   let ch2=J(await tool("choices",{}));
   let opts2=(ch2.choices||ch2.options||[]);
   if(opts2.length){
     let end=opts2.find(o=>o.ends===true);
     let en = end ? (end.n!=null?end.n:opts2.indexOf(end)+1) : (opts2[opts2.length-1].n!=null?opts2[opts2.length-1].n:opts2.length);
     L("    end conversation -> choose "+en);
-    const ce=J(await tool("choose",{n:en})); foldFlags(ce); await advance(ce);
+    const ce=J(await tool("choose",{n:en})); foldFlags(ce); await advance(ce); await sleep(400);
+    const sb=await st(); if(Array.isArray(sb.flags)){ flagsOn.clear(); sb.flags.forEach((v,i)=>{ if(v===1) flagsOn.add(i); }); }
   }
   return true;
 }
@@ -99,18 +104,27 @@ async function converse(target, phrase){
   await call("initialize",{protocolVersion:"2024-11-05",capabilities:{},clientInfo:{name:"play",version:"1"}});
   srv.stdin.write(JSON.stringify({jsonrpc:"2.0",method:"notifications/initialized"})+"\n");
   let s=J(await tool("start",{slot:startSlot}));
+  await sleep(800); s=await st(); // let the engine settle before first read
   seedFlags(s);
   L("START slot"+startSlot+" ch"+s.chapter+" room"+s.room+" inv="+JSON.stringify(s.inventory)+" flagsOn="+[...flagsOn].sort((a,b)=>a-b).join(","));
   const have=(n)=> flagsOn.has(n);
 
   // Navigate to a target room using the pack graph. Re-plans from the live room each hop.
+  // Some exits are closed DOORs: walk doesn't move the hero until the door is opened.
+  // So if a walk doesn't change the room, open that hotspot once and retry the walk.
   async function goTo(room){
-    for(let i=0;i<20;i++){
+    for(let i=0;i<30;i++){
       const cur=(await st()).room; if(cur===room) return true;
       const path=pathExits(cur,room);
       if(!path||!path.length){ L("    !! no path "+cur+"->"+room); return false; }
-      const r=await A("walk",{target:path[0]});
-      if(r.error){ L("    !! walk "+path[0]+" failed: "+r.error); return false; }
+      const ex=path[0];
+      const r=await A("walk",{target:ex});
+      if(r.error){ L("    !! walk "+ex+" failed: "+r.error); return false; }
+      const after=(await st()).room;
+      if(after===cur){ // didn't move: maybe a closed door — open it, then walk again
+        await A("open",{target:ex});
+        await A("walk",{target:ex});
+      }
     }
     return (await st()).room===room;
   }
@@ -125,17 +139,17 @@ async function converse(target, phrase){
     { id:"ch2.sickle", flag:41, hasItem:14, do: async()=>{ await goTo(9); const u=await A("use",{item:7,target:51}); await advance(u); } },
     { id:"ch2.spike", flag:3, do: async()=>{ await goTo(3); await A("take",{target:165}); } },
     { id:"ch2.church", flag:8, do: async()=>{ await goTo(5); await A("use",{item:10,target:136}); } },
-    { id:"ch2.crucifix", flag:10, do: async()=>{ await goTo(6); await A("open",{target:139}); await A("take",{target:140}); } },
+    { id:"ch2.crucifix", flag:10, do: async()=>{ await goTo(6); if((await st()).room===6){ L("  entered room 6; save slot 12"); await tool("save",{slot:12}); } await A("open",{target:139}); await A("take",{target:140}); } },
     { id:"ch2.candle", flag:35, do: async()=>{ await goTo(7); await A("take",{target:190}); } },
     { id:"ch2.leaves", flag:37, alsoNeed:8, do: async()=>{ await goTo(3); await A("use",{item:14,target:166}); } },
     { id:"ch2.bubble-gum", flag:34, do: async()=>{ await goTo(4); await A("push",{target:189}); } },
     { id:"ch2.tissues", flag:7, do: async()=>{ await goTo(8); await A("look",{target:147}); } },
-    { id:"ch2.into-hut", flag:14, do: async()=>{ await goTo(17); await A("open",{target:177}); await converse(177,"DON'T BE AFRAID"); } },
+    { id:"ch2.into-hut", flag:14, do: async()=>{ await goTo(17); await A("open",{target:177}); await converse(177,"AFRAID"); } },
     { id:"ch2.book", flag:28, do: async()=>{ await goTo(18); await A("take",{target:182}); } },
     { id:"ch2.earplugs", flag:39, do: async()=>{ await goTo(14); await A("use",{item:12,target:54}); } },
     { id:"ch2.test", flag:22, do: async()=>{ await goTo(18); await A("use",{item:11,target:50}); await converse(55,"I AM READY TO FACE YOUR TEST"); } },
-    { id:"ch2.recipe", flag:33, do: async()=>{ await converse(55,"WHY WOULDN'T DRASCULA KILL YOU"); } },
-    { id:"ch2.brew", flag:36, do: async()=>{ await converse(55,"I HAVE ALL THE INGREDIENTS OF THAT BREW"); } },
+    { id:"ch2.recipe", flag:33, do: async()=>{ await goTo(18); await converse(55,"WHY WOULDN'T DRASCULA KILL YOU"); } },
+    { id:"ch2.brew", flag:36, do: async()=>{ await goTo(18); await converse(55,"I HAVE ALL THE INGREDIENTS OF THAT BREW"); } },
   ];
 
   // A milestone is done when: its flag is on, OR any altFlag is on, OR hasItem is held.
@@ -146,7 +160,8 @@ async function converse(target, phrase){
     return flagHit && (!m.alsoNeed || have(m.alsoNeed));
   }
 
-  let stopped=null, cpSlot=10, done=0;
+  // auto-checkpoints use slots 13..19 so they never clobber slot 12 (room 6) or slot 20 (ch3).
+  let stopped=null, cpSlot=13, done=0;
   for(let idx=0; idx<M.length; idx++){
     const m=M[idx];
     if(await isDone(m)){ L("SKIP "+m.id+" (already done)"); done++; }
