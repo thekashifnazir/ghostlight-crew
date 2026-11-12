@@ -109,6 +109,7 @@ function jsonOf(r) {
 async function tool(name, args) {
   return jsonOf(await rpc("tools/call", { name, arguments: args || {} }));
 }
+const NOT_HERE = /not a hotspot|not in this room|no conversation is open|neither a hotspot/i;
 const isTimeout = (j) => /did not settle|busy-skip|busy/i.test(String(j && j.error || ""));
 
 // After a soft timeout the engine is usually sitting in a cutscene waiting for a
@@ -188,7 +189,17 @@ try {
         problems.push({ line: step.line, cmd, kind: "chapter", note: `expected chapter ${step.checkpoint}, state says ${saw ?? JSON.stringify(s.error || s).slice(0, 120)}` });
       }
     }
-    const j = await tool(step.verb, argsFor(step.verb, step.args));
+    let j = await tool(step.verb, argsFor(step.verb, step.args));
+    // A reply can come back before the scene finishes moving the hero (measured
+    // 12 Nov: after "ready for the test" the hero is put outside a moment after
+    // the reply). A "not here" refusal gets one retry after the scene settles.
+    if (j && j.error && !isTimeout(j) && NOT_HERE.test(String(j.error))) {
+      await new Promise((r) => setTimeout(r, 3000));
+      await tool("state");
+      const again = await tool(step.verb, argsFor(step.verb, step.args));
+      problems.push({ line: step.line, cmd, kind: "retry", note: again.error ? "retried after settle, still refused" : "refused until the scene settled; ok on retry" });
+      j = again;
+    }
     if (j && j.ended) ended = true;
     recent.push(`line ${step.line} \`${cmd}\`: ${brief(j)}`);
     if (recent.length > 8) recent.shift();
