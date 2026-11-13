@@ -46,3 +46,37 @@
 
 - Refused calls: none. I used only the file tools.
 - drascula-live was not needed. Every look line I needed was in the dump or the report.
+
+## 2026-11-13
+
+### Room 26 (Igor's room)
+
+- Silent hotspots: exit 107 gave no line. Wig 143, Igor 51, drawers 167 and portrait 169 gave only filler.
+- Blank name: the report says Igor has a blank name until the player talks to him. The pack name "Igor" may be heard too early.
+- Odd look lines: calendar 163 says it is Elvis. Book 168 is a tax-forms joke. Window 164 says it is scary. A blind player may find the tone odd.
+- Loops: 107 goes back to room 24 only.
+- Hangs or timeouts: none. The engine was not run.
+
+### Room 27 (upstairs landing)
+
+- Silent hotspots: stairs 109, doors 110, 112 and 118 gave no line. Door 116 gave only filler.
+- Shared number: four fake doors share 166 (x 103, 137, 184, 280). Look always hits the first. None is an exit.
+- Fake doors: 116 and the four 166 doors look like exits but are not. West wing 150 is not an exit either; the game says "no way".
+- Conflict: the report lists 116 as an exit to room 31. The dump says door 0 with no destination. A reviewer should check.
+- Odd look line: picture 175 has a garbled byte in "toupee" in the dump.
+- Loops: 109 goes down to room 24, which leads back up by 108. 110, 112 and 118 each go on to rooms 28, 29 and 34, which lead back here.
+- Hangs or timeouts: none. The engine was not run.
+
+### Room 28 (dark storeroom)
+
+- Silent hotspots: box 200 gave no line. Every other hotspot, and exit 111, says the room is too dark.
+- Shared number: eight hotspots (boxes, drawers, trunks, barrel) share 999. Look always hits the first.
+- Dark room: every look gets the same reply. A blind player learns nothing about the objects.
+- Odd exit: 111 is a tall strip along the whole right edge, not a door.
+- Loops: 111 goes back to room 27 only.
+- Hangs or timeouts: none. The engine was not run.
+
+### Run notes
+
+- Refused calls: none. One test shell call (`echo hi`) was not refused, though the brief said it would be. I used no shell after that.
+- drascula-live was not needed. Every look line I needed was in the dump.

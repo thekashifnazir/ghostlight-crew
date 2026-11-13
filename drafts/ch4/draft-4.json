@@ -199,50 +199,69 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Igor's room",
+      "short": "A small bedroom with a door at the back. A shelf and drawers stand in the middle, a calendar hangs on the right, and a window is at the far right.",
+      "long": "A small room inside the castle. The door back to the corridor is in the back wall, left of centre. A portrait hangs on the far left. A shelf with drawers below it stands in the middle. A calendar hangs on the wall right of centre, with a person standing below it. A window is at the far right. A book lies on the right, and a wig is at the far right, low down.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line. Name 'Igor's room' comes from the coverage report, not the game. Layout from hotspot rectangles in state.json (screen 320 wide). Reviewer: check against a screenshot, especially where the book and wig sit.",
       "exits": {
         "107": {
-          "label": "",
-          "to": 24
+          "label": "door in the back wall, to the corridor",
+          "to": 24,
+          "direction": "back",
+          "note": "Engine name DOOR. Look was silent. Destination from meta.json. Rect x 93 to 133, left of centre."
         }
       },
       "objects": {
         "51": {
-          "name": "",
-          "type": "object"
+          "name": "Igor",
+          "type": "npc",
+          "description": "A person standing right of centre, below the calendar.",
+          "note": "Engine name IGOR. Look line is only filler (IT'S NOT UNUSUAL). The coverage report says the name is blank until you talk to him; I used the report's name, so a first-time player may hear it before the game gives it. Reviewer: decide whether to keep the name or use 'man'. Typed npc; reviewer may prefer object."
         },
         "143": {
-          "name": "",
-          "type": "object"
+          "name": "wig",
+          "type": "object",
+          "description": "A wig at the far right, low down.",
+          "note": "Look line is only filler. Description is from name and position only."
         },
         "163": {
-          "name": "",
-          "type": "object"
+          "name": "calendar",
+          "type": "object",
+          "description": "A calendar on the wall, right of centre. The game says it shows Elvis.",
+          "note": "Look line: IT'S ELVIS THE KING. YOU DIDN'T IMAGINE THAT WOULD BE HERE, DID YOU! Paraphrased to the picture only."
         },
         "164": {
-          "name": "",
-          "type": "object"
+          "name": "window",
+          "type": "object",
+          "description": "A window at the far right. It is night outside.",
+          "note": "Look line says the night is falling and calls it scary. I kept only the night."
         },
         "165": {
-          "name": "",
-          "type": "object"
+          "name": "shelf",
+          "type": "object",
+          "description": "A shelf in the middle of the room, holding books and other small things.",
+          "note": "Look line: A SHELF WITH BOOKS AND SOME OTHER THINGS."
         },
         "167": {
-          "name": "",
-          "type": "object"
+          "name": "drawers",
+          "type": "object",
+          "description": "A set of drawers in the middle, just below the shelf.",
+          "note": "Look line is only filler. Description is from name and position only."
         },
         "168": {
-          "name": "",
-          "type": "object"
+          "name": "book",
+          "type": "object",
+          "description": "A book on the right. Its title is a guide to filling in tax return forms.",
+          "note": "Look line quotes the title: HOW TO FILL IN TAX RETURN FORMS. The game calls it interesting, as a joke; left out."
         },
         "169": {
-          "name": "",
-          "type": "object"
+          "name": "portrait",
+          "type": "object",
+          "description": "A portrait on the wall at the far left.",
+          "note": "Look line is only filler, so the subject is unknown. Reviewer: check a screenshot."
         }
       }
     },
@@ -251,46 +270,63 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Upstairs landing",
+      "short": "A landing with a row of doors along the back wall. A staircase goes down at the far left, and a passage leads off at the far right.",
+      "long": "The upper floor of the castle. A staircase goes down at the bottom left. Along the back wall, from left to right, is a row of doors, with a large picture hanging above them in the middle. Another door stands right of centre, and a last one is high on the right. At the far right edge, a passage leads to the west wing.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line. Name 'Upstairs landing' is my wording (the report also says landing). Layout from hotspot rectangles in state.json (screen 320 wide). Eight doors in all; only four are exits. Reviewer: check against a screenshot.",
       "exits": {
         "109": {
-          "label": "",
-          "to": 24
+          "label": "staircase at the far left, down to the corridor",
+          "to": 24,
+          "direction": "down",
+          "note": "Engine name ESCALERAS (Spanish, stairs). Look was silent. Destination from meta.json."
         },
         "110": {
-          "label": "",
-          "to": 28
+          "label": "door in the middle, to a dark room",
+          "to": 28,
+          "direction": "ahead",
+          "note": "Look was silent. Destination from meta.json. 'Dark room' comes from the room 28 look line; reviewer to confirm a blind player should hear it."
         },
         "112": {
-          "label": "",
-          "to": 29
+          "label": "door left of centre, to the kitchen",
+          "to": 29,
+          "direction": "left",
+          "note": "Look was silent. Destination from meta.json. 'Kitchen' comes from the coverage report, not the game; reviewer to confirm."
         },
         "118": {
-          "label": "",
-          "to": 34
+          "label": "door on the right, to the torch room",
+          "to": 34,
+          "direction": "right",
+          "note": "Look was silent. Destination from meta.json. 'Torch room' comes from the coverage report, not the game; reviewer to confirm."
         }
       },
       "objects": {
         "116": {
-          "name": "",
-          "type": "object"
+          "name": "door at the far left of the row",
+          "type": "object",
+          "description": "A door at the left end of the row along the back wall. It is not a way through.",
+          "note": "Not an engine exit (door 0 in the dump). Look line: I CAN'T SEE ANYTHING IN PARTICULAR. The coverage report lists it as an exit to room 31 (the living room), but the dump gives no destination. Reviewer: decide if this is an exit; if so it needs moving to exits."
         },
         "150": {
-          "name": "",
-          "type": "object"
+          "name": "west wing",
+          "type": "object",
+          "description": "The way to the west wing, at the far right edge. The game says that nobody knows what you will find there.",
+          "note": "Not an engine exit (door 0). Look line: TO THE WEST WING? NO WAY! NOBODY KNOWS WHAT YOU WILL FIND THERE!! Paraphrased. Reviewer: a blind player may try to go there; confirm it is blocked."
         },
         "166": {
-          "name": "",
-          "type": "object"
+          "name": "other door",
+          "type": "object",
+          "description": "A plain door along the back wall. There are four: two left of the middle, one right of the middle and one on the far right.",
+          "note": "Four hotspots share number 166 (x 103, 137, 184, 280). None is an exit. Look lines are only filler, so nothing is claimed about them."
         },
         "175": {
-          "name": "",
-          "type": "object"
+          "name": "picture",
+          "type": "object",
+          "description": "A large picture on the back wall, in the middle, above the doors. It shows a pale man with fangs and a toupee. The game says he is Drascula.",
+          "note": "Look line: ...HE IS PALE, HE HAS FANGS AND WEARS A TOUPE(garbled byte)  HE SURE IS DRASCULA! The word toupee is cut off by a bad character in the dump. Reviewer: check the spelling."
         }
       }
     },
@@ -299,26 +335,33 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Dark storeroom",
+      "short": "A dark storeroom full of boxes, barrels, drawers and trunks. The way out is along the right edge.",
+      "long": "A storeroom that is too dark to see well. Boxes, drawers, trunks and a barrel are stacked across the room, from the far left to the middle. The way out runs down the whole right edge.",
       "seen": false,
       "provenance": "drafted by Kiro from game text only",
       "alreadyCovered": false,
+      "note": "No room look line, except the game's 'this room is too dark' reply to every look. Layout from hotspot rectangles in state.json (screen 320 wide). Reviewer: check against a screenshot. The dark may clear in some game state; if so the descriptions will need variants.",
       "exits": {
         "111": {
-          "label": "",
-          "to": 27
+          "label": "the way out, along the right edge, to the landing",
+          "to": 27,
+          "direction": "right",
+          "note": "Engine name SALIDA (Spanish, exit). Hotspot is a tall strip along the right edge. Look gave the 'too dark' line. Destination from meta.json."
         }
       },
       "objects": {
         "200": {
-          "name": "",
-          "type": "object"
+          "name": "box",
+          "type": "object",
+          "description": "A box at the far left, low down.",
+          "note": "Look was silent, unlike its neighbours. That may mean something is special about it; I claim nothing. Reviewer: check what it is."
         },
         "999": {
-          "name": "",
-          "type": "object"
+          "name": "storage clutter",
+          "type": "object",
+          "description": "Boxes, drawers, trunks and a barrel, piled across the left and middle of the room.",
+          "note": "Eight hotspots share number 999 (3 boxes, 2 drawers, 2 trunks, 1 barrel), apart from box 200. Every look gave the 'too dark' line, so nothing more is claimed. A blind player cannot tell them apart."
         }
       }
     },
