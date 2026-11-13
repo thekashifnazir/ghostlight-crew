@@ -1,6 +1,11 @@
 {
   "decisions": [
     { "room": 21, "decision": "approve", "at": "2026-11-11T23:30:00Z", "note": "approved by Kash in chat 11 Nov" },
-    { "room": 22, "decision": "approve", "at": "2026-11-12T14:39:00Z", "note": "" }
+    { "room": 22, "decision": "approve", "at": "2026-11-12T14:39:00Z", "note": "" },
+    { "room": 23, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
+    { "room": 24, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
+    { "room": 26, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
+    { "room": 27, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
+    { "room": 28, "decision": "approve", "at": "2026-11-13T17:45:00Z", "note": "" }
   ]
 }
