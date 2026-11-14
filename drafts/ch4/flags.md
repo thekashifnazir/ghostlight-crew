@@ -110,3 +110,11 @@
 
 - Refused calls: none. I used only the file tools.
 - drascula-live was not needed. Every look line I needed was in the dump.
+
+## 2026-11-14 (Claude Code, native engine visits from slots 42 and 47, no credits)
+
+- Room 34 (already in the pack): the closet 120 and shelf 122 are conditional exits. `open 120` gives the pine stake and makes 120 an exit to room 35 (flag 8). `push 146` (the torch) makes 122 an exit to room 36 (flag 7). The pack has both as plain objects, so a player isn't told they become ways out. Candidate fix: move them to `exits` with `opensWhen` on flags 8 and 7.
+- Room 27 (already in the pack): door 116 stays shut from slot 42 and is an exit to room 31 in slot 47 (living room unlocked). Same `opensWhen` question.
+- Room 35: lubricant 149 was hidden (visible false) on both visits; what reveals it isn't confirmed.
+- Room 31: axe 145 was hidden in slot 47, where the axe is already carried, though the background art still shows it.
+- Rooms 36 to 43 are a straight line, not a maze: one way back on the left and one on to the right in each. Room 44 is a dead end whose left exit 139 comes out in room 34.

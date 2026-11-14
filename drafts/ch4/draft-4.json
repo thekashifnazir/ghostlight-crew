@@ -477,6 +477,53 @@
       }
     },
     {
+      "room": 31,
+      "chapters": [
+        4
+      ],
+      "name": "Living room",
+      "short": "A purple living room. A fireplace is in the middle, an old TV on the left and a window on the left wall. The doorway on the right leads back to the landing.",
+      "long": "A purple living room off the upstairs landing. A stone fireplace sits in the middle of the back wall, with an axe hung on the wall above it between two portraits. An old green TV stands on a cabinet on the left, below an arched window. A tall armchair and a lamp are to the right of the fireplace. The doorway on the right leads back to the landing.",
+      "seen": false,
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
+      "alreadyCovered": false,
+      "note": "Reached from slot 47: walk 101, 104, 108, then 116 from the landing. The landing door 116 only becomes an exit once the living room is unlocked (it stayed shut from slot 42). Armchair, lamp and portraits are in the screenshot but aren't hotspots. 'Living room' is the coverage report's name; the screenshot fits it.",
+      "exits": {
+        "117": {
+          "label": "doorway on the right, back to the landing",
+          "to": 27,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state. Rect x 246 to 274."
+        }
+      },
+      "objects": {
+        "145": {
+          "name": "axe",
+          "type": "object",
+          "description": "An axe hung on the wall above the fireplace.",
+          "note": "Engine name AXE. Look gave filler. Hidden in slot 47 (visible false), where the axe is already in the inventory; the axe still shows in the background art, so when the hotspot is live is inferred. Rect x 126 to 168, high."
+        },
+        "160": {
+          "name": "TV",
+          "type": "object",
+          "description": "An old green TV on a cabinet on the left.",
+          "note": "Engine name T.V. Look gave filler (THERE IS NOTHING SPECIAL ABOUT IT). Colour and cabinet from the screenshot. Rect x 60 to 96."
+        },
+        "161": {
+          "name": "window",
+          "type": "object",
+          "description": "An arched window on the left wall. The game says night is falling.",
+          "note": "Look line: THE NIGHT IS FALLING OVER ALL OF US...THAT'S SCARY, ISN'T IT? Paraphrased. Rect x 36 to 62."
+        },
+        "162": {
+          "name": "fireplace",
+          "type": "object",
+          "description": "A stone fireplace in the middle of the back wall.",
+          "note": "Engine name CHIMENEA (Spanish for fireplace). Look gave filler (IT'S NOT UNUSUAL). Rect x 126 to 176."
+        }
+      }
+    },
+    {
       "room": 34,
       "chapters": [
         4
@@ -522,30 +569,39 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret lab",
+      "short": "A hidden stone room behind the closet, with a cabinet of jars holding brains in the middle and a black cloak on the right. The archway on the left leads back.",
+      "long": "A hidden stone room behind the torch room's closet. A wooden cabinet full of glass jars holding brains stands in the middle. To its right are a skeleton on a stand and a black cloak hanging on a stand. A bookcase is on the left, and a desk of books and test tubes fills the front. The stone archway on the left leads back to the torch room.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "Reached from slot 42: open 120 (the closet; gives the pine stake and makes 120 an exit to 35, flag 8), then walk 120. Skeleton, bookcase and desk are in the screenshot but aren't hotspots. 'Secret lab' is my name from the jars and test tubes (inferred); the report calls it the secret room behind the closet.",
       "exits": {
         "121": {
-          "label": "",
-          "to": 34
+          "label": "archway on the left, back to the torch room",
+          "to": 34,
+          "direction": "left",
+          "note": "Engine name PASADIZO. Look was silent. Destination from engine state. Rect x 23 to 55."
         }
       },
       "objects": {
         "147": {
-          "name": "",
-          "type": "object"
+          "name": "jars of brains",
+          "type": "object",
+          "description": "A wooden cabinet of glass jars in the middle of the room, each holding a brain.",
+          "note": "Engine name BRAINS. Look gave filler. Jars from the screenshot; that they hold brains is the engine name. Rect x 121 to 196."
         },
         "148": {
-          "name": "",
-          "type": "object"
+          "name": "cloak",
+          "type": "object",
+          "description": "A black cloak hanging on a stand on the right, next to a skeleton.",
+          "note": "Engine name CLOAK. Look gave filler. Stand and skeleton from the screenshot. Rect x 257 to 294."
         },
         "149": {
-          "name": "",
-          "type": "object"
+          "name": "lubricant",
+          "type": "object",
+          "description": "Something small on the left end of the jar cabinet.",
+          "note": "Engine name LUBRICANT. Hidden (visible false) on both visits from slot 42, so a player can't point at it at first; what reveals it isn't confirmed. Look gave filler. Rect x 119 to 130, small, at the top left of the cabinet. Description from position only."
         }
       }
     },
@@ -554,20 +610,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 1",
+      "short": "A long passage of green stone. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 1 of the secret passage behind the torch room's shelf. It's a long tunnel of green stone, with cobwebs hanging in the top left corner and a small dark figure on the wall, like the rest of the passage. The way back is on the left, and the passage carries on to the right.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart. Reached from slot 42: push 146 (the torch; flag 7 makes the shelf 122 an exit to 36), then walk 122.",
       "exits": {
         "123": {
-          "label": "",
-          "to": 34
+          "label": "way back on the left, to the torch room",
+          "to": 34,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "124": {
-          "label": "",
-          "to": 37
+          "label": "passage on to the right",
+          "to": 37,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -577,20 +638,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 2",
+      "short": "A long passage of green stone. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 2 of the secret passage behind the torch room's shelf. It's a long passage of green stone. The way back is on the left, and the passage carries on to the right. It looks almost the same as the stretch before.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "125": {
-          "label": "",
-          "to": 36
+          "label": "way back on the left",
+          "to": 36,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "126": {
-          "label": "",
-          "to": 38
+          "label": "passage on to the right",
+          "to": 38,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -600,20 +666,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 3",
+      "short": "A long passage of green stone, with a chain hanging on the left wall. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 3 of the secret passage behind the torch room's shelf. It's a long passage of green stone, with a chain hanging on the left wall. The way back is on the left, and the passage carries on to the right. A cobweb hangs in the top right corner.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "127": {
-          "label": "",
-          "to": 37
+          "label": "way back on the left",
+          "to": 37,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "128": {
-          "label": "",
-          "to": 39
+          "label": "passage on to the right",
+          "to": 39,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -623,20 +694,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 4",
+      "short": "A long passage of green stone, with a chain on the left wall and Km. 1 painted on the wall. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 4 of the secret passage behind the torch room's shelf. It's a long passage of green stone, with a chain on the left wall and Km. 1 painted on the wall. The way back is on the left, and the passage carries on to the right.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "129": {
-          "label": "",
-          "to": 38
+          "label": "way back on the left",
+          "to": 38,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "130": {
-          "label": "",
-          "to": 40
+          "label": "passage on to the right",
+          "to": 40,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -646,20 +722,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 5",
+      "short": "A long passage of green stone. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 5 of the secret passage behind the torch room's shelf. It's a long passage of green stone. The way back is on the left, and the passage carries on to the right. It looks almost the same as the stretches before.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "131": {
-          "label": "",
-          "to": 39
+          "label": "way back on the left",
+          "to": 39,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "132": {
-          "label": "",
-          "to": 41
+          "label": "passage on to the right",
+          "to": 41,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -669,20 +750,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 6",
+      "short": "A long passage of green stone, with a chain on the left wall, Km. 26 painted on the wall and a small barred grate low on the right. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 6 of the secret passage behind the torch room's shelf. It's a long passage of green stone, with a chain on the left wall, Km. 26 painted on the wall and a small barred grate low on the right. The way back is on the left, and the passage carries on to the right.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "133": {
-          "label": "",
-          "to": 40
+          "label": "way back on the left",
+          "to": 40,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "134": {
-          "label": "",
-          "to": 42
+          "label": "passage on to the right",
+          "to": 42,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -692,20 +778,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 7",
+      "short": "A long passage of green stone, with a chain on the left wall and a cobweb in the top right corner. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 7 of the secret passage behind the torch room's shelf. It's a long passage of green stone, with a chain on the left wall and a cobweb in the top right corner. The way back is on the left, and the passage carries on to the right.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "135": {
-          "label": "",
-          "to": 41
+          "label": "way back on the left",
+          "to": 41,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "136": {
-          "label": "",
-          "to": 43
+          "label": "passage on to the right",
+          "to": 43,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -715,20 +806,25 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "Secret passage, part 8",
+      "short": "A long passage of green stone, with Km. 134 painted on the wall and a small barred grate low on the right. The way back is on the left, and the passage carries on to the right.",
+      "long": "Part 8 of the secret passage behind the torch room's shelf. It's a long passage of green stone, with Km. 134 painted on the wall and a small barred grate low on the right. The way back is on the left, and the passage carries on to the right.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "The passage is a straight line of eight rooms, 36 to 43, then 44: each has one way back on the left and one way on to the right, nothing else. Details (chain, painted Km. signs, grate, cobwebs) are from the screenshot and help a player tell the stretches apart.",
       "exits": {
         "137": {
-          "label": "",
-          "to": 42
+          "label": "way back on the left",
+          "to": 42,
+          "direction": "left",
+          "note": "Look was silent. Destination from engine state."
         },
         "138": {
-          "label": "",
-          "to": 44
+          "label": "passage on to the right",
+          "to": 44,
+          "direction": "right",
+          "note": "Look was silent. Destination from engine state."
         }
       },
       "objects": {}
@@ -738,22 +834,27 @@
       "chapters": [
         4
       ],
-      "name": "",
-      "short": "",
-      "long": "",
+      "name": "End of the secret passage",
+      "short": "The end of the secret passage, darker than the rest. A poster is pinned on the right wall, and the way out on the left leads back to the torch room.",
+      "long": "The dead end of the secret passage. A barred grate is set low in the back wall, a chain hangs on the left and a poster is pinned on the right wall. The poster says the passage to the towers is closed for repairs and to use the main entrance. The only way out is on the left, and it comes out back in the torch room.",
       "seen": false,
-      "provenance": "drafted by Kiro from game text only",
+      "provenance": "drafted by Claude Code from a native engine visit (state, look lines and a screenshot), 14 Nov",
       "alreadyCovered": false,
+      "note": "walk 139 from here lands straight in room 34, not in room 43. Grate and chain from the screenshot.",
       "exits": {
         "139": {
-          "label": "",
-          "to": 34
+          "label": "way out on the left, back to the torch room",
+          "to": 34,
+          "direction": "left",
+          "note": "Engine name DOOR. Look was silent. Destination from engine state (walked: 44 to 34). Rect x 0 to 31."
         }
       },
       "objects": {
         "172": {
-          "name": "",
-          "type": "object"
+          "name": "poster",
+          "type": "object",
+          "description": "A poster pinned on the right wall. It says the passage to the towers is closed for repairs, please use the main entrance, sorry for the inconvenience.",
+          "note": "Look line: \"PASSAGE TO TOWERS CLOSED FOR REPAIRS. PLEASE USE THE MAIN ENTRANCE. SORRY FOR THE INCONVENIENCE\". Paraphrased. Rect x 252 to 282."
         }
       }
     }
