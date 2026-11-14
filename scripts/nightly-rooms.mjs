@@ -269,7 +269,7 @@ for (const r of results) {
 lines.push("");
 lines.push("## Live site");
 lines.push("");
-lines.push(`- Target: https://ghostlight.kashifnazir.com/?speechlog`);
+lines.push(`- Target: https://ghostlight.kashifnazir.com/?speechlog&noguide`);
 lines.push(`- **Live: ${live.overall}**`);
 lines.push("");
 lines.push("| Step | Result | Time | Note |");

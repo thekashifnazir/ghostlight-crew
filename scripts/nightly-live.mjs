@@ -22,7 +22,7 @@
 
 import { chromium } from "../../ghostlight/node_modules/playwright/index.mjs";
 
-const URL = "https://ghostlight.kashifnazir.com/?speechlog";
+const URL = "https://ghostlight.kashifnazir.com/?speechlog&noguide";
 
 // Read the whole signal out of the page in one hop.
 const readSig = (page) =>

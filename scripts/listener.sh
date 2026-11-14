@@ -22,7 +22,7 @@ if [ "${1:-}" = "--from-queue" ]; then
   [ -z "$REQS" ] && exit 0
 fi
 GL="${GHOSTLIGHT_DIR:-$(cd "$CREW/../ghostlight" && pwd)}"
-URL="${1:-https://ghostlight.kashifnazir.com/}"
+URL="${1:-https://ghostlight.kashifnazir.com/?noguide}"
 STAMP="$(date +%Y-%m-%d-%H%M)"
 REL="reports/listener-$STAMP.md"
 TMP="$(mktemp -d)"
