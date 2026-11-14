@@ -80,3 +80,33 @@
 
 - Refused calls: none. One test shell call (`echo hi`) was not refused, though the brief said it would be. I used no shell after that.
 - drascula-live was not needed. Every look line I needed was in the dump.
+
+## 2026-11-14
+
+### Room 29 (kitchen)
+
+- Silent hotspots: exit 113 gave no line. Exit 114, saucepan 154, bin 155 and drawers 156 gave only filler.
+- Shared number: two saucepans share 154 (x 149 and x 85). Look always hits the first.
+- Odd name: SHIELD is really a football team badge. The game spells Transylvanian with an i.
+- Loops: 113 goes back to room 27 only. 114 goes on to room 30, which leads back here by 115.
+- Hangs or timeouts: none. The engine was not run.
+
+### Room 30 (pantry)
+
+- Silent hotspots: exit 115 gave no line. Closet 144, fridge 157 and things 159 gave only filler.
+- Vague name: THINGS 159 tells a blind player nothing. Check a screenshot.
+- Puzzle object: the report calls closet 144 the puzzle closet, but its look line is filler.
+- Loops: 115 goes back to room 29 only.
+- Hangs or timeouts: none. The engine was not run.
+
+### Room 34 (torch room)
+
+- Silent hotspots: exit 119 gave only filler. Closet 120 and shelf 122 gave only filler.
+- Hidden exits: the report says closet 120 leads to room 35 and shelf 122 to room 36. The dump shows door 0 with no destination, so the pack lists them as objects. A blind player may never learn they are ways on.
+- Loops: 119 goes back to room 27 only.
+- Hangs or timeouts: none. The engine was not run.
+
+### Run notes
+
+- Refused calls: none. I used only the file tools.
+- drascula-live was not needed. Every look line I needed was in the dump.
