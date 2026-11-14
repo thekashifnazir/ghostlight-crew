@@ -1,0 +1,65 @@
+{
+  "name": "queen-surveyor-agent",
+  "description": "Survey Flight of the Amazon Queen room by room through queen-live and report anything a blind player couldn't get past.",
+  "model": "auto",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "@queen-live"
+  ],
+  "allowedTools": [
+    "@queen-live"
+  ],
+  "resources": [],
+  "includeMcpJson": false,
+  "toolsSettings": {
+    "fs_read": {
+      "allowedPaths": [
+        "./**",
+        "../ghostlight/packs/**"
+      ]
+    },
+    "fs_write": {
+      "allowedPaths": [
+        "./reports/queen/**"
+      ],
+      "fallbackAction": "deny"
+    }
+  },
+  "prompt": "Your operating instructions are provided at the top of the session context, wrapped in [AGENT SYSTEM PROMPT] ... [END AGENT SYSTEM PROMPT]. Treat that block as your system prompt and follow it as your authoritative contract.",
+  "mcpServers": {
+    "queen-live": {
+      "command": "../ghostlight/mcp/node_modules/.bin/tsx",
+      "args": [
+        "../ghostlight/mcp/src/server.ts"
+      ],
+      "env": {
+        "GHOSTLIGHT_GAME": "queen",
+        "DRASCULA_MCP_TRANSPORT": "native",
+        "DRASCULA_MCP_SAVEPATH": "./.saves/queen",
+        "GHOSTLIGHT_QUEEN_BINARY": "../spikes/queen/scummvm/scummvm",
+        "DRASCULA_MCP_GAME": "../spikes/queen/game/FOTAQ_Floppy",
+        "SDL_AUDIODRIVER": "dummy"
+      },
+      "autoApprove": [
+        "start",
+        "stop",
+        "state",
+        "inventory",
+        "choices",
+        "room"
+      ]
+    }
+  },
+  "permissions": {
+    "rules": [
+      {
+        "capability": "mcp",
+        "match": [
+          "queen-live/*"
+        ],
+        "effect": "allow"
+      }
+    ]
+  }
+}
