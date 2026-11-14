@@ -31,7 +31,7 @@
       "alreadyCovered": false,
       "note": "Every playthrough passes through here once, after the pendulum (room 102). The first visit, at the chapter start, is a cutscene with no control. Moving the torch (push 103) sets flag 8 and turns 104 into a door to room 59; there is no way back from 59. Torch rect x 80 to 93, door rect x 32 to 72 (room 320 wide).",
       "exits": {
-        "104": { "label": "secret door, to B.J.'s bedroom (opens once the torch is moved)", "to": 59 }
+        "104": { "label": "secret door to B.J.'s bedroom, opens after the torch", "to": 59 }
       },
       "objects": {
         "103": { "name": "torch", "type": "object", "description": "A torch on the wall.", "note": "Engine look line is stock filler (THERE IS NOTHING SPECIAL ABOUT IT). Puzzle object; description names it only." }
@@ -53,7 +53,7 @@
       "objects": {
         "51": { "name": "B.J.", "type": "npc", "description": "B.J., lying on the bed." },
         "107": { "name": "mirror", "type": "object", "description": "An oval mirror on the wall above the bed.", "note": "Stock filler on look. Description from the picture." },
-        "105": { "name": "wardrobe", "type": "exit", "description": "A tall wooden wardrobe at the back, right of centre." },
+        "105": { "name": "wardrobe", "type": "exit", "description": "A tall wooden wardrobe at the back, right of centre.", "note": "Not a live exit: the engine forces this door off in room 59 (objects.cpp), so there is no way back to room 58." },
         "106": { "name": "trunk", "type": "object", "description": "A wooden trunk under the window on the right.", "note": "Stock filler on look. Description from the picture." }
       }
     },

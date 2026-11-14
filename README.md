@@ -6,7 +6,7 @@ A Kiro Crew that plays an old point-and-click adventure through its game engine 
 
 ## Why it exists
 
-Making an old game accessible needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far the player has got. Ghostlight's pack covers 44 of the game's 57 rooms (14 Nov 2026): every room in chapters 1, 2, 3 and 5, 10 of chapter 4's 21 and 3 of chapter 6's 5. Most of chapters 4 to 6 came through this crew. Writing the rest by hand is slow, and checking that every puzzle can actually be done without sight is slower. The crew does the mechanical part, so people can spend their time on what only they can judge.
+Making an old game accessible needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far the player has got. Ghostlight's pack covers 46 of the game's 57 rooms (14 Nov 2026): every room in chapters 1, 2, 3, 5 and 6, and 10 of chapter 4's 21. Most of chapters 4 to 6 came through this crew. Writing the rest by hand is slow, and checking that every puzzle can actually be done without sight is slower. The crew does the mechanical part, so people can spend their time on what only they can judge.
 
 ## The crew
 
