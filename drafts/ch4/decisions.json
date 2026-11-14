@@ -1,14 +1,130 @@
 {
   "decisions": [
-    { "room": 21, "decision": "approve", "at": "2026-11-11T23:30:00Z", "note": "approved by Kash in chat 11 Nov" },
-    { "room": 22, "decision": "approve", "at": "2026-11-12T14:39:00Z", "note": "" },
-    { "room": 23, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
-    { "room": 24, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
-    { "room": 26, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
-    { "room": 27, "decision": "approve", "at": "2026-11-13T17:40:00Z", "note": "" },
-    { "room": 28, "decision": "approve", "at": "2026-11-13T17:45:00Z", "note": "" },
-    { "room": 29, "decision": "approve", "at": "2026-11-14T09:23:00Z", "note": "" },
-    { "room": 30, "decision": "approve", "at": "2026-11-14T09:25:00Z", "note": "" },
-    { "room": 34, "decision": "approve", "at": "2026-11-14T09:27:00Z", "note": "" }
+    {
+      "room": 21,
+      "decision": "approve",
+      "at": "2026-11-11T23:30:00Z",
+      "note": "approved by Kash in chat 11 Nov"
+    },
+    {
+      "room": 22,
+      "decision": "approve",
+      "at": "2026-11-12T14:39:00Z",
+      "note": ""
+    },
+    {
+      "room": 23,
+      "decision": "approve",
+      "at": "2026-11-13T17:40:00Z",
+      "note": ""
+    },
+    {
+      "room": 24,
+      "decision": "approve",
+      "at": "2026-11-13T17:40:00Z",
+      "note": ""
+    },
+    {
+      "room": 26,
+      "decision": "approve",
+      "at": "2026-11-13T17:40:00Z",
+      "note": ""
+    },
+    {
+      "room": 27,
+      "decision": "approve",
+      "at": "2026-11-13T17:40:00Z",
+      "note": ""
+    },
+    {
+      "room": 28,
+      "decision": "approve",
+      "at": "2026-11-13T17:45:00Z",
+      "note": ""
+    },
+    {
+      "room": 29,
+      "decision": "approve",
+      "at": "2026-11-14T09:23:00Z",
+      "note": ""
+    },
+    {
+      "room": 30,
+      "decision": "approve",
+      "at": "2026-11-14T09:25:00Z",
+      "note": ""
+    },
+    {
+      "room": 34,
+      "decision": "approve",
+      "at": "2026-11-14T09:27:00Z",
+      "note": ""
+    },
+    {
+      "room": 31,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 35,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 36,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 37,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 38,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 39,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 40,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 41,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 42,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 43,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    },
+    {
+      "room": 44,
+      "decision": "approve",
+      "at": "2026-11-14T22:30:00Z",
+      "note": "approved by Kash in chat 14 Nov (approve all, from the ch4 review list)"
+    }
   ]
 }
