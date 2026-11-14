@@ -68,7 +68,7 @@ The split is deliberate. A machine can check whether the screen reader says the 
 | Bot or job | What it does | What it may do |
 |---|---|---|
 | **surveyor** | Plays the game through the `drascula-live` MCP server (the real ScummVM engine), room by room, following the pack's milestones. Looks at every hotspot and reports puzzle blockers, missing descriptions, and engine or tooling bugs | The game tools run without asking. Fetching web pages, searching the web, changing its own model or approval mode, asking for more abilities and changing schedules all need a human yes. Writes only to `reports/` |
-| **nightly** | A zero-token Crew command job: surveys three rooms (9, 3 and 5) and runs six checks on the live site (start, list, talk, choice, crossing, save and load). Writes a dated report | Runs one script |
+| **nightly** | A zero-token Crew command job: surveys three rooms (9, 3 and 5) and runs eight checks on the live site (start, the "worth a look" nudge, list, talk, choice, crossing, save and load, and the How to play guide). Writes a dated report | Runs one script |
 | **night drafter** | A Crew agent job that drafts pack entries (room names, descriptions, exit labels) for the next undrafted rooms, in the pack's style, into `drafts/` | Writes its draft files only. Every shell command is denied |
 | **review cards** | Posts one card per new room to a Discord thread: "Reply here with: Approve, Change or Reject". The decision is recorded in `drafts/ch4/decisions.json` | Nothing goes into the pack without a human Approve |
 | **whole-game check** | A zero-token job that replays the full route (`data/playthrough-route.txt`) from a fresh start to the final ending and checks every chapter is reached | Runs one script |

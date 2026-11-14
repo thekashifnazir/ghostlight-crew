@@ -114,6 +114,15 @@ export async function liveCheck() {
       row("start", pass, Date.now() - t0, note);
     }
 
+    // (a2) nudge: the first room reads "Worth a look" straight after the room
+    //      name, and no longer ends with the old list of keys (14 Nov changes).
+    {
+      const sig = await readSig(page);
+      const first = (sig.lines.find((l) => /Inn bar/i.test(l.text || "")) || {}).text || "";
+      const pass = /^Inn bar\. Worth a look: /.test(first) && !/Now, how to play/.test(first);
+      row("nudge", pass, 0, pass ? "nudge after the room name" : `first=${first.slice(0, 120)}`);
+    }
+
     // (b) list: ArrowRight through hotspots until the bartender entry reads as
     //     "<name>, N of M" (the list announces position).
     {
@@ -231,6 +240,31 @@ export async function liveCheck() {
         }
       }
       row("save/load", pass, Date.now() - t0, note);
+    }
+
+    // (g) guide: a fresh visitor (no ?noguide, empty storage) is offered the
+    //     How to play guide, focused, and its first page opens on the heading.
+    {
+      const t0 = Date.now();
+      let pass = false;
+      let note = "";
+      const ctx = await browser.newContext();
+      try {
+        const g = await ctx.newPage();
+        await g.goto(URL.replace(/[?&]noguide/, "").replace(/\?$/, ""), { waitUntil: "domcontentloaded" });
+        await g.waitForSelector("#guide-start", { timeout: 60_000 });
+        const focused = await g.evaluate(() => document.activeElement?.id);
+        await g.keyboard.press("Enter");
+        await g.waitForSelector("#guide-title", { timeout: 10_000 });
+        const title = await g.textContent("#guide-title");
+        pass = focused === "guide-start" && /page 1 of 5/.test(title || "");
+        note = pass ? `offered; ${title}` : `focused=${focused} title=${title}`;
+      } catch (e) {
+        note = `error: ${e.message || e}`;
+      } finally {
+        await ctx.close().catch(() => {});
+      }
+      row("guide", pass, Date.now() - t0, note);
     }
   } catch (e) {
     // Anything unexpected (launch failure, navigation error) is one FAIL row so
