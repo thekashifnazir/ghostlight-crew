@@ -21,7 +21,9 @@ Key: **C** confirmed (look line in the report, engine state, or visible in the s
 - **58 Cell with the torch.** Report only (seen false). Not reached on 12 Nov: walk and open on the wardrobe in room 59 stayed in room 59.
 - **59 B.J.'s bedroom.** C: all rects (state); door with a wall lamp, B.J. on the bed, oval mirror, wardrobe, window, trunk (screenshot).
 - **60 Bar.** C: all rects (state); exit sign and stairs on the left, crowd, Drascula in a cape, piano with a skull, barrels, burger poster (screenshot); look lines (report). I: which door is behind the red curtain; the bartender being the figure at the back in the middle (from his rect).
-- **61 Back room.** Report only (seen false). Not reached on 12 Nov: walking through door 110 from slot 43 timed out and stayed in room 60.
+- **61 Back room.** Reached 14 Nov: from the chapter 6 bar save, `walk 110`. C: objects, rects and look lines (engine state on entry). I: "pinned up" for the papers. No screenshot.
+- **58 Cell with the torch.** Reached 14 Nov: from the chapter 6 start save, `take 101`, `use 20 100` (after the pendulum). C: torch and door rects, the torch opening door 104 to room 59 (flag 8). The first visit at the chapter start is a cutscene. No screenshot.
+- Why the 12 Nov tries missed: the 59 wardrobe can never be a door (objects.cpp forces it off in room 59), and 59 has no way back to 58.
 
 ## Items (drafts/items/items-ch4-ch5.json)
 - C: inventory read through the engine's own inventory command at the chapter 4 start (slot 40) and chapter 5 start (slot 48). Item 20 in chapters 4 and 5 has the same look line meaning as chapters 2 and 3 ("immune against vampire bites"), so it keeps the name "Von Braun's brew". Item 9 has no look line. Item 28's look line matches the existing entry.

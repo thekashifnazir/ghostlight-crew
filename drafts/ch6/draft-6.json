@@ -24,17 +24,17 @@
       "room": 58,
       "chapters": [6],
       "name": "Cell with the torch",
-      "short": "A cell with a torch on the wall and a door.",
-      "long": "A cell with a torch on the wall. There is a door that the game calls obviously a secret door.",
-      "seen": false,
-      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey only (no screenshot: the room couldn't be reached from the saves on 12 Nov)",
+      "short": "A cell with a torch on the wall and a door on the far left.",
+      "long": "A cell. A torch hangs on the wall left of centre, and on the far left is a door, which the game calls obviously a secret door. It stays shut until you deal with the torch.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey, updated 14 Nov from the engine state on entry (reached from the chapter 6 start save: take 101, use 20 100); positions from the engine's hotspot rectangles, no screenshot",
       "alreadyCovered": false,
-      "note": "Two screenshot attempts from slot 41 (walk and open on the closet in room 59) stayed in room 59. Positions unknown, so no left or right is given.",
+      "note": "Every playthrough passes through here once, after the pendulum (room 102). The first visit, at the chapter start, is a cutscene with no control. Moving the torch (push 103) sets flag 8 and turns 104 into a door to room 59; there is no way back from 59. Torch rect x 80 to 93, door rect x 32 to 72 (room 320 wide).",
       "exits": {
-        "104": { "label": "secret door, to B.J.'s bedroom", "to": 59 }
+        "104": { "label": "secret door, to B.J.'s bedroom (opens once the torch is moved)", "to": 59 }
       },
       "objects": {
-        "103": { "name": "torch", "type": "object", "description": "A torch on the wall.", "note": "Engine gives only a stock filler line on look. Puzzle object; description names it only." }
+        "103": { "name": "torch", "type": "object", "description": "A torch on the wall.", "note": "Engine look line is stock filler (THERE IS NOTHING SPECIAL ABOUT IT). Puzzle object; description names it only." }
       }
     },
     {
@@ -84,12 +84,12 @@
       "room": 61,
       "chapters": [6],
       "name": "Back room",
-      "short": "A back room with papers, a curtain and a machine.",
-      "long": "A back room behind the bar. There are papers, a curtain and a machine, and a door leads back to the bar.",
-      "seen": false,
-      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey only (no screenshot: walking through door 110 from slot 43 didn't reach the room on 12 Nov)",
+      "short": "A back room with a curtain, papers and a machine.",
+      "long": "A small back room off the bar. The door back to the bar is on the far left. A curtain hangs left of centre, papers are pinned up right of centre, and a machine stands on the far right.",
+      "seen": true,
+      "provenance": "drafted by Claude Code by hand from the 10 Nov engine survey, updated 14 Nov from the engine state on entry (reached from the chapter 6 bar save with walk 110); positions from the engine's hotspot rectangles, no screenshot",
       "alreadyCovered": false,
-      "note": "Positions unknown, so no left or right is given.",
+      "note": "Optional room: nothing in the game needs it. Rects (room 320 wide): door 111 x 35 to 70, curtain 117 x 97 to 142, papers 116 x 198 to 224, machine 118 x 244 to 290. 'Pinned up' for the papers is inferred from their height (y 53 to 80). open 117 says HEY, THE CURTAIN WILL NOT MOVE!; take 116 says WHY?.",
       "exits": {
         "111": { "label": "door back to the bar", "to": 60 }
       },
