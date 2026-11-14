@@ -52,7 +52,22 @@ def _flags_for(room):
     if not m:
         return []
     bullets = [b.strip()[2:] for b in m.group(1).splitlines() if b.strip().startswith("- ")]
-    return [b if len(b) <= 160 else b[:157] + "..." for b in bullets[:3]]
+    return [_shorten(b) for b in bullets[:3]]
+
+
+FLAG_MAX = 280
+
+
+def _shorten(text, limit=FLAG_MAX):
+    """Keep a flag whole when it fits; otherwise end on a full sentence, never mid-word."""
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    stop = cut.rfind(". ")
+    if stop >= limit // 2:
+        return cut[: stop + 1] + " (more in flags.md)"
+    space = cut.rfind(" ")
+    return cut[: space if space > 0 else limit].rstrip(",;:") + "... (more in flags.md)"
 
 
 def _names(entries, key):
