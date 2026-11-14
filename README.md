@@ -50,4 +50,4 @@ Paths in `reports/` are from the machine that ran each report (a Mac or the Linu
 
 ## Licence
 
-Apache 2.0. See `LICENSE` and `NOTICE`.
+GPL-3.0-or-later, the same as Ghostlight and ScummVM. See `LICENSE`.
