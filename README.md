@@ -1,52 +1,212 @@
-# Ghostlight Survey Crew
+<div align="center">
 
-A Kiro Crew that plays an old point-and-click adventure through its game engine and reports anything a blind player could not get past. It is the companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight), which makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser.
+# 👻 Ghostlight Survey Crew
 
-> Work in progress for Kiroween 2026. Code and reports are AI-generated under my direction.
+**A Kiro Crew that plays old point-and-click adventures through their real game engine at night,<br>and tells you everything a blind player couldn't get past by morning.**
 
-## Why it exists
+_Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiroween 2026 · Best Kiro Crew App entry_
 
-Making an old game accessible needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far the player has got. Ghostlight's pack covers 46 of the game's 57 rooms (14 Nov 2026): every room in chapters 1, 2, 3, 5 and 6, and 10 of chapter 4's 21. Most of chapters 4 to 6 came through this crew. Writing the rest by hand is slow, and checking that every puzzle can actually be done without sight is slower. The crew does the mechanical part, so people can spend their time on what only they can judge.
+![Licence: GPL-3.0-or-later](https://img.shields.io/badge/licence-GPL--3.0--or--later-4c9a2a)
+![Kiro Crew](https://img.shields.io/badge/Kiro-Crew-7b3fe4)
+![Runs 01:00 to 11:00 London](https://img.shields.io/badge/runs-01%3A00_to_11%3A00_London-2453b8)
 
-## The crew
+[**Play Ghostlight**](https://ghostlight.kashifnazir.com) · [**Ghostlight repo**](https://github.com/thekashifnazir/ghostlight) · [**Reports**](reports/) · [**The crew**](#2-the-crew) · [**What it found**](#3-what-it-found)
 
-| Bot | Job | What it may do |
+</div>
+
+<!-- DEMO MEDIA: one silent preview GIF linking to the YouTube video goes here once the video exists.
+<p align="center">
+  <a href="[NEED: YouTube URL]"><img src="docs/crew-preview.gif" width="720" alt="Silent preview of the Crew section of the Ghostlight video"></a>
+  <br>
+  <sub>▶ Silent preview. <a href="[NEED: YouTube URL]"><b>Watch the full video with sound</b></a></sub>
+</p>
+-->
+
+> **In 30 seconds.** [Ghostlight](https://ghostlight.kashifnazir.com) makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser. That needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far you've got. Writing that by hand is slow, and checking that every puzzle can be done without sight is slower. This crew does the mechanical part overnight. It plays the real engine through an MCP server, looks at every hotspot, flags anything a blind player would miss, drafts pack entries for a human to approve in Discord, and replays the whole game from start to ending every morning. People spend their time on what only they can judge. Code and reports are AI-generated under my direction.
+
+| **7** nights run | **3 of 3** whole-game runs pass | **20** rooms drafted overnight | **5** bugs found and fixed |
+|:---:|:---:|:---:|:---:|
+| 6 of 7 passed, 0 credits<br><sub>8 to 14 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 14 Nov, 0 failed commands</sub> | chapter 4, for human review<br><sub>10 approved and in the pack so far</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
+
+<sub>Counted from <code>reports/</code>, <code>drafts/ch4/decisions.json</code> and the Ghostlight log on 14 Nov 2026.</sub>
+
+## Contents
+
+1. [Why it exists](#1-why-it-exists)
+2. [The crew](#2-the-crew)
+3. [What it found](#3-what-it-found)
+4. [The night shift](#4-the-night-shift)
+5. [Point it at a new game](#5-point-it-at-a-new-game)
+6. [Safety by design](#6-safety-by-design)
+7. [How it's wired](#7-how-its-wired)
+8. [Honest limits](#8-honest-limits)
+
+## 1. Why it exists
+
+**Surveying 57 rooms by hand is days of work. The crew does the repeatable part overnight and leaves the judgement calls to people.**
+
+<details>
+<summary>More</summary>
+
+<br>
+
+An accessible old game needs a description pack. Ghostlight's pack covers 46 of Drascula's 57 rooms (14 Nov 2026): every room in chapters 1, 2, 3, 5 and 6, and 10 of chapter 4's 21. Every room was surveyed against the engine before it was described, so each description is written against what the engine actually says, not against memory of the game. The full sweep of chapters 2 to 6 was done by Claude Code agents driving the same MCP server; the crew drafts from those reports, re-checks rooms every night and surveyed the second game itself.
+
+The split is deliberate. A machine can check whether the screen reader says the right thing, once, in order. Only blind players can say whether the game is fun and fair. Ghostlight's blind testers, including Chad Bouton, a blind accessibility consultant, spend their time on the second kind of question because the crew handles the first.
+
+</details>
+
+## 2. The crew
+
+**Five jobs, each with one narrow task and the least access that does it.**
+
+<details>
+<summary>The bots and jobs</summary>
+
+<br>
+
+| Bot or job | What it does | What it may do |
 |---|---|---|
-| **surveyor** | Plays the game through the `drascula-live` MCP server (the real engine), room by room, following the pack's milestones. Reports puzzle blockers, missing descriptions and engine or tooling bugs | The 16 drascula tools run without asking. Fetching web pages, searching the web, changing its own model or approval mode, asking for more abilities and changing schedules all need a human yes |
-| **listener** | After a deploy, runs one fixed script (`scripts/listener.sh`) in the Parallels Windows VM "Ghostlight Win11" on the Mac: a browser plus NVDA, presses the keys a player would, and compares what NVDA actually said with what it should have said. Writes `reports/listener-<date>-<HHMM>.md`. Zero tokens. Crew job `listener` on the Mac is trigger-only and is run by hand with `kirocrew cron trigger` | Runs that one script only. The Mac Crew sandbox can't start Parallels, so the job drops a request file that `scripts/listener-request.sh` picks up outside Crew |
-| **night drafter** | A Crew agent job at 03:00 on the Linux VM drafts pack entries (room names, descriptions, exit labels) for the next few undrafted rooms, in the pack's style, into `drafts/`. It can write only its draft files; every shell command is denied | Writes drafts only. A human approves every entry in Discord before it goes into the pack |
+| **surveyor** | Plays the game through the `drascula-live` MCP server (the real ScummVM engine), room by room, following the pack's milestones. Looks at every hotspot and reports puzzle blockers, missing descriptions, and engine or tooling bugs | The game tools run without asking. Fetching web pages, searching the web, changing its own model or approval mode, asking for more abilities and changing schedules all need a human yes. Writes only to `reports/` |
+| **nightly** | A zero-token Crew command job: surveys three rooms (9, 3 and 5) and runs six checks on the live site (start, list, talk, choice, crossing, save and load). Writes a dated report | Runs one script |
+| **night drafter** | A Crew agent job that drafts pack entries (room names, descriptions, exit labels) for the next undrafted rooms, in the pack's style, into `drafts/` | Writes its draft files only. Every shell command is denied |
+| **review cards** | Posts one card per new room to a Discord thread: "Reply here with: Approve, Change or Reject". The decision is recorded in `drafts/ch4/decisions.json` | Nothing goes into the pack without a human Approve |
+| **whole-game check** | A zero-token job that replays the full route (`data/playthrough-route.txt`) from a fresh start to the final ending and checks every chapter is reached | Runs one script |
+| **listener** | After a deploy, runs one fixed script in a Windows VM: a browser plus NVDA, pressing the keys a player would, and compares what NVDA actually said with what it should have said | Trigger-only, run by hand. Runs that one script |
 
-## What it has found so far
+</details>
 
-- `reports/room-62.md`, `reports/room-63.md`: first surveys of the inn. The second pass, judged by what the player says rather than raw engine text, came back clean.
-- `reports/bug-open-held-item.md`: the MCP server refused to open a carried item (the handbag), which blocked the rest of chapter 2. Fixed in Ghostlight.
-- Also found and fixed in Ghostlight: carried items not tracked between moves, `state` returning stale flags, and `skip` with nothing to skip waiting 60 seconds.
+## 3. What it found
 
-## The night shift
+**Real bugs that blocked blind players, and traps a sighted tester would walk past.**
 
-The crew runs on a small Linux VM that only switches on between 01:00 and 11:00 London, so it costs about $19 a month at the London prices read on 11 Nov 2026, instead of running all day. Times are London:
+<details>
+<summary>Bugs, fixed in Ghostlight</summary>
 
-| Time | Job | Credits |
+<br>
+
+- **Couldn't open a carried item.** The MCP server rejected `open` on the handbag you carry, which blocked the rest of chapter 2 ([`reports/bug-open-held-item.md`](reports/bug-open-held-item.md)).
+- **Carried items not tracked between moves**, **`state` returning stale flags**, and **`skip` with nothing to skip waiting 60 seconds**.
+- **Chapter ends dropped.** In chapters 3, 4 and 5 the final action played its animation but the chapter never ended, because the accessibility layer ignored the engine's return value. Found by a Claude Code coverage run on 10 Nov, not by the crew ([`reports/ch4-coverage-2026-11-10.md`](reports/ch4-coverage-2026-11-10.md)), so it isn't in the count above. The crew's whole-game check now guards it every morning, reaching all six chapters and the ending.
+- **Second game, first run:** long lines in Flight of the Amazon Queen outlasted the MCP server's 10 second quiet limit, so commands were dropped as busy. Kiro fixed it the same day, and the rerun came back clean ([`reports/queen/`](reports/queen/)).
+
+</details>
+
+<details>
+<summary>Things a blind player would miss</summary>
+
+<br>
+
+- **Silent hotspots:** looking gives nothing, or filler like "I can't see anything in particular". In the 10 Nov coverage sweep (Claude Code), chapter 4 alone had 82 hotspots, of which 27 objects and 39 exits said nothing useful; chapter 5 had 6 and 18 of 39; chapter 6 had 8 and 5 of 23. The night drafter's flags (below) come from the crew itself ([`drafts/ch4/flags.md`](drafts/ch4/flags.md)).
+- **Fake doors:** something that looks like a door but isn't an exit, sitting right next to one that is.
+- **Hidden hotspots:** objects the engine marks as not visible, so pointing would never find them.
+- **Shared numbers:** two speakers or two tapestries with the same id, so looking always hits the first.
+- **A scripted trap in the second game:** looking at the truck in the hotel lobby walks the hero past two henchmen, who catch him and send him back to the locked room after about 46 seconds of dialogue. The pack now warns about it.
+
+</details>
+
+## 4. The night shift
+
+**It only runs when there's work: a cloud VM that a schedule switches on at 01:00 and off at 11:00 London, about $19 a month.**
+
+<details>
+<summary>A night, hour by hour</summary>
+
+<br>
+
+The schedule is a Compute Engine instance schedule (`crew-overnight`, start `0 1 * * *`, stop `0 11 * * *`, Europe/London). Kiro Crew runs on the VM as a systemd service. The cost is about $19 a month at the London prices read on 11 Nov 2026, against about $66 left on.
+
+| Time (London) | Job | Kiro credits |
 |---|---|---|
-| 02:00 | nightly room survey plus a live-site check | none (a script job) |
-| 03:00 | night drafter writes the next rooms' entries | a few per night |
-| 06:30 | one review card per new room posted to a Discord thread | about 0.1 to 0.3 per card |
-| morning | Kash replies Approve, Change or Reject per room; the bot records it | none |
-| 07:00 | whole-game check: replays the full route from a fresh start to the final ending and checks every chapter is reached | none |
+| 02:00 | nightly room survey plus the live-site check | none (a script job) |
+| 03:00 | night drafter writes the next rooms' entries | about 1.9 on 12 Nov |
+| about 06:30 | review cards posted to the Discord thread | about 1.1 on 12 Nov |
+| 07:00 | whole-game check, start to final ending | none |
+| morning | Approve, Change or Reject per room in Discord | none |
 
-Approved rooms are merged into Ghostlight's pack through its survey pipeline, which keeps the pack file's layout stable and runs the validator and coverage check.
+Results so far:
 
-## How it is wired
+- **Nightly:** 7 runs, 8 to 14 Nov. 6 passed. The 9 Nov run failed because the engine didn't start. The live-site check passed every night from 10 to 14 Nov.
+- **Whole-game:** 3 runs, 12 to 14 Nov, all passed. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
+- **Listener:** 3 runs. The first two, on 12 Nov, failed: one wrote no report, and one passed 16 of 16 tavern steps but 12 of 13 drunk steps. The 14 Nov run passed both, 16 of 16 and 13 of 13.
 
-- `agents/surveyor-agent.json`: the surveyor's narrow agent spec (tools, file paths, the one MCP server). Copied into `~/.kiro/agents/` by a human; the bot cannot change its own trust settings.
-- The `drascula-live` MCP server comes from the Ghostlight repo (`mcp/`), run with the native ScummVM build and its own save folder (`.saves/`, not committed).
+</details>
 
-## Honest limits
+## 5. Point it at a new game
 
-- A Bot's spawned workers in Kiro Crew don't receive that Bot's own MCP servers, so surveyor plays from its own session. Reported as feedback to the Crew team.
-- Automated checks find mechanical problems. They don't tell you whether a game is enjoyable without sight: that needs blind players. Two testers were sent the build on 11 November 2026, and longer sessions are planned for 22 to 27 November.
+**The second game's surveyor is the same agent with a different game: one new file in `agents/`, no new code in this repo.**
 
-Paths in `reports/` are from the machine that ran each report (a Mac or the Linux VM), so they won't match yours.
+<details>
+<summary>What changed for Flight of the Amazon Queen</summary>
+
+<br>
+
+[`agents/queen-surveyor-agent.json`](agents/queen-surveyor-agent.json) is a copy of [`agents/surveyor-agent.json`](agents/surveyor-agent.json). The differences are the name, the MCP server name (`queen-live`), the report folder (`reports/queen/`), and the server's environment:
+
+```json
+"GHOSTLIGHT_GAME": "queen",
+"DRASCULA_MCP_SAVEPATH": "./.saves/queen",
+"GHOSTLIGHT_QUEEN_BINARY": "../spikes/queen/scummvm/scummvm",
+"DRASCULA_MCP_GAME": "../spikes/queen/game/FOTAQ_Floppy",
+"SDL_AUDIODRIVER": "dummy"
+```
+
+On 14 Nov it surveyed all 4 rooms of the hotel opening as two one-off Crew jobs (5.75 and 5.59 Kiro credits). Its first run found the quiet-limit bug, and its second found the truck trap. The game side needed real work in Ghostlight first (an accessibility layer for the Queen engine and Queen support in the MCP server); the crew side was the one file.
+
+</details>
+
+## 6. Safety by design
+
+**Every bot gets the least it needs, and a human approves everything that reaches players.**
+
+<details>
+<summary>The rules</summary>
+
+<br>
+
+- **Narrow agent spec.** The surveyor's tools are one MCP server plus file reads. It writes only to `reports/`, and anything else falls back to deny. The spec is copied into `~/.kiro/agents/` by a human, so a bot can't change its own trust settings.
+- **The drafter writes drafts only.** It can write its draft files and nothing else; every shell command is denied.
+- **The GitHub token never enters the agent sandbox.** It's a read-only fine-grained token for the two repos. A user timer outside Crew pulls Ghostlight at 01:50, and Crew's sandbox hides the credentials from jobs. Reports commit on the VM only, with no push.
+- **A human approves every pack entry** in Discord before it's merged. Approved rooms go into Ghostlight's pack through its survey pipeline, which keeps the file's layout stable and runs the validator and coverage check.
+
+</details>
+
+## 7. How it's wired
+
+**Kiro Crew, one MCP server from the Ghostlight repo, and a native ScummVM build.**
+
+<details>
+<summary>Files</summary>
+
+<br>
+
+- `agents/`: the two surveyor specs.
+- `scripts/`: the nightly (`nightly-rooms.mjs`, `nightly-live.mjs`), the whole-game check (`whole-game.mjs`), the listener (`listener.sh`, `listener-request.sh`, `listener_report.py`) and the VM setup (`vm-setup.sh`, `VM-SETUP.md`).
+- `data/playthrough-route.txt`: the 211-line route the whole-game check replays.
+- `drafts/`: night drafter output and the review decisions.
+- `reports/`: every survey, nightly, whole-game and listener report, dated.
+- The `drascula-live` MCP server comes from the Ghostlight repo (`mcp/`), run with the native ScummVM build and its own save folder (`.saves/`, not committed). Game data is never committed.
+
+Paths inside `reports/` are from the machine that ran each report (a Mac or the Linux VM), so they won't match yours.
+
+</details>
+
+## 8. Honest limits
+
+**It finds mechanical problems. It can't tell you whether a game is fun without sight.**
+
+<details>
+<summary>Details</summary>
+
+<br>
+
+- Automated checks don't replace blind players. Ghostlight's testers played it during the build, and longer sessions are planned for 22 to 27 November.
+- A Bot's spawned workers in Kiro Crew don't receive that Bot's own MCP servers, so the surveyor plays from its own session. Reported as feedback to the Crew team.
+- On the Mac, `kirocrew chat --agent` didn't load a custom agent's MCP servers, so the second game's surveys ran as one-off cron jobs instead.
+- The chapter 4, 5 and 6 surveys started from hand-built chapter-start saves, because the chapter ends were blocked at the time. The whole-game check has since played every chapter through from a fresh start.
+- Review is still a person reading every card. That's on purpose.
+
+</details>
 
 ## Licence
 
