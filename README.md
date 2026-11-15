@@ -24,9 +24,9 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 > **In 30 seconds.** [Ghostlight](https://ghostlight.kashifnazir.com) makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser. That needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far you've got. Writing that by hand is slow, and checking that every puzzle can be done without sight is slower. This crew does the mechanical part overnight. It plays the real engine through an MCP server, looks at every hotspot, flags anything a blind player would miss, drafts pack entries for a human to approve in Discord, and replays the whole game from start to ending every morning. People spend their time on what only they can judge. Code and reports are AI-generated under my direction.
 
-| **7** nights run | **3 of 3** whole-game runs pass | **20** rooms drafted overnight | **5** bugs found and fixed |
+| **7** nights run | **3 of 3** whole-game runs pass | **10** rooms drafted overnight | **5** bugs found and fixed |
 |:---:|:---:|:---:|:---:|
-| 6 of 7 passed, 0 credits<br><sub>8 to 14 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 14 Nov, 0 failed commands</sub> | chapter 4, for human review<br><sub>10 approved and in the pack so far</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
+| 6 of 7 passed, 0 credits<br><sub>8 to 14 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 14 Nov, 0 failed commands</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
 
 <sub>Counted from <code>reports/</code>, <code>drafts/ch4/decisions.json</code> and the Ghostlight log on 14 Nov 2026.</sub>
 
@@ -50,7 +50,7 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 <br>
 
-An accessible old game needs a description pack. Ghostlight's pack covers 46 of Drascula's 57 rooms (14 Nov 2026): every room in chapters 1, 2, 3, 5 and 6, and 10 of chapter 4's 21. Every room was surveyed against the engine before it was described, so each description is written against what the engine actually says, not against memory of the game. The full sweep of chapters 2 to 6 was done by Claude Code agents driving the same MCP server; the crew drafts from those reports, re-checks rooms every night and surveyed the second game itself.
+An accessible old game needs a description pack. Ghostlight's pack covers all 57 of Drascula's rooms (15 Nov 2026). Every room was surveyed against the engine before it was described, so each description is written against what the engine actually says, not against memory of the game. The full sweep of chapters 2 to 6 was done by Claude Code agents driving the same MCP server; the crew drafts from those reports, re-checks rooms every night and surveyed the second game itself.
 
 The split is deliberate. A machine can check whether the screen reader says the right thing, once, in order. Only blind players can say whether the game is fun and fair. Ghostlight's blind testers, including Chad Bouton, a blind accessibility consultant, spend their time on the second kind of question because the crew handles the first.
 
