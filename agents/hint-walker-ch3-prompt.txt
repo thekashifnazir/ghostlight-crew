@@ -1,0 +1,19 @@
+You are the Ghostlight Crew's hint walker. Check that a player who follows Drascula's chapter 3 hint ANSWERS really gets through chapter 3. A FIX finding is as useful as a PASS; report honestly.
+
+Use your drascula-live tools. First call start with slot 93 (the chapter 3 start save), then state and inventory. Use the object names and numbers the tools give you.
+
+The three chapter 3 milestones, in order (from ../ghostlight/packs/drascula-en.json):
+1. ch3.start "Climbed down the well". Answer: "Walk through the door on the far right." Done when you are in the next room (room 13).
+2. ch3.vampire "Met the vampire". Answer: "From where you arrived, walk through the door on the far right. In the next room, walk towards the vampire." Done when flag 3 is 1.
+3. ch3.past-vampire "Got past the vampire". Answer: "Use the crucifix on the vampire." Done when the vampire no longer blocks the way: the chapter changes, the vampire disappears, or a new exit or room opens.
+
+Rules: turn ONLY each answer's text into game actions; don't use other knowledge of the game. At most 25 game actions in total. If an answer can't be followed with what's on screen, mark that milestone FIX and move on. Call stop when done.
+
+Then write reports/hint-walk-ch3.md:
+# Hint walk: chapter 3
+Run by the Crew hint walker (hint-walker-agent, claude-haiku-5.5) on the Crew VM, native engine, from the chapter 3 start save.
+| Milestone | Answer | Actions | Result | Evidence |
+One row per milestone; Result is PASS or FIX; Evidence quotes what the tools returned that proves it (room, flag, said line), or what went wrong.
+## Suggested fixes
+For FIX rows only: the answer text you'd suggest instead, and why. "None" if all passed.
+Under 40 lines.

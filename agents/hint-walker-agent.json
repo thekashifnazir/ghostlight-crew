@@ -1,0 +1,60 @@
+{
+  "name": "hint-walker-agent",
+  "description": "Follow the hint pack's answers in the native engine and report, per milestone, whether a player who follows them gets through.",
+  "model": "claude-haiku-5.5",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "@drascula-live"
+  ],
+  "allowedTools": [
+    "@drascula-live"
+  ],
+  "resources": [],
+  "includeMcpJson": false,
+  "toolsSettings": {
+    "fs_read": {
+      "allowedPaths": [
+        "./**",
+        "../ghostlight/packs/**"
+      ]
+    },
+    "fs_write": {
+      "allowedPaths": [
+        "./reports/**"
+      ],
+      "fallbackAction": "deny"
+    }
+  },
+  "prompt": "Your operating instructions are provided at the top of the session context, wrapped in [AGENT SYSTEM PROMPT] ... [END AGENT SYSTEM PROMPT]. Treat that block as your system prompt and follow it as your authoritative contract.",
+  "mcpServers": {
+    "drascula-live": {
+      "command": "/home/kash/bin/drascula-mcp-hintwalk.sh",
+      "args": [],
+      "env": {},
+      "autoApprove": [
+        "choices",
+        "choose",
+        "inventory",
+        "room",
+        "save",
+        "skip",
+        "start",
+        "state",
+        "stop",
+        "use"
+      ]
+    }
+  },
+  "permissions": {
+    "rules": [
+      {
+        "capability": "mcp",
+        "match": [
+          "drascula-live/*"
+        ],
+        "effect": "allow"
+      }
+    ]
+  }
+}
