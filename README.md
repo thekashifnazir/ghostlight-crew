@@ -8,7 +8,7 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 ![Licence: GPL-3.0-or-later](https://img.shields.io/badge/licence-GPL--3.0--or--later-4c9a2a)
 ![Kiro Crew](https://img.shields.io/badge/Kiro-Crew-7b3fe4)
-![Runs 01:00 to 11:00 London](https://img.shields.io/badge/runs-01%3A00_to_11%3A00_London-2453b8)
+![Ran nightly 01:00 to 11:00 London, switched off 16 Nov](https://img.shields.io/badge/ran_nightly-01%3A00_to_11%3A00_London%2C_off_since_16_Nov-2453b8)
 
 [**Play Ghostlight**](https://ghostlight.kashifnazir.com) · [**Ghostlight repo**](https://github.com/thekashifnazir/ghostlight) · [**Reports**](reports/) · [**The crew**](#2-the-crew) · [**What it found**](#3-what-it-found)
 
@@ -111,7 +111,7 @@ The split is deliberate. A machine can check whether the screen reader says the 
 
 ## 4. The night shift
 
-**It only runs when there's work: a cloud VM that a schedule switches on at 01:00 and off at 11:00 London, about $19 a month.**
+**It ran on a schedule until 16 Nov: a cloud VM switched on at 01:00 and off at 11:00 London, about $19 a month. The schedule has since been switched off.**
 
 <details>
 <summary>A night, hour by hour</summary>
