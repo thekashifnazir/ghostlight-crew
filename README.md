@@ -128,7 +128,7 @@ The schedule is a Compute Engine instance schedule (`crew-overnight`, start `0 1
 | 07:00 | whole-game check, start to final ending | none |
 | morning | Approve, Change or Reject per room in Discord | none |
 
-The schedule was switched off on 16 Nov, and the two agent jobs (night drafter and review cards) were paused on 17 Nov, because they fire whenever the VM is up and the drafter had started re-drafting rooms a human had already approved. The script jobs still run when it's on.
+The two agent jobs (night drafter and review cards) were also paused on 17 Nov, because they fire whenever the VM is up and the drafter had started re-drafting rooms a human had already approved. The script jobs still run when it's on.
 
 Results so far:
 
