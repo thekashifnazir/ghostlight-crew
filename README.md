@@ -24,7 +24,7 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 > **In 30 seconds.** [Ghostlight](https://ghostlight.kashifnazir.com) makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser. That needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far you've got. Writing that by hand is slow, and checking that every puzzle can be done without sight is slower. This crew does the mechanical part overnight. It plays the real engine through an MCP server, looks at every hotspot, flags anything a blind player would miss, drafts pack entries for a human to approve in Discord, and replays the whole game from start to ending every morning. People spend their time on what only they can judge. Code and reports are AI-generated under my direction.
 
-| **10** nights run | **7 of 7** whole-game runs pass | **6 of 6** chapters' hints walked | **10** rooms drafted overnight | **5** bugs found and fixed |
+| **10** nights run | **8 of 8** whole-game runs pass | **6 of 6** chapters' hints walked | **10** rooms drafted overnight | **5** bugs found and fixed |
 |:---:|:---:|:---:|:---:|:---:|
 | 8 of 10 passed, 0 credits<br><sub>8 to 17 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 17 Nov, 0 failed commands</sub> | 61 of 65 hints pass, 0 hint faults left<br><sub>17 Nov, after the chapter 3 fix; 84 of 102 exits confirmed, none wrong</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
 
@@ -133,8 +133,8 @@ The two agent jobs (night drafter and review cards) were also paused on 17 Nov, 
 Results so far:
 
 - **Nightly:** 10 runs, 8 to 17 Nov. 8 passed. The 9 Nov run failed because the engine didn't start, and on 15 Nov the rooms passed but the live-site check got stuck on the site's new start screen. It passed again on 16 and 17 Nov.
-- **Whole-game:** 7 runs, 12 to 17 Nov, all passed. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
-- **Listener:** 3 runs. The first two, on 12 Nov, failed: one wrote no report, and one passed 16 of 16 tavern steps but 12 of 13 drunk steps. The 14 Nov run passed both, 16 of 16 and 13 of 13, and so did the 17 Nov run on the frozen build.
+- **Whole-game:** 8 runs, 12 to 17 Nov, all passed, the last on the frozen build. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
+- **Listener:** 3 runs. The first two, on 12 Nov, failed: one wrote no report, and one passed 16 of 16 tavern steps but 12 of 13 drunk steps. The 14 Nov run passed both, 16 of 16 and 13 of 13, and so did both 17 Nov runs, the second on the frozen build.
 
 </details>
 
