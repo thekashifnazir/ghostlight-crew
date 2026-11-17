@@ -24,11 +24,11 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 > **In 30 seconds.** [Ghostlight](https://ghostlight.kashifnazir.com) makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser. That needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far you've got. Writing that by hand is slow, and checking that every puzzle can be done without sight is slower. This crew does the mechanical part overnight. It plays the real engine through an MCP server, looks at every hotspot, flags anything a blind player would miss, drafts pack entries for a human to approve in Discord, and replays the whole game from start to ending every morning. People spend their time on what only they can judge. Code and reports are AI-generated under my direction.
 
-| **7** nights run | **3 of 3** whole-game runs pass | **10** rooms drafted overnight | **5** bugs found and fixed |
-|:---:|:---:|:---:|:---:|
-| 6 of 7 passed, 0 credits<br><sub>8 to 14 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 14 Nov, 0 failed commands</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
+| **10** nights run | **6 of 6** whole-game runs pass | **6 of 6** chapters' hints walked | **10** rooms drafted overnight | **5** bugs found and fixed |
+|:---:|:---:|:---:|:---:|:---:|
+| 8 of 10 passed, 0 credits<br><sub>8 to 17 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 17 Nov, 0 failed commands</sub> | 56 of 65 hints pass, 0 hint faults<br><sub>17 Nov; 102 exits checked, none wrong</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
 
-<sub>Counted from <code>reports/</code>, <code>drafts/ch4/decisions.json</code> and the Ghostlight log on 14 Nov 2026.</sub>
+<sub>Counted from <code>reports/</code>, <code>drafts/ch4/decisions.json</code> and the Ghostlight log on 17 Nov 2026.</sub>
 
 ## Contents
 
@@ -72,6 +72,8 @@ The split is deliberate. A machine can check whether the screen reader says the 
 | **night drafter** | A Crew agent job that drafts pack entries (room names, descriptions, exit labels) for the next undrafted rooms, in the pack's style, into `drafts/` | Writes its draft files only. Every shell command is denied |
 | **review cards** | Posts one card per new room to a Discord thread: "Reply here with: Approve, Change or Reject". The decision is recorded in `drafts/ch4/decisions.json` | Nothing goes into the pack without a human Approve |
 | **whole-game check** | A zero-token job that replays the full route (`data/playthrough-route.txt`) from a fresh start to the final ending and checks every chapter is reached | Runs one script |
+| **hint walker** | A Crew agent job (claude-haiku-5.5) that plays one chapter by following only the pack's hint answers, in the real engine, and marks each hint PASS or FIX. It's given the names a player hears, not the engine's raw ones | The game tools and writes to `reports/` only. Runs on a human's go, one chapter at a time |
+| **exit check** | A zero-token script that rides the whole-game route and, in each room, walks every exit and checks it lands where its label says | Runs one script |
 | **listener** | After a deploy, runs one fixed script in a Windows VM: a browser plus NVDA, pressing the keys a player would, and compares what NVDA actually said with what it should have said | Trigger-only, run by hand. Runs that one script |
 
 </details>
@@ -88,6 +90,7 @@ The split is deliberate. A machine can check whether the screen reader says the 
 - **Couldn't open a carried item.** The MCP server rejected `open` on the handbag you carry, which blocked the rest of chapter 2 ([`reports/bug-open-held-item.md`](reports/bug-open-held-item.md)).
 - **Carried items not tracked between moves**, **`state` returning stale flags**, and **`skip` with nothing to skip waiting 60 seconds**.
 - **Chapter ends dropped.** In chapters 3, 4 and 5 the final action played its animation but the chapter never ended, because the accessibility layer ignored the engine's return value. Found by a Claude Code coverage run on 10 Nov, not by the crew ([`reports/ch4-coverage-2026-11-10.md`](reports/ch4-coverage-2026-11-10.md)), so it isn't in the count above. The crew's whole-game check now guards it every morning, reaching all six chapters and the ending.
+- **A wrong hint answer in chapter 3.** The pilot hint walk on 16 Nov found that the vampire answer started with a door the player had already gone through. Ghostlight reworded it, and a second walk on 17 Nov passed from both rooms a player could ask in ([`reports/hint-walk-ch3-vampire.md`](reports/hint-walk-ch3-vampire.md)).
 - **Second game, first run:** long lines in Flight of the Amazon Queen outlasted the MCP server's 10 second quiet limit, so commands were dropped as busy. Kiro fixed it the same day, and the rerun came back clean ([`reports/queen/`](reports/queen/)).
 
 </details>
@@ -101,6 +104,7 @@ The split is deliberate. A machine can check whether the screen reader says the 
 - **Fake doors:** something that looks like a door but isn't an exit, sitting right next to one that is.
 - **Hidden hotspots:** objects the engine marks as not visible, so pointing would never find them.
 - **Shared numbers:** two speakers or two tapestries with the same id, so looking always hits the first.
+- **Every hint and every exit, followed in the engine (17 Nov).** The hint walker went through all six chapters: 56 of 65 hints passed, 2 more worked with wording notes that were kept, 2 FIX marks were the walker's own mistakes, and 5 weren't reached before its action limit (the whole-game route covers them). The exit check walked all 102 exits along the route: 84 land where the label says, none land anywhere else, and the rest are shut at that point, chapter crossings, or in rooms the route doesn't stand in ([`reports/hint-walk-ch1.md`](reports/hint-walk-ch1.md) to [`ch6`](reports/hint-walk-ch6.md), [`reports/exit-check-2026-11-17.md`](reports/exit-check-2026-11-17.md)).
 - **A scripted trap in the second game:** looking at the truck in the hotel lobby walks the hero past two henchmen, who catch him and send him back to the locked room after about 46 seconds of dialogue. The pack now warns about it.
 
 </details>
@@ -124,10 +128,12 @@ The schedule is a Compute Engine instance schedule (`crew-overnight`, start `0 1
 | 07:00 | whole-game check, start to final ending | none |
 | morning | Approve, Change or Reject per room in Discord | none |
 
+The schedule was switched off on 16 Nov, and the two agent jobs (night drafter and review cards) were paused on 17 Nov, because they fire whenever the VM is up and the drafter had started re-drafting rooms a human had already approved. The script jobs still run when it's on.
+
 Results so far:
 
-- **Nightly:** 7 runs, 8 to 14 Nov. 6 passed. The 9 Nov run failed because the engine didn't start. The live-site check passed every night from 10 to 14 Nov.
-- **Whole-game:** 3 runs, 12 to 14 Nov, all passed. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
+- **Nightly:** 10 runs, 8 to 17 Nov. 8 passed. The 9 Nov run failed because the engine didn't start, and on 15 Nov the rooms passed but the live-site check got stuck on the site's new start screen. It passed again on 16 and 17 Nov.
+- **Whole-game:** 6 runs, 12 to 17 Nov, all passed. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
 - **Listener:** 3 runs. The first two, on 12 Nov, failed: one wrote no report, and one passed 16 of 16 tavern steps but 12 of 13 drunk steps. The 14 Nov run passed both, 16 of 16 and 13 of 13.
 
 </details>
@@ -166,7 +172,8 @@ On 14 Nov it surveyed all 4 rooms of the hotel opening as two one-off Crew jobs 
 
 - **Narrow agent spec.** The surveyor's tools are one MCP server plus file reads. It writes only to `reports/`, and anything else falls back to deny. The spec is copied into `~/.kiro/agents/` by a human, so a bot can't change its own trust settings.
 - **The drafter writes drafts only.** It can write its draft files and nothing else; every shell command is denied.
-- **The GitHub token never enters the agent sandbox.** It's a read-only fine-grained token for the two repos. A user timer outside Crew pulls Ghostlight at 01:50, and Crew's sandbox hides the credentials from jobs. Reports commit on the VM only, with no push.
+- **The GitHub token never enters the agent sandbox.** A user timer outside Crew pulls Ghostlight at 01:50 and pushes the night's reports in the morning, and Crew's sandbox hides the credentials from jobs. On 15 Nov a draft clash left that push stuck and two nights never reached GitHub, so the push script now clears a stuck rebase and sends a clash to a side branch for a person to merge ([`scripts/crew-push.sh`](scripts/crew-push.sh)).
+- **Hint walks cost credits, so a person starts them.** [`scripts/hint-walk-changed.sh`](scripts/hint-walk-changed.sh) re-walks only the chapters whose hints changed since a given Ghostlight commit; `--dry-run` lists them without spending anything.
 - **A human approves every pack entry** in Discord before it's merged. Approved rooms go into Ghostlight's pack through its survey pipeline, which keeps the file's layout stable and runs the validator and coverage check.
 
 </details>
@@ -180,8 +187,8 @@ On 14 Nov it surveyed all 4 rooms of the hotel opening as two one-off Crew jobs 
 
 <br>
 
-- `agents/`: the two surveyor specs.
-- `scripts/`: the nightly (`nightly-rooms.mjs`, `nightly-live.mjs`), the whole-game check (`whole-game.mjs`), the listener (`listener.sh`, `listener-request.sh`, `listener_report.py`) and the VM setup (`vm-setup.sh`, `VM-SETUP.md`).
+- `agents/`: the two surveyor specs, the hint walker spec and its prompts.
+- `scripts/`: the nightly (`nightly-rooms.mjs`, `nightly-live.mjs`), the whole-game check (`whole-game.mjs`), the exit check (`exit-check.mjs`), the hint walks (`hint-walk-prompt.py`, `hint-walk-changed.sh`), the push (`crew-push.sh`), the listener (`listener.sh`, `listener-request.sh`, `listener_report.py`) and the VM setup (`vm-setup.sh`, `VM-SETUP.md`).
 - `data/playthrough-route.txt`: the 211-line route the whole-game check replays.
 - `drafts/`: night drafter output and the review decisions.
 - `reports/`: every survey, nightly, whole-game and listener report, dated.
@@ -204,6 +211,8 @@ Paths inside `reports/` are from the machine that ran each report (a Mac or the 
 - A Bot's spawned workers in Kiro Crew don't receive that Bot's own MCP servers, so the surveyor plays from its own session. Reported as feedback to the Crew team.
 - On the Mac, `kirocrew chat --agent` didn't load a custom agent's MCP servers, so the second game's surveys ran as one-off cron jobs instead.
 - The chapter 4, 5 and 6 surveys started from hand-built chapter-start saves, because the chapter ends were blocked at the time. The whole-game check has since played every chapter through from a fresh start.
+- The hint walker reads the game through the engine, not the player, so it makes mistakes a player wouldn't. On 17 Nov its first chapter 6 run took "yourself" for "your hand" (both are HACKER in the engine) and gave up; it now gets the names a player hears. It also missed the close action once and tried a hint out of order once. Every FIX is checked against the whole-game route before anyone acts on it.
+- Long hint walks cost more than short ones, and not in proportion: chapter 6 (11 actions) cost 0.27 Kiro credits and chapter 4 (45 actions) cost 3.41. The 17 Nov walks came to about 8.8 credits, counting one spoilt run and one re-check.
 - Review is still a person reading every card. That's on purpose.
 
 </details>
