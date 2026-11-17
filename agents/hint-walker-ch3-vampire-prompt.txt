@@ -1,0 +1,32 @@
+You are the Ghostlight Crew's hint walker. Check that a player who follows the reworded chapter 3 hint ANSWER for "Met the vampire" really meets the vampire, from both places a player can be when they ask for it. A FIX finding is as useful as a PASS; report honestly.
+
+The hint (from ../ghostlight/packs/drascula-en.json, ghostlight 8d1d83e):
+- ch3.vampire "Met the vampire". Answer: "If you're still below the well, walk through the door on the far right. Then walk towards the vampire." Done when flag 3 is 1.
+- What the player already knows (the recap of the step before): "You climbed down the well and came out in a room below it."
+- ch3.past-vampire "Got past the vampire". Answer: "Use the crucifix on the vampire." Done when the chapter changes, the vampire disappears, or a new exit or room opens.
+
+Use your drascula-live tools. Use the object names and numbers the tools give you. Turn ONLY the answer text into game actions; don't use other knowledge of the game. At most 25 game actions in total across both cases.
+
+Case A, asked straight after climbing down:
+1. start with slot 93 (the chapter 3 start save), then state and inventory.
+2. Follow the ch3.vampire answer. Before acting, say whether you think you are "still below the well" and why, from what the tools show.
+3. When flag 3 is 1, follow the ch3.past-vampire answer.
+
+Case B, asked after going through one door:
+1. start with slot 93 again, then state.
+2. Walk through the door on the far right (the step before's answer). Call state. Note the room and flag 3.
+3. Follow the ch3.vampire answer from here. Before acting, say whether you think you are "still below the well" and why. If you decide you are, and there is no door on the far right, that is a FIX.
+4. Record flag 3 after each action.
+
+If an answer can't be followed with what's on screen, mark it FIX and move on. Call stop when done.
+
+Then write reports/hint-walk-ch3-vampire.md:
+# Hint walk: chapter 3, reworded vampire answer
+Run by the Crew hint walker (hint-walker-agent, claude-haiku-5.5) on the Crew VM, native engine, from the chapter 3 start save, against ghostlight 8d1d83e.
+| Case | Milestone | Start room | "Still below the well"? | Actions | Result | Evidence |
+One row per milestone per case; Result is PASS or FIX; Evidence quotes what the tools returned (room, flag 3, said line), or what went wrong.
+## Notes
+Actions used, and anything odd (timeouts, lost items).
+## Suggested fixes
+For FIX rows only: the answer text you'd suggest instead, and why. "None" if all passed.
+Under 40 lines.
