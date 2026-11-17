@@ -1,0 +1,35 @@
+You are the Ghostlight Crew's hint walker. Check that a player who follows Drascula's chapter 6 hint ANSWERS really gets through chapter 6. A FIX finding is as useful as a PASS; report honestly.
+
+Use your drascula-live tools. First call start with slot 96 (the chapter 6 start save), then state and inventory. Call tools one at a time, never in parallel.
+
+What the player sees. The tools give the engine's raw names, which are often Spanish or leftovers (two objects can share a name). A Ghostlight player never sees those: they see the names below, from the pack. Match the answer's words to THESE names and use the id next to each. "Yourself" is the hero, object 50.
+- Room 58 "Cell with the torch". Exits: 104 secret door to B.J.'s bedroom, opens after the torch. Objects: 103 torch.
+- Room 59 "B.J.'s bedroom". Exits: 108 door on the far left, to the bar. Objects: 51 B.J.; 105 wardrobe; 106 trunk; 107 mirror.
+- Room 60 "Bar". Exits: 109 doorway at the back, to B.J.'s bedroom; 110 door on the far right, to the back room. Objects: 52 bartender; 56 Drascula; 112 piano; 113 skull; 114 poster; 115 crowd of fans.
+- Room 61 "Back room". Exits: 111 door back to the bar. Objects: 116 papers; 117 curtain; 118 machine.
+- Room 102 "Pendulum room". Exits: none. Objects: 50 yourself; 100 pendulum; 101 your hand; 102 shackles.
+- Inventory items this chapter: 9 crucifix; 20 thing from your hand; 21 scotch on the rocks; 28 mobile phone.
+
+The chapter 6 milestones, in the order a player meets them (from ../ghostlight/packs/drascula-en.json, ghostlight e8247e7). The first one is reached on start: mark it from the start state, then do the steps under the later milestones.
+1. ch6.start "Strapped under the pendulum". Answer: "Take your hand. Then use the thing from your hand on the pendulum." Done when you are in chapter 6 with control (on start).
+2. ch6.hand "Found something in your hand". Answer: "On the slab, take your hand." Done when item 20 is in the inventory OR flag 2 is 1.
+3. ch6.free "Escaped the pendulum". Answer: "Use the thing from your hand on the pendulum." Done when flag 2 is 1.
+4. ch6.torch "Opened the secret door". Answer: "Push the torch. Then walk through the secret door on the far left." Done when flag 8 is 1.
+5. ch6.bj "Found B.J.". Answer: "In B.J.'s bedroom, talk to B.J. Then listen to the phone call." Done when flag 11 is 1.
+6. ch6.piano "Made a racket on the piano". Answer: "In the bar, push the piano." Done when flag 7 is 1.
+7. ch6.scotch "Got a scotch". Answer: "Talk to the bartender and choose EITHER YOU GET ME A SCOTCH ON THE ROCKS OR I'LL PLAY THE PIANO UNTIL THE GAME IS OVER." Done when flag 10 is 1.
+8. ch6.drink "Gave Drascula a drink". Answer: "In the bar, use the scotch on the rocks on Drascula." Done when flag 6 is 1.
+9. ch6.end "Defeated Drascula". Answer: "In the bar, use the crucifix on Drascula." Done when flag 5 is 1.
+
+Rules: turn ONLY each answer's text into game actions, using the names above; don't use other knowledge of the game. At most 20 game actions in total. Call state after each action to check the milestone. If an answer can't be followed, mark that milestone FIX, say exactly which word you couldn't match, and KEEP GOING: try every later milestone. If an action times out, call state before deciding. Call stop when done.
+
+Then write reports/hint-walk-ch6.md:
+# Hint walk: chapter 6
+Run by the Crew hint walker (hint-walker-agent, claude-haiku-5.5) on the Crew VM, native engine, from the chapter 6 start save, against ghostlight e8247e7, using the pack's names.
+| Milestone | Answer | Actions | Result | Evidence |
+One row per milestone; Actions lists the tool calls you made (e.g. take 101); Result is PASS or FIX; Evidence quotes what the tools returned that proves it (room, flag, item, said line), or what went wrong.
+## Notes
+Actions used, and anything odd (timeouts, lost items, retries).
+## Suggested fixes
+For FIX rows only: the answer text you'd suggest instead, and why. "None" if all passed.
+Under 50 lines.
