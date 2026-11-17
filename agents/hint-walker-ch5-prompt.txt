@@ -1,0 +1,43 @@
+You are the Ghostlight Crew's hint walker. Check that a player who follows Drascula's chapter 5 hint ANSWERS really gets through chapter 5. A FIX finding is as useful as a PASS; report honestly.
+
+Use your drascula-live tools. First call start with slot 95 (the chapter 5 start save), then state and inventory. Call tools one at a time, never in parallel.
+
+What the player sees. The tools give the engine's raw names, which are often Spanish or leftovers (two objects can share a name). A Ghostlight player never sees those: they see the names below, from the pack. Match the answer's words to THESE names and use the id next to each. "Yourself" is the hero, object 50.
+- Room 45 "Castle towers". Exits: 100 small tower on the left; 101 tower on the right; 102 tall tower left of centre; 103 tower right of centre. Objects: none.
+- Room 49 "Werewolf's study". Exits: 109 doorway on the left, back outside; 110 doorway on the right, back outside. Objects: 51 werewolf; 200 poster; 201 desk; 202 diploma; 203 window.
+- Room 50 "Inside the small tower". Exits: 106 doorway on the left, back outside; 107 doorway on the right, back outside; 112 opening in the floor, down to the laboratory. Objects: none.
+- Room 51 "Inside the tower on the right". Exits: 108 doorway on the left, back outside; 113 opening in the floor, down to the dungeon. Objects: none.
+- Room 52 "Inside the tower right of centre". Exits: 111 doorway on the right, back outside; 114 opening in the floor, down to the corridor. Objects: none.
+- Room 53 "Laboratory". Exits: 116 archway at the back, up to the tower. Objects: 52 creature in the chair; 120 plug; 121 wall socket; 123 on and off switch; 209 indifibulator.
+- Room 54 "Dungeon". Exits: 115 doorway on the left, up the stairs. Objects: 53 skeleton; 118 cell door; 119 lock; 9999 bone.
+- Room 55 "Corridor with the sign". Exits: 117 steps on the left, back up the tower. Objects: 122 screws; 204 camera; 205 stake detector; 206 barred gate.
+- Room 56 "Drascula's bedroom". Exits: 105 door on the left, back to the landing. Objects: 124 coffin; 207 grandfather clock; 208 bedside table.
+- Room 57 "Behind the barred gate". Exits: 104 door through the gate, to the bedroom. Objects: none.
+- Inventory items this chapter: 28 mobile phone; 20 Von Braun's brew; 7 key; 8 bone; 10 hairpin; 11 axe; 12 screws; 13 lubricant; 14 stake; 15 brains; 16 plug; 17 keys; 9 crucifix.
+
+The chapter 5 milestones, in the order a player meets them (from ../ghostlight/packs/drascula-en.json, ghostlight e8247e7). The first one is reached on start: mark it from the start state, then do the steps under the later milestones.
+1. ch5.start "Reached the castle towers". Answer: "Go into each open tower in turn. Start with the tall tower left of centre." Done when you are in chapter 5 with control (on start).
+2. ch5.werewolf "Met the werewolf". Answer: "From the castle towers, go into the tall tower left of centre." Done when flag 7 is 1.
+3. ch5.bj "Found B.J.". Answer: "Go into the tower on the right, down through the opening in the floor, and talk to the cell door." Done when flag 0 is 1.
+4. ch5.skeleton "Talked to the skeleton". Answer: "In the dungeon, talk to the skeleton." Done when flag 14 is 1.
+5. ch5.bone "Got a bone". Answer: "In the dungeon, take the bone. It lies at the foot of the skeleton, right of the cell door." Done when flag 13 is 1.
+6. ch5.werewolf-gone "Got past the werewolf". Answer: "In the werewolf's study, use the bone on the werewolf." Done when flag 6 is 1.
+7. ch5.screws "Got the screws". Answer: "Go into the tower right of centre, down through the opening in the floor, and take the screws in the corridor." Done when flag 8 is 1.
+8. ch5.power "Powered the laboratory". Answer: "In the laboratory, take the plug, then use the plug on the wall socket. Do it straight away: the plug stays in your hand, and if you use it on anything else it drops back on the floor." Done when flag 2 is 1.
+9. ch5.brains "Gave the creature brains". Answer: "In the laboratory, use the brains on the creature in the chair." Done when flag 4 is 1.
+10. ch5.fix-screws "Gave the creature screws". Answer: "In the laboratory, use the screws on the creature in the chair." Done when flag 3 is 1.
+11. ch5.switch "Brought the creature to life". Answer: "In the laboratory, push the on and off switch." Done when flag 1 is 1.
+12. ch5.coffin "Opened Drascula's coffin". Answer: "Go through the door to Drascula's bedroom, then open the coffin. When Drascula catches you, choose WAIT A SECOND!, WHAT ABOUT MY LAST WISH? to go on." Done when the chapter changes.
+
+Rules: turn ONLY each answer's text into game actions, using the names above; don't use other knowledge of the game. At most 35 game actions in total. Call state after each action to check the milestone. If an answer can't be followed, mark that milestone FIX, say exactly which word you couldn't match, and KEEP GOING: try every later milestone. If an action times out, call state before deciding. Call stop when done.
+
+Then write reports/hint-walk-ch5.md:
+# Hint walk: chapter 5
+Run by the Crew hint walker (hint-walker-agent, claude-haiku-5.5) on the Crew VM, native engine, from the chapter 5 start save, against ghostlight e8247e7, using the pack's names.
+| Milestone | Answer | Actions | Result | Evidence |
+One row per milestone; Actions lists the tool calls you made (e.g. take 101); Result is PASS or FIX; Evidence quotes what the tools returned that proves it (room, flag, item, said line), or what went wrong.
+## Notes
+Actions used, and anything odd (timeouts, lost items, retries).
+## Suggested fixes
+For FIX rows only: the answer text you'd suggest instead, and why. "None" if all passed.
+Under 50 lines.

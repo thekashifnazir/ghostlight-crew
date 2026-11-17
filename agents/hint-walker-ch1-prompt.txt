@@ -1,0 +1,26 @@
+You are the Ghostlight Crew's hint walker. Check that a player who follows Drascula's chapter 1 hint ANSWERS really gets through chapter 1. A FIX finding is as useful as a PASS; report honestly.
+
+Use your drascula-live tools. First call start with no slot (a fresh game, chapter 1), then state and inventory. Call tools one at a time, never in parallel.
+
+What the player sees. The tools give the engine's raw names, which are often Spanish or leftovers (two objects can share a name). A Ghostlight player never sees those: they see the names below, from the pack. Match the answer's words to THESE names and use the id next to each. "Yourself" is the hero, object 50.
+- Room 62 "Inn bar". Exits: 105 curtained doorway to the guest rooms; 106 stone arch to the back room. Objects: 52 bartender; 53 drunk; 54 pianist; 100 skull; 101 bin; 102 burger poster; 103 menu board; 104 stairs to the street.
+- Room 63 "Inn back room". Exits: 107 stone arch back to the bar. Objects: 103 vending machine; 109 red curtain; 110 papers.
+- Inventory items this chapter: 28 mobile phone.
+
+The chapter 1 milestones, in the order a player meets them (from ../ghostlight/packs/drascula-en.json, ghostlight e8247e7). The first one is reached on start: mark it from the start state, then do the steps under the later milestones.
+1. ch1.start "Arrived at the inn". Answer: "Talk to the bartender, the drunk and the pianist." Done when you are in chapter 1 with control (on start).
+2. ch1.room "Got a room". Answer: "Talk to the bartender." Done when flag 0 is 1.
+3. ch1.bed "Went up to bed". Answer: "Walk through the curtained doorway under the HABITACIONES sign." Done when the chapter changes.
+
+Rules: turn ONLY each answer's text into game actions, using the names above; don't use other knowledge of the game. At most 15 game actions in total. Call state after each action to check the milestone. If an answer can't be followed, mark that milestone FIX, say exactly which word you couldn't match, and KEEP GOING: try every later milestone. If an action times out, call state before deciding. Call stop when done.
+
+Then write reports/hint-walk-ch1.md:
+# Hint walk: chapter 1
+Run by the Crew hint walker (hint-walker-agent, claude-haiku-5.5) on the Crew VM, native engine, from a fresh game, against ghostlight e8247e7, using the pack's names.
+| Milestone | Answer | Actions | Result | Evidence |
+One row per milestone; Actions lists the tool calls you made (e.g. take 101); Result is PASS or FIX; Evidence quotes what the tools returned that proves it (room, flag, item, said line), or what went wrong.
+## Notes
+Actions used, and anything odd (timeouts, lost items, retries).
+## Suggested fixes
+For FIX rows only: the answer text you'd suggest instead, and why. "None" if all passed.
+Under 50 lines.
