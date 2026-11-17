@@ -9,8 +9,9 @@
 // the pack's "to". Writes reports/exit-check-<date>.md and commits it (no push).
 // Zero Kiro credits: no agent is involved.
 //
-// Per exit: PASS (landed in "to"), WRONG (landed somewhere else), STAYED (walked,
-// no room change: locked, or opens later), NOT SHOWN (the room didn't list that
+// Per exit: PASS (landed in "to"), WRONG (landed somewhere else), CHAPTER EXIT (the
+// pack has no "to": a crossing into the next chapter), LOCKED (no room change, and
+// the pack says it opens later), STAYED (no room change and no opensWhen in the pack), NOT SHOWN (the room didn't list that
 // hotspot at that point in the route), ERROR. Exits never stood next to are
 // listed as NOT VISITED.
 //
@@ -153,7 +154,7 @@ function argsFor(verb, a) {
 const PACK = JSON.parse(readFileSync(join(ENGINE, "packs", "drascula-en.json"), "utf8"));
 const packExits = {};         // room -> [{ id, to, label }]
 for (const [room, r] of Object.entries(PACK.rooms)) {
-  const ex = Object.entries(r.exits || {}).map(([id, e]) => ({ id: Number(id), to: e.to, label: e.label || e.name || "" }));
+  const ex = Object.entries(r.exits || {}).map(([id, e]) => ({ id: Number(id), to: e.to, label: e.label || e.name || "", locked: !!e.opensWhen }));
   if (ex.length) packExits[Number(room)] = ex;
 }
 const PROBE_SLOT = 40;
@@ -191,7 +192,8 @@ async function probe(s, line) {
     const note = j && j.error && !isTimeout(j) ? String(j.error).slice(0, 100) : "";
     let result;
     if (landed === undefined) result = "ERROR";
-    else if (landed === room) result = "STAYED";
+    else if (landed === room) result = e.locked ? "LOCKED" : "STAYED";
+    else if (e.to == null) result = "CHAPTER EXIT";
     else if (landed === e.to) result = "PASS";
     else result = "WRONG";
     results.push({ room, ...e, result, landed, note, line });
@@ -238,7 +240,7 @@ for (const r of results) tally[r.result] = (tally[r.result] || 0) + 1;
 const total = Object.values(packExits).reduce((n, ex) => n + ex.length, 0);
 const date = new Date().toISOString().slice(0, 10);
 const minutes = (Date.now() - t0) / 60000;
-const order = ["WRONG", "ERROR", "STAYED", "NOT SHOWN", "NOT VISITED", "PASS"];
+const order = ["WRONG", "ERROR", "STAYED", "LOCKED", "CHAPTER EXIT", "NOT SHOWN", "NOT VISITED", "PASS"];
 results.sort((a, b) => order.indexOf(a.result) - order.indexOf(b.result) || a.room - b.room || a.id - b.id);
 const lines = [
   `# Exit check: ${date}`, "",
@@ -246,7 +248,7 @@ const lines = [
   `- Pack: ghostlight packs/drascula-en.json at ${(() => { try { return execFileSync("git", ["-C", ENGINE, "rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim(); } catch { return "?"; } })()}; ${total} exits in ${Object.keys(packExits).length} rooms`,
   `- Route: data/playthrough-route.txt, ${routeSteps} steps replayed, ${routeFailed} refused`,
   `- **Results: ${order.filter((k) => tally[k]).map((k) => `${tally[k]} ${k}`).join(", ")}**`,
-  `- WRONG means the label sends a player somewhere else. STAYED is usually a locked door or one that opens later; check it against the label.`, "",
+  `- WRONG means the label sends a player somewhere else. STAYED: walked, no room change, and the pack has no opensWhen for it (usually a door to open first, or one that appears later).`, "",
 ];
 if (fatal) lines.push(`> Fatal: ${fatal}`, "");
 lines.push("| Room | Exit | Label | Pack says | Landed | Result | Route line | Note |", "|---|---|---|---|---|---|---|---|");
