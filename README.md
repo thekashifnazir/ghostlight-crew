@@ -26,7 +26,7 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 | **10** nights run | **6 of 6** whole-game runs pass | **6 of 6** chapters' hints walked | **10** rooms drafted overnight | **5** bugs found and fixed |
 |:---:|:---:|:---:|:---:|:---:|
-| 8 of 10 passed, 0 credits<br><sub>8 to 17 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 17 Nov, 0 failed commands</sub> | 56 of 65 hints pass, 0 hint faults<br><sub>17 Nov; 102 exits checked, none wrong</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
+| 8 of 10 passed, 0 credits<br><sub>8 to 17 Nov; plus 4 rooms of a second game</sub> | start to final ending, 211-line route<br><sub>12 to 17 Nov, 0 failed commands</sub> | 56 of 65 hints pass, 0 hint faults left<br><sub>17 Nov, after the chapter 3 fix; 84 of 102 exits confirmed, none wrong</sub> | chapter 4, for human review<br><sub>all 10 approved and in the pack</sub> | in the MCP server and the engine layer<br><sub>each fixed in Ghostlight</sub> |
 
 <sub>Counted from <code>reports/</code>, <code>drafts/ch4/decisions.json</code> and the Ghostlight log on 17 Nov 2026.</sub>
 
