@@ -133,7 +133,7 @@ The two agent jobs (night drafter and review cards) were also paused on 17 Nov, 
 Results so far:
 
 - **Nightly:** 10 runs, 8 to 17 Nov. 8 passed. The 9 Nov run failed because the engine didn't start, and on 15 Nov the rooms passed but the live-site check got stuck on the site's new start screen. It passed again on 16 and 17 Nov.
-- **Whole-game:** 8 runs, 12 to 17 Nov, all passed, the last on the frozen build. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 5 times before passing at 09:44; every fix was in the replay script, not the game.
+- **Whole-game:** 8 runs, 12 to 17 Nov, all passed, the last on the frozen build. Each reached chapters 1 to 6 and the ending in about 26 minutes, with 0 failed commands. On its first morning it failed 6 times before the run that started at 09:44 UTC passed; every fix was in the replay script, not the game (recounted from git 17 Nov: 55417c1 to e95d063 FAIL, 88b339d PASS).
 - **Listener:** 3 runs. The first two, on 12 Nov, failed: one wrote no report, and one passed 16 of 16 tavern steps but 12 of 13 drunk steps. The 14 Nov run passed both, 16 of 16 and 13 of 13, and so did both 17 Nov runs, the second on the frozen build.
 
 </details>
