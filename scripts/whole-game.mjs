@@ -37,6 +37,9 @@ const SETTLE_POLL_MS = 5_000;
 const SETTLE_MAX_MS = 180_000;
 
 // --- route ----------------------------------------------------------------------
+// WG_PROBE_TO=<line>: replay only up to that route line, write the report to
+// WG_PROBE_OUT (or the temp dir) and commit nothing. For checking one stretch.
+const PROBE_TO = Number(process.env.WG_PROBE_TO || 0);
 const route = readFileSync(ROUTE_FILE, "utf8")
   .split("\n")
   .map((raw, i) => {
@@ -48,6 +51,7 @@ const route = readFileSync(ROUTE_FILE, "utf8")
     const args = nums.map(Number);
     const ck = /^ch(\d) start/.exec(comment);
     const checkpoint = verb === "save" && ck ? Number(ck[1]) : null;
+    if (PROBE_TO && i + 1 > PROBE_TO) return null;
     return { line: i + 1, verb, args, comment, checkpoint };
   })
   .filter(Boolean);
@@ -204,18 +208,27 @@ try {
       }
     }
     let j = await tool(step.verb, argsFor(step.verb, step.args));
-    // A "not here" refusal is a FAIL (Kash, 18 Nov). On 12 to 17 Nov these were
-    // retried as a timing issue ("ready for the test" puts the hero outside), but
-    // the real cause was the engine swallowing the room change (ghostlight b6aa387),
-    // so the player's list went stale. Still retry once, so the run goes on and can
-    // find later problems, but the run can't pass.
+    // A "not here" refusal is either the route moving faster than a player (the
+    // reply comes back a moment before the scene moves the hero) or a stale list:
+    // the engine never reported the room change (ghostlight b6aa387 fixed one).
+    // To tell them apart, wait 5 s WITHOUT asking for a fresh snapshot and retry:
+    // if the engine reported the move on its own, the tracked room is right now
+    // (kind "late", not a fail). Only if that still fails, take a snapshot and
+    // retry; that one counts as stale and fails the run (Kash, 18 Nov).
     if (j && j.error && !isTimeout(j) && NOT_HERE.test(String(j.error))) {
-      await new Promise((r) => setTimeout(r, 3000));
-      await tool("state");
+      const first = String(j.error).slice(0, 100);
+      await new Promise((r) => setTimeout(r, 5000));
       const again = await tool(step.verb, argsFor(step.verb, step.args));
-      counts.stale++;
-      problems.push({ line: step.line, cmd, kind: "stale", note: `FAIL: refused as not here (${String(j.error).slice(0, 100)}); ${again.error ? "still refused on retry" : "ok on retry"}` });
-      j = again;
+      if (!(again && again.error && !isTimeout(again) && NOT_HERE.test(String(again.error)))) {
+        problems.push({ line: step.line, cmd, kind: "late", note: `refused as not here (${first}); ok 5 s later with no snapshot, so the engine reported the move itself` });
+        j = again;
+      } else {
+        await tool("state");
+        const third = await tool(step.verb, argsFor(step.verb, step.args));
+        counts.stale++;
+        problems.push({ line: step.line, cmd, kind: "stale", note: `FAIL: still refused 5 s later (${first}); ${third.error ? "refused after a snapshot too" : "ok only after a fresh snapshot, so the room change was never reported"}` });
+        j = third;
+      }
     }
     if (j && j.ended) ended = true;
     recent.push(`line ${step.line} \`${cmd}\`: ${brief(j)}`);
@@ -282,14 +295,14 @@ if (problems.length) {
   lines.push("");
 }
 const reportRel = join("reports", `whole-game-${date}.md`);
-const reportAbs = join(REPO, reportRel);
+const reportAbs = PROBE_TO ? (process.env.WG_PROBE_OUT || join(tmpdir(), `whole-game-probe-${date}.md`)) : join(REPO, reportRel);
 mkdirSync(dirname(reportAbs), { recursive: true });
 writeFileSync(reportAbs, lines.join("\n"));
 
 function git(...args) {
   return execFileSync("git", ["-C", REPO, ...args], { encoding: "utf8" });
 }
-try {
+if (!PROBE_TO) try {
   git("add", reportRel);
   git("commit", "-m", `whole-game: ${pass ? "PASS" : "FAIL"} ${date}`, "--", reportRel);
 } catch (e) {
