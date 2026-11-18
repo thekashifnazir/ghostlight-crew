@@ -153,7 +153,7 @@ function argsFor(verb, a) {
 
 // --- replay -------------------------------------------------------------------
 const t0 = Date.now();
-const counts = { ok: 0, soft: 0, failed: 0 };
+const counts = { ok: 0, soft: 0, failed: 0, stale: 0 };
 const chapters = {};          // N -> { reached: bool, saw: chapter }
 const problems = [];          // { line, cmd, kind, note }
 let ended = false, fatal = null;
@@ -204,14 +204,17 @@ try {
       }
     }
     let j = await tool(step.verb, argsFor(step.verb, step.args));
-    // A reply can come back before the scene finishes moving the hero (measured
-    // 12 Nov: after "ready for the test" the hero is put outside a moment after
-    // the reply). A "not here" refusal gets one retry after the scene settles.
+    // A "not here" refusal is a FAIL (Kash, 18 Nov). On 12 to 17 Nov these were
+    // retried as a timing issue ("ready for the test" puts the hero outside), but
+    // the real cause was the engine swallowing the room change (ghostlight b6aa387),
+    // so the player's list went stale. Still retry once, so the run goes on and can
+    // find later problems, but the run can't pass.
     if (j && j.error && !isTimeout(j) && NOT_HERE.test(String(j.error))) {
       await new Promise((r) => setTimeout(r, 3000));
       await tool("state");
       const again = await tool(step.verb, argsFor(step.verb, step.args));
-      problems.push({ line: step.line, cmd, kind: "retry", note: again.error ? "retried after settle, still refused" : "refused until the scene settled; ok on retry" });
+      counts.stale++;
+      problems.push({ line: step.line, cmd, kind: "stale", note: `FAIL: refused as not here (${String(j.error).slice(0, 100)}); ${again.error ? "still refused on retry" : "ok on retry"}` });
       j = again;
     }
     if (j && j.ended) ended = true;
@@ -254,7 +257,7 @@ try {
 // --- report -------------------------------------------------------------------
 const minutes = (Date.now() - t0) / 60000;
 const reached = [1, 2, 3, 4, 5, 6].filter((n) => chapters[n] && chapters[n].reached);
-const pass = !fatal && reached.length === 6 && ended && counts.failed === 0;
+const pass = !fatal && reached.length === 6 && ended && counts.failed === 0 && counts.stale === 0;
 const date = new Date().toISOString().slice(0, 10);
 
 const lines = [
@@ -265,7 +268,7 @@ const lines = [
   `- **Overall: ${pass ? "PASS" : "FAIL"}**`,
   `- Chapters reached at their checkpoints: ${reached.length ? reached.join(", ") : "none"} of 1 to 6`,
   `- Game ended (final \`use 9 56\`): ${ended ? "yes" : "no"}`,
-  `- Commands: ${counts.ok} ok, ${counts.soft} soft timeouts (engine fine after), ${counts.failed} failed`,
+  `- Commands: ${counts.ok} ok, ${counts.soft} soft timeouts (engine fine after), ${counts.failed} failed, ${counts.stale} refused as not here (each a FAIL)`,
   `- Time: ${minutes.toFixed(1)} min`,
   "",
 ];
