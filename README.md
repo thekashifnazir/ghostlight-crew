@@ -14,13 +14,11 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 </div>
 
-<!-- DEMO MEDIA: one silent preview GIF linking to the YouTube video goes here once the video exists.
 <p align="center">
-  <a href="[NEED: YouTube URL]"><img src="docs/crew-preview.gif" width="720" alt="Silent preview of the Crew section of the Ghostlight video"></a>
+  <a href="https://youtu.be/gfpjhE8Vopw"><img src="docs/crew-preview.gif" width="720" alt="Silent preview of the Crew section of the Ghostlight video: the hint walker's chapter 3 FIX row, reworded on 17 Nov, then 84 of 102 exits checked and 16 of 16 and 13 of 13 NVDA steps"></a>
   <br>
-  <sub>▶ Silent preview. <a href="[NEED: YouTube URL]"><b>Watch the full video with sound</b></a></sub>
+  <sub>▶ Silent preview. <a href="https://youtu.be/gfpjhE8Vopw"><b>Watch the full video with sound</b></a></sub>
 </p>
--->
 
 > **In 30 seconds.** [Ghostlight](https://ghostlight.kashifnazir.com) makes *Drascula: The Vampire Strikes Back* (1996, freeware) playable with a screen reader in the browser. That needs a description pack: a name, a description and an exit label for everything in every room, plus hints that match how far you've got. Writing that by hand is slow, and checking that every puzzle can be done without sight is slower. This crew does the mechanical part overnight. It plays the real engine through an MCP server, looks at every hotspot, flags anything a blind player would miss, drafts pack entries for a human to approve in Discord, and replays the whole game from start to ending every morning. People spend their time on what only they can judge. Code and reports are AI-generated under my direction.
 
