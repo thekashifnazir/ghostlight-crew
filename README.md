@@ -50,7 +50,7 @@ _Companion to [Ghostlight](https://github.com/thekashifnazir/ghostlight) · Kiro
 
 An accessible old game needs a description pack. Ghostlight's pack covers all 57 of Drascula's rooms (15 Nov 2026). Every room was surveyed against the engine before it was described, so each description is written against what the engine actually says, not against memory of the game. The full sweep of chapters 2 to 6 was done by Claude Code agents driving the same MCP server; the crew drafts from those reports, re-checks rooms every night and surveyed the second game itself.
 
-The split is deliberate. A machine can check whether the screen reader says the right thing, once, in order. Only blind players can say whether the game is fun and fair. Ghostlight's blind testers, including Chad Bouton, a blind accessibility consultant, spend their time on the second kind of question because the crew handles the first.
+The split is deliberate. A machine can check whether the screen reader says the right thing, once, in order. Only blind players can say whether the game is fun and fair. Ghostlight's tester, Chad Bouton, a blind accessibility consultant, could spend the testing time on the second kind of question because the crew handled the first.
 
 </details>
 
