@@ -205,7 +205,7 @@ Paths inside `reports/` are from the machine that ran each report (a Mac or the 
 
 <br>
 
-- Automated checks don't replace blind players. Ghostlight's testers played it during the build, and one finished the whole game on 16 Nov.
+- Automated checks don't replace blind players. Ghostlight's blind tester played it during the build and finished the whole game on 16 Nov.
 - A Bot's spawned workers in Kiro Crew don't receive that Bot's own MCP servers, so the surveyor plays from its own session. Reported as feedback to the Crew team.
 - On the Mac, `kirocrew chat --agent` didn't load a custom agent's MCP servers, so the second game's surveys ran as one-off cron jobs instead.
 - The chapter 4, 5 and 6 surveys started from hand-built chapter-start saves, because the chapter ends were blocked at the time. The whole-game check has since played every chapter through from a fresh start.
